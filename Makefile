@@ -5,31 +5,30 @@
 ## Makefile
 ##
 
-NAME	=
-
-CC	=	gcc
+CC	=	clang
 
 RM	=	rm	-f
 
-SRCS	=
+ASM_OBJS		=	$(patsubst	%.c,	%.o,	$(shell	find	asm/sources/		-type	f	-name	"*.c"))
+COREWAR_OBJS	=	$(patsubst	%.c,	%.o,	$(shell	find	corewar/sources/	-type	f	-name	"*.c"))
 
-OBJS	=	$(SRCS:.c=.o)
-
-CFLAGS	=	-I
-CFLAGS	+=	-Wall	-Wextra
+CFLAGS	=	-I	includes
+CFLAGS	+=	-Weverything
+CFLAGS	+=	-g3
 
 LDFLAGS	=
 
-all:	$(NAME)
-
-$(NAME):	$(OBJS)
-	$(CC)	$(OBJS)	-o	$(NAME)	$(LDFLAGS)
+all:	$(ASM_OBJS)	$(COREWAR_OBJS)
+	$(CC)	$(ASM_OBJS)		-o	asm/asm			$(LDFLAGS)
+	$(CC)	$(COREWAR_OBJS)	-o	corewar/corewar	$(LDFLAGS)
 
 clean:
-	$(RM)	$(OBJS)
+	$(RM)	$(ASM_OBJS)
+	$(RM)	$(COREWAR_OBJS)
 
 fclean:	clean
-	$(RM)	$(NAME)
+	$(RM)	asm/asm
+	$(RM)	corewar/corewar
 
 re:	fclean	all
 
