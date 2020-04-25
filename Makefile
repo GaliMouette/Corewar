@@ -22,6 +22,9 @@ all:	$(ASM_OBJS)	$(COREWAR_OBJS)
 	$(CC)	$(ASM_OBJS)		-o	asm/asm			$(LDFLAGS)
 	$(CC)	$(COREWAR_OBJS)	-o	corewar/corewar	$(LDFLAGS)
 
+$(ASM_OBJS):		$(wildcard	includes/*.h)
+$(COREWAR_OBJS):	$(wildcard	includes/*.h)
+
 clean:
 	$(RM)	$(ASM_OBJS)
 	$(RM)	$(COREWAR_OBJS)
