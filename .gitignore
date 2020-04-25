@@ -1,3 +1,5 @@
 corewar_binaries/
 *.a
 *.o
+asm/asm
+corewar/corewar
