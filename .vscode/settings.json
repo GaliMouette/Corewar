@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "lfork",
+        "lldi",
+        "mnemonique",
+        "zjmp"
+    ],
+    "files.associations": {
+        "*.h": "c"
+    }
+}
