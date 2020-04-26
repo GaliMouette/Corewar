@@ -10,7 +10,7 @@
 
 #define MEM_SIZE                (6 * 1024)
 #define IDX_MOD                 512         //  Index modulo
-#define MAX_ARGS_NUMBER         4           //! DO NOT CHANGE (2 ^ MOD_SIZE)
+#define MAX_ARGS_NUMBER         4           //! DO NOT CHANGE (2 ^ IND_SIZE)
 
 //  Reserved characters
 #define COMMENT_CHAR            '#'
@@ -54,9 +54,9 @@ typedef char args_type_t;
 struct op_s
 {
    char         *mnemonique;
-   char         nbr_args;
+   int          nbr_args;
    args_type_t  type[MAX_ARGS_NUMBER];
-   char         code;
+   int          code;
    int          nbr_cycles;
    char         *comment;
 };
