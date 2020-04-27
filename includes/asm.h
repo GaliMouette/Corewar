@@ -8,5 +8,12 @@
 #ifndef ASM_H_
 #define ASM_H_
 
+#define USAGE \
+"USAGE\
+\n./asm file_name[.s]\
+\nDESCRIPTION\
+\nfile_name file in assembly language to be converted into file_name.cor, an\
+\nexecutable in the Virtual Machine.\
+\n"
 
 #endif /* !ASM_H_ */

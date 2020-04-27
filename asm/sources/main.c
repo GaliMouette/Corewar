@@ -5,8 +5,14 @@
 ** main
 */
 
+#include "asm.h"
+#include "utils.h"
+#include <unistd.h>
+
 int main(int argc, char const *argv[])
 {
-    /* code */
+    if (2 == argc && !my_strcmp("-h", argv[1])) {
+        write(1, USAGE, 148);
+    }
     return 0;
 }
