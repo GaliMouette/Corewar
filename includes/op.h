@@ -17,6 +17,10 @@
 #define LABEL_CHAR              ':'
 #define DIRECT_CHAR             '%'
 #define SEPARATOR_CHAR          ','
+#define COMMENT_STR             "#"
+#define LABEL_STR               ":"
+#define DIRECT_STR              "%"
+#define SEPARATOR_STR           ","
 
 //  Authorized label characters
 #define LABEL_CHARS             "abcdefghijklmnopqrstuvwxyz_0123456789"

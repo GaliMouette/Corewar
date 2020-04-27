@@ -6,6 +6,7 @@
 */
 
 #include "asm.h"
+#include "op.h"
 #include "utils.h"
 
 static void remove_tabulations(char *line);
@@ -20,11 +21,11 @@ int clean_line(char *line)
         return 1;
     }
     my_strtok(line, "\n");
-    if (my_strstr(line, "#")) {
-        if (line == my_strstr(line, "#")) {
+    if (my_strstr(line, COMMENT_STR)) {
+        if (COMMENT_CHAR == line[0]) {
             return 1;
         }
-        my_strstr(line, "#")[0] = '\0';
+        my_strstr(line, COMMENT_STR)[0] = '\0';
     }
     remove_tabulations(line);
     remove_comas(line);
