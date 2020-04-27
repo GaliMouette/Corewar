@@ -47,16 +47,16 @@
 #define NBR_LIVE        40
 
 //  Magic
-#define COREWAR_EXEC_MAGIC      0xea83f3    //! DO NOT TOUCH
+#define MAGIC      0xea83f3    //! DO NOT TOUCH
 
 typedef char args_type_t;
 
-struct op_s
+struct __attribute__((packed)) op_s
 {
    char         *mnemonique;
-   int          nbr_args;
+   char         nbr_args;
    args_type_t  type[MAX_ARGS_NUMBER];
-   int          code;
+   char         code;
    int          nbr_cycles;
    char         *comment;
 };
@@ -65,7 +65,7 @@ typedef struct op_s op_t;
 
 extern op_t op_tab[];
 
-struct header_s
+struct __attribute__((packed)) header_s
 {
    int  magic;
    char prog_name[PROG_NAME_LENGTH + 1];
