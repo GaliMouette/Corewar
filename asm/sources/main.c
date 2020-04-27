@@ -23,5 +23,8 @@ int main(int argc, char const *argv[])
         write(2, "Not enough arguments.\n", 22);
         return 84;
     }
+    if (compile_file(argv[1])) {
+        return 84;
+    }
     return 0;
 }
