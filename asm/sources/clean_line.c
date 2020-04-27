@@ -8,6 +8,10 @@
 #include "asm.h"
 #include "utils.h"
 
+static void remove_tabulations(char *line);
+
+static void remove_spaces(char *line);
+
 int clean_line(char *line)
 {
     if ('\n' == line[0]) {
@@ -28,7 +32,7 @@ int clean_line(char *line)
     return 0;
 }
 
-void remove_tabulations(char *line)
+static void remove_tabulations(char *line)
 {
     int i = 0;
     int quotes = 0;
@@ -46,7 +50,7 @@ void remove_tabulations(char *line)
     }
 }
 
-void remove_spaces(char *line)
+static void remove_spaces(char *line)
 {
     int i = 0;
     int j = 0;

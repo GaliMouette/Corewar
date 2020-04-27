@@ -20,10 +20,6 @@
 
 int compile_file(char const *path);
 FILE *open_file(char const *path);
-
-//  Cleaning line
 int clean_line(char *line);
-void remove_tabulations(char *line);
-void remove_spaces(char *line);
 
 #endif /* !ASM_H_ */
