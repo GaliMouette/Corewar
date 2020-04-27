@@ -66,7 +66,7 @@ static int parse_line(char *line, header_t *header)
 {
     line = my_strtok(line, " ");
     if (!my_strcmp(line, ".name") || !my_strcmp(line, ".comment")) {
-        // get_header(line, header, 0);
+        get_header(line, header, 0);
     }
     //  Check mnemonique or opcode
     //  Check label:

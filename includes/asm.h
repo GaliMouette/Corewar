@@ -16,7 +16,10 @@
 \nexecutable in the Virtual Machine.\
 \n"
 
+#include "op.h"
+
 int compile_file(char const *path);
 int clean_line(char *line);
+int get_header(char *line, header_t *header, int is_set);
 
 #endif /* !ASM_H_ */
