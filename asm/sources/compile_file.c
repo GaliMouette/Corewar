@@ -6,17 +6,35 @@
 */
 
 #include "asm.h"
+#include "op.h"
 #include <stdio.h>
 #include <unistd.h>
+
+int parse_file(FILE *file, header_t *header)
+{
+    char *line = NULL;
+    size_t n = 0;
+
+    while (-1 != getline(&line, &n, file)) {
+        if (clean_line(line)) {
+            continue;
+        }
+        //  Get header -> and check
+        //  Check label
+        //  Add instruction -> and check
+    }
+    return 0;
+}
 
 int compile_file(char const *path)
 {
     FILE *file = open_file(path);
+    header_t header = {MAGIC, {0}, 0, {0}};
 
     if (!file) {
         return 1;
     }
-    // Parse file(.s)
+    parse_file(file, &header);
     // Create and write file.cor
     fclose(file);
     return 0;
