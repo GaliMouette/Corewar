@@ -31,9 +31,15 @@ int clean_line(char *line)
 void remove_tabulations(char *line)
 {
     int i = 0;
+    int quotes = 0;
 
     while (line[i]) {
-        if ('\t' == line[i]) {
+        if ('\"' == line[i] && !quotes) {
+            quotes = 1;
+        } else if ('\"' == line[i] && quotes) {
+            quotes = 0;
+        }
+        if (!quotes && '\t' == line[i]) {
             line[i] = ' ';
         }
         i++;
@@ -44,12 +50,18 @@ void remove_spaces(char *line)
 {
     int i = 0;
     int j = 0;
+    int quotes = 0;
 
     while (' ' == line[j]) {
         j++;
     }
     while (line[j]) {
-        if (' ' == line[j] && ' ' == line[j + 1]) {
+        if ('\"' == line[i] && !quotes) {
+            quotes = 1;
+        } else if ('\"' == line[i] && quotes) {
+            quotes = 0;
+        }
+        if (!quotes && ' ' == line[j] && ' ' == line[j + 1]) {
             j++;
             continue;
         }
