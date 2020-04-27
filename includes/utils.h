@@ -20,7 +20,6 @@ char *my_strtok(char *str, const char *delim);
 char *my_strtok_r(char *str, const char *delim, char **backup);
 int my_strcmp(char const *str1, char const *str2);
 void my_put_nbr(int number);
-void remove_end_spaces(char *str);
 char *my_strdup(char const *str);
 
 #endif /* !UTILS_H_ */
