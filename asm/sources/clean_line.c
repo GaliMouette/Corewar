@@ -86,7 +86,7 @@ static void remove_spaces(char *line)
         } else if ('\"' == line[i] && quotes) {
             quotes = 0;
         }
-        if (!quotes && ' ' == line[j] && ' ' == line[j + 1]) {
+        if (!quotes && ' ' == line[j] && (' ' == line[j + 1] || !line[j + 1])) {
             j++;
             continue;
         }
