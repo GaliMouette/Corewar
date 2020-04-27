@@ -7,24 +7,16 @@
 
 #include "asm.h"
 #include "op.h"
+#include "utils.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
-int parse_file(FILE *file, header_t *header)
-{
-    char *line = NULL;
-    size_t n = 0;
+static FILE *open_file(char const *path);
 
-    while (-1 != getline(&line, &n, file)) {
-        if (clean_line(line)) {
-            continue;
-        }
-        //  Get header -> and check
-        //  Check label
-        //  Add instruction -> and check
-    }
-    return 0;
-}
+static int parse_file(FILE *file, header_t *header);
+
+static int parse_line(char *line, header_t *header);
 
 int compile_file(char const *path)
 {
@@ -34,13 +26,15 @@ int compile_file(char const *path)
     if (!file) {
         return 1;
     }
-    parse_file(file, &header);
+    if (parse_file(file, &header)) {
+        return 1;
+    }
     // Create and write file.cor
     fclose(file);
     return 0;
 }
 
-FILE *open_file(char const *path)
+static FILE *open_file(char const *path)
 {
     FILE *file = fopen(path, "r");
 
@@ -48,4 +42,33 @@ FILE *open_file(char const *path)
         write(2, "No such file.\n", 14);
     }
     return file;
+}
+
+static int parse_file(FILE *file, header_t *header)
+{
+    char *line = NULL;
+    size_t n = 0;
+
+    while (-1 != getline(&line, &n, file)) {
+        if (clean_line(line)) {
+            continue;
+        }
+        if (parse_line(line, header)) {
+            free(line);
+            return 1;
+        }
+    }
+    free(line);
+    return 0;
+}
+
+static int parse_line(char *line, header_t *header)
+{
+    line = my_strtok(line, " ");
+    if (!my_strcmp(line, ".name") || !my_strcmp(line, ".comment")) {
+        // get_header(line, header, 0);
+    }
+    //  Check mnemonique or opcode
+    //  Check label:
+    return 0;
 }

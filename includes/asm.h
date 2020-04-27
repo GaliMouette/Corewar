@@ -16,10 +16,7 @@
 \nexecutable in the Virtual Machine.\
 \n"
 
-#include <stdio.h>
-
 int compile_file(char const *path);
-FILE *open_file(char const *path);
 int clean_line(char *line);
 
 #endif /* !ASM_H_ */
