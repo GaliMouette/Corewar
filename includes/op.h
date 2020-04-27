@@ -33,7 +33,7 @@
 #define REG_SIZE        DIR_SIZE
 
 //  Registres
-#define REG_NUMBER              16  //  Number of registres
+#define REG_NUMBER              16  //  Number of registres (Starts at 1 to 16)
 
 //  Arguments types
 #define T_REG                   1   //  Registry type    (rX)
