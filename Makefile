@@ -11,6 +11,7 @@ RM	=	rm	-f
 
 ASM_OBJS		=	$(patsubst	%.c,	%.o,	$(shell	find	asm/sources/		-type	f	-name	"*.c"))
 COREWAR_OBJS	=	$(patsubst	%.c,	%.o,	$(shell	find	corewar/sources/	-type	f	-name	"*.c"))
+UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(shell	find	utils/				-type	f	-name	"*.c"))
 
 CFLAGS	=	-I	includes
 CFLAGS	+=	-Weverything
@@ -18,16 +19,18 @@ CFLAGS	+=	-g3
 
 LDFLAGS	=
 
-all:	$(ASM_OBJS)	$(COREWAR_OBJS)
+all:	$(ASM_OBJS)	$(COREWAR_OBJS) $(UTILS_OBJS)
 	$(CC)	$(ASM_OBJS)		-o	asm/asm			$(LDFLAGS)
 	$(CC)	$(COREWAR_OBJS)	-o	corewar/corewar	$(LDFLAGS)
 
 $(ASM_OBJS):		$(wildcard	includes/*.h)
 $(COREWAR_OBJS):	$(wildcard	includes/*.h)
+$(UTILS_OBJS): 		$(wildcard	includes/*.h)
 
 clean:
 	$(RM)	$(ASM_OBJS)
 	$(RM)	$(COREWAR_OBJS)
+	$(RM)	$(UTILS_OBJS)
 
 fclean:	clean
 	$(RM)	asm/asm
