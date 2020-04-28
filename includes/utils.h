@@ -25,5 +25,6 @@ void *my_memmove(void *dest, const void *src, int n);
 void *my_memcpy(void *dest, const void *src, int n);
 int my_strnlen(char const *str, int n);
 char *my_strndup(const char *s, int n);
+void freearray(void **array);
 
 #endif /* !UTILS_H_ */
