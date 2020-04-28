@@ -21,5 +21,7 @@ char *my_strtok_r(char *str, const char *delim, char **backup);
 int my_strcmp(char const *str1, char const *str2);
 void my_put_nbr(int number);
 char *my_strdup(char const *str);
+void *my_memmove(void *dest, const void *src, int n);
+void *my_memcpy(void *dest, const void *src, int n);
 
 #endif /* !UTILS_H_ */
