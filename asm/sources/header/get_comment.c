@@ -29,11 +29,11 @@ int get_comment(char *args, header_t *header, int is_set)
 static int check_errors(char *args, int set)
 {
     if (set) {
-        write(2, "The comment can only be defined once.\n", 35);
+        write(2, "The comment can only be defined once.\n", 38);
         return 1;
     }
     if (my_strlen(args) > MAX_COMMENT_LEN + 2) {
-        write(2, "Program name is too long.\n", 26);
+        write(2, "Program comment is too long.\n", 29);
         return 1;
     }
     if (!get_name(NULL, NULL, 1)) {
