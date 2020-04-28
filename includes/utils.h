@@ -23,5 +23,7 @@ void my_put_nbr(int number);
 char *my_strdup(char const *str);
 void *my_memmove(void *dest, const void *src, int n);
 void *my_memcpy(void *dest, const void *src, int n);
+int my_strnlen(char const *str, int n);
+char *my_strndup(const char *s, int n);
 
 #endif /* !UTILS_H_ */
