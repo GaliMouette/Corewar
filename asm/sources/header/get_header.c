@@ -5,8 +5,7 @@
 ** get_header
 */
 
-#include "asm.h"
-#include "op.h"
+#include "header.h"
 #include "utils.h"
 #include <unistd.h>
 
@@ -14,19 +13,22 @@ static int check_errors(char *args);
 
 int get_header(char *line, header_t *header, int is_set)
 {
-    static int set = 0;
     char *args = my_strtok(NULL, "");
 
     if (is_set) {
-        return set;
+        return get_name(NULL, NULL, 1) && get_comment(NULL, NULL, 1);
     }
     if (check_errors(args)) {
         return 1;
     }
-    if (!my_strcmp(line, ".name")) {
-        // Get name
-    } else if (!my_strcmp(line, ".comment")) {
-        // Get comment
+    if (!my_strcmp(line, NAME_CMD_STR)) {
+        if (get_name(args, header, 0)) {
+            return 1;
+        }
+    } else if (!my_strcmp(line, COMMENT_CMD_STR)) {
+        if (get_comment(args, header, 0)){
+            return 1;
+        }
     }
     return 0;
 }

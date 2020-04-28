@@ -5,8 +5,7 @@
 ** get_name
 */
 
-#include "asm.h"
-#include "op.h"
+#include "header.h"
 #include "utils.h"
 #include <unistd.h>
 
@@ -33,7 +32,7 @@ static int check_errors(char *args, int set)
         write(2, "The name can only be defined once.\n", 35);
         return 1;
     }
-    if (my_strlen(args) > PROG_NAME_LENGTH + 2) {
+    if (my_strlen(args) > MAX_PROG_NAME_LEN + 2) {
         write(2, "Program name is too long.\n", 26);
         return 1;
     }
