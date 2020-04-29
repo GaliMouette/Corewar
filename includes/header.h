@@ -21,8 +21,9 @@ struct __attribute__((packed)) header_s
 {
     int  magic;
     char prog_name[MAX_PROG_NAME_LEN + 1];
-    int  prog_size;
+    long  prog_size;
     char comment[MAX_COMMENT_LEN + 1];
+    int padding;
 };
 
 typedef struct header_s header_t;
