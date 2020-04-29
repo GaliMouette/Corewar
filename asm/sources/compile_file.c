@@ -10,7 +10,7 @@
 int compile_file(char const *path)
 {
     FILE *file = open_file(path);
-    header_t header = {MAGIC, {0}, 0, {0}};
+    header_t header = {MAGIC, {0}, 0, {0}, 0};
 
     if (!file) {
         return 1;

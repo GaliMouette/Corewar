@@ -2,11 +2,14 @@
 ** EPITECH PROJECT, 2020
 ** CPE_corewar_2019 [Container epitech_image (/CPE_corewar_2…]
 ** File description:
-** asm
+** main
 */
 
-#ifndef ASM_H_
-#define ASM_H_
+#ifndef MAIN_H_
+#define MAIN_H_
+
+#include "utils.h"
+#include <unistd.h>
 
 #define USAGE \
 "USAGE\
@@ -16,7 +19,7 @@
 \nexecutable in the Virtual Machine.\
 \n"
 
+//  Using
 int compile_file(char const *path);
-int clean_line(char *line);
 
-#endif /* !ASM_H_ */
+#endif /* !MAIN_H_ */
