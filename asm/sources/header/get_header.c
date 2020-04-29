@@ -5,11 +5,7 @@
 ** get_header
 */
 
-#include "header.h"
-#include "utils.h"
-#include <unistd.h>
-
-static int check_errors(char *args);
+#include "asm/header/get_header.h"
 
 int get_header(char *line, header_t *header, int is_set)
 {

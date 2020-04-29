@@ -1,12 +1,12 @@
 /*
 ** EPITECH PROJECT, 2020
-** CPE_corewar_2019
+** CPE_corewar_2019 [Container epitech_image (/CPE_corewar_2…]
 ** File description:
-** label
+** labels_t
 */
 
-#ifndef LABEL_H_
-#define LABEL_H_
+#ifndef LABELS_T_H_
+#define LABELS_T_H_
 
 struct __attribute__((packed)) labels_s
 {
@@ -18,4 +18,4 @@ typedef struct labels_s labels_t;
 
 int check_label(char *line, labels_t *saved_labels);
 
-#endif /* !LABEL_H_ */
+#endif /* !LABELS_T_H_ */

@@ -5,15 +5,7 @@
 ** clean_line
 */
 
-#include "asm.h"
-#include "op.h"
-#include "utils.h"
-
-static void remove_tabulations(char *line);
-
-static void remove_comas(char *line);
-
-static void remove_spaces(char *line);
+#include "asm/clean_line.h"
 
 int clean_line(char *line)
 {

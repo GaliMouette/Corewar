@@ -5,15 +5,7 @@
 ** label
 */
 
-#include "label.h"
-#include "op.h"
-#include "utils.h"
-#include <stdlib.h>
-#include <unistd.h>
-
-static int check_errors(char *line);
-
-static int check_duplicate(char **labels, int nb_labels);
+#include "asm/label.h"
 
 int check_label(char *line, labels_t *saved_labels)
 {

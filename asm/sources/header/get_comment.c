@@ -5,11 +5,7 @@
 ** get_comment
 */
 
-#include "header.h"
-#include "utils.h"
-#include <unistd.h>
-
-static int check_errors(char *args, int set);
+#include "asm/header/get_comment.h"
 
 int get_comment(char *args, header_t *header, int is_set)
 {
