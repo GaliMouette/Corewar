@@ -8,7 +8,7 @@
 #ifndef INSTRUCTION_H_
 #define INSTRUCTION_H_
 
-struct instruction_s
+struct __attribute__((packed)) instruction_s
 {
     struct  instruction_s *prev;
     struct  instruction_s *next;

@@ -13,10 +13,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define LABEL_CHAR  ':'
-#define LABEL_STR   ":"
-#define LABEL_CHARS "abcdefghijklmnopqrstuvwxyz_0123456789"
-
 int check_label(char *line, labels_t *saved_labels);
 static int check_errors(char *line);
 static int check_duplicate(char **labels, int nb_labels);

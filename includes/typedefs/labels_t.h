@@ -8,6 +8,10 @@
 #ifndef LABELS_T_H_
 #define LABELS_T_H_
 
+#define LABEL_CHAR  ':'
+#define LABEL_STR   ":"
+#define LABEL_CHARS "abcdefghijklmnopqrstuvwxyz_0123456789"
+
 struct __attribute__((packed)) labels_s
 {
     char **labels;

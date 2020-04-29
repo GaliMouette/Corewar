@@ -9,14 +9,12 @@
 #define CHECK_ARGS_H_
 
 #include "op.h"
+#include "typedefs/labels_t.h"
 #include "utils.h"
 #include <unistd.h>
 
 #define DIRECT_CHAR '%'
 #define REG_NUMBER  16  //  Number of registres (From 1 to 16)
-
-#define LABEL_CHAR  ':'
-#define LABEL_CHARS "abcdefghijklmnopqrstuvwxyz_0123456789"
 
 int check_nb_args(char *args[6], int index);
 int check_args_types(char *args[6], int index);
