@@ -5,7 +5,7 @@
 ** display_header
 */
 
-#include "header.h"
+#include "header_t.h"
 #include <unistd.h>
 
 int write_header(header_t *header, int fd)
