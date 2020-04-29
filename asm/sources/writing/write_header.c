@@ -5,8 +5,11 @@
 ** display_header
 */
 
-#include "header_t.h"
+#include "typedefs/header_t.h"
 #include <unistd.h>
+
+int reverse_write(int fd, const void *buf, int n);
+int write_header(header_t *header, int fd);
 
 int write_header(header_t *header, int fd)
 {
