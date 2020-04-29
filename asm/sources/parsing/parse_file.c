@@ -5,15 +5,9 @@
 ** parse
 */
 
-#include "asm/label.h"
-#include "asm/header/get_header.h"
-#include "typedefs/labels_t.h"
-#include "typedefs/header_t.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include "op.h"
+#include "asm/parsing/parse_file.h"
 
-int parse_file(FILE *file, header_t *header)
+int parse_file(FILE *file, header_t *header, instruction_t **head)
 {
     char *line = NULL;
     size_t n = 0;
@@ -23,7 +17,7 @@ int parse_file(FILE *file, header_t *header)
         if (clean_line(line)) {
             continue;
         }
-        if (parse_line(line, header, &saved_labels)) {
+        if (parse_line(line, header, &saved_labels, head)) {
             freearray((void **) saved_labels.labels);
             free(line);
             return 1;
@@ -34,22 +28,7 @@ int parse_file(FILE *file, header_t *header)
     return 0;
 }
 
-void fill_args(char *args[6], char *line, int label)
-{
-    int i = 1;
-
-    if (2 == label) {
-        args[0] = my_strtok(NULL, " ");
-    } else {
-        args[0] = line;
-    }
-    while (i < 6) {
-        args[i] = my_strtok(NULL, " ");
-        i++;
-    }
-}
-
-int parse_line(char *line, header_t *header, labels_t *saved_labels)
+static int parse_line(char *line, header_t *header, labels_t *saved_labels, instruction_t **head)
 {
     static int label = 0;
     char *args[6] = {0};
@@ -65,13 +44,23 @@ int parse_line(char *line, header_t *header, labels_t *saved_labels)
         label = 2;
     }
     fill_args(args, line, label);
-    if (label && !args[0]) {
-        label = 1;
-        return 0;
-    }
-    if (parse_args(args, saved_labels, label)) {
+    if (parse_args(args, saved_labels, &label, head)) {
         return 1;
     }
-    label = 0;
     return 0;
+}
+
+static void fill_args(char *args[6], char *line, int label)
+{
+    int i = 1;
+
+    if (2 == label) {
+        args[0] = my_strtok(NULL, " ");
+    } else {
+        args[0] = line;
+    }
+    while (i < 6) {
+        args[i] = my_strtok(NULL, " ");
+        i++;
+    }
 }

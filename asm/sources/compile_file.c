@@ -11,11 +11,12 @@ int compile_file(char const *path)
 {
     FILE *file = open_file(path);
     header_t header = {MAGIC, {0}, 0, {0}, 0};
+    instruction_t *head = NULL;
 
     if (!file) {
         return 1;
     }
-    if (parse_file(file, &header)) {
+    if (parse_file(file, &header, &head)) {
         return 1;
     }
     // Create and write file.cor
