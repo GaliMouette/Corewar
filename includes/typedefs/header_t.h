@@ -9,7 +9,7 @@
 #define HEADER_H_
 
 //  Magic
-#define MAGIC      0xea83f3    //! DO NOT TOUCH
+#define MAGIC      0xea83f3    // !DO NOT TOUCH
 
 
 #define NAME_CMD_STR            ".name"

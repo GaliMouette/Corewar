@@ -28,7 +28,8 @@ int parse_file(FILE *file, header_t *header, instruction_t **head)
     return 0;
 }
 
-static int parse_line(char *line, header_t *header, labels_t *saved_labels, instruction_t **head)
+static int parse_line
+(char *line, header_t *header, labels_t *saved_labels, instruction_t **head)
 {
     static int label = 0;
     char *args[6] = {0};

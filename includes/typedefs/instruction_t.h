@@ -18,7 +18,7 @@ struct __attribute__((packed)) instruction_s
     char    registers[3];
     short   indirect[3];
     int     direct[3];
-    char    labels[3];
+    char    *labels[3];
     int     pc;
 };
 

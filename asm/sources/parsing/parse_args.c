@@ -7,7 +7,8 @@
 
 #include "asm/parsing/parse_args.h"
 
-int parse_args(char *args[6], labels_t *saved_labels, int *label, instruction_t **head)
+int parse_args
+(char *args[6], labels_t *saved_labels, int *label, instruction_t **head)
 {
     int index = get_mnemonique_index(args[0]);
 
@@ -18,7 +19,9 @@ int parse_args(char *args[6], labels_t *saved_labels, int *label, instruction_t 
     if (check_errors(args, index)) {
         return 1;
     }
-    // Add struct here
+    if (add_instruction(args, head, (int [2]) {index, *label}, saved_labels)) {
+        return 1;
+    }
     *label = 0;
     return 0;
 }

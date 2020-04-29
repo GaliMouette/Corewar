@@ -5,8 +5,12 @@
 ** main
 */
 
+_Pragma("clang diagnostic push")
+_Pragma("clang diagnostic ignored \"-Wunused-parameter\"")
+
 int main(int argc, char const *argv[])
 {
-    /* code */
     return 0;
 }
+
+_Pragma("clang diagnostic pop")
