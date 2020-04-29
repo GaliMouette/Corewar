@@ -5,9 +5,7 @@
 ** main
 */
 
-#include "asm.h"
-#include "utils.h"
-#include <unistd.h>
+#include "asm/main.h"
 
 int main(int argc, char const *argv[])
 {

@@ -8,17 +8,11 @@
 #ifndef COMPILE_FILE_H_
 #define COMPILE_FILE_H_
 
-#include "asm.h"
-#include "header.h"
-#include "labels_t.h"
-#include "op.h"
-#include "utils.h"
+#include "header_t.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 
+int compile_file(char const *path);
 static FILE *open_file(char const *path);
-static int parse_file(FILE *file, header_t *header);
-static int parse_line(char *line, header_t *header, labels_t *saved_labels);
 
 #endif /* !COMPILE_FILE_H_ */

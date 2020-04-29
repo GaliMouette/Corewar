@@ -20,16 +20,12 @@
 struct __attribute__((packed)) header_s
 {
     int  magic;
-    char prog_name[MAX_PROG_NAME_LEN + 1];
+    char prog_name[MAX_PROG_NAME_LEN];
     long  prog_size;
-    char comment[MAX_COMMENT_LEN + 1];
+    char comment[MAX_COMMENT_LEN];
     int padding;
 };
 
 typedef struct header_s header_t;
-
-int get_header(char *line, header_t *header, int is_set);
-int get_name(char *args, header_t *header, int is_set);
-int get_comment(char *args, header_t *header, int is_set);
 
 #endif /* !HEADER_H_ */

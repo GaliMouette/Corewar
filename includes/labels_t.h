@@ -16,6 +16,4 @@ struct __attribute__((packed)) labels_s
 
 typedef struct labels_s labels_t;
 
-int check_label(char *line, labels_t *saved_labels);
-
 #endif /* !LABELS_T_H_ */
