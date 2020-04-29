@@ -8,7 +8,7 @@
 #ifndef GET_NAME_H_
 #define GET_NAME_H_
 
-#include "header_t.h"
+#include "typedefs/header_t.h"
 #include "utils.h"
 #include <unistd.h>
 

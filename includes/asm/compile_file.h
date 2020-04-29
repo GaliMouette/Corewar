@@ -8,7 +8,7 @@
 #ifndef COMPILE_FILE_H_
 #define COMPILE_FILE_H_
 
-#include "header_t.h"
+#include "typedefs/header_t.h"
 #include <stdio.h>
 #include <unistd.h>
 

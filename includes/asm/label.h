@@ -8,7 +8,7 @@
 #ifndef LABEL_H_
 #define LABEL_H_
 
-#include "labels_t.h"
+#include "typedefs/labels_t.h"
 #include "utils.h"
 #include <stdlib.h>
 #include <unistd.h>
