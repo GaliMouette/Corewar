@@ -46,30 +46,27 @@ static int set_instruction
         }
     }
     new->opcode = (char) info[0];
-    new->args_types = (char) get_args_types(args);
+    new->args_types = (unsigned char) get_args_types(args);
     set_args(args, new);
     new->pc = 0;
     return 0;
 }
-
-_Pragma("clang diagnostic push")
-_Pragma("clang diagnostic ignored \"-Wgnu-binary-literal\"")
 
 static int set_args(char *args[6], instruction_t *new)
 {
     int i = 3;
 
     while (i) {
-        switch (new->opcode >> i) {
-        case 0b01:
+        switch (new->args_types >> (i * 2) & 3) {
+        case 1:
             new->registers[3 - i] = (char) my_atoi(args[4 - i]);
             break;
-        case 0b10:
+        case 2:
             if (set_direct_or_indirect(args, new, i, 1)) {
                 return 1;
             }
             break;
-        default:
+        case 3:
             if (set_direct_or_indirect(args, new, i, 0)) {
                 return 1;
             }
@@ -80,13 +77,15 @@ static int set_args(char *args[6], instruction_t *new)
     return 0;
 }
 
-_Pragma("clang diagnostic pop")
-
 static int set_direct_or_indirect
 (char *args[6], instruction_t *new, int i, int direct)
 {
-    if (set_label(args, new, i, direct)) {
+    int label = set_label(args, new, i, direct);
+
+    if (1 == label) {
         return 1;
+    } else if (2 == label) {
+        return 0;
     } else {
         new->direct[3 - i] = my_atoi(args[4 - i]);
         return 0;
@@ -95,11 +94,12 @@ static int set_direct_or_indirect
 
 static int set_label(char *args[6], instruction_t *new, int i, int direct)
 {
-    if (':' == args[3 - i][direct]) {
+    if (':' == args[4 - i][direct]) {
         new->labels[3 - i] = my_strdup(args[4 - i] + 1 + direct);
         if (!new->labels[3 - i]) {
             return 1;
         }
+        return 2;
     }
     return 0;
 }

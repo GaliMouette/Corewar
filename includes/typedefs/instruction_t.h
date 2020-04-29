@@ -14,7 +14,7 @@ struct __attribute__((packed)) instruction_s
     struct  instruction_s *next;
     char    *label;
     char    opcode;
-    char    args_types;
+    unsigned char    args_types;
     char    registers[3];
     short   indirect[3];
     int     direct[3];

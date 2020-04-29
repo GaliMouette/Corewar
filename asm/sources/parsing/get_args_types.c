@@ -7,9 +7,6 @@
 
 #include "asm/parsing/get_args_types.h"
 
-_Pragma("clang diagnostic push")
-_Pragma("clang diagnostic ignored \"-Wgnu-binary-literal\"")
-
 int get_args_types(char *args[6])
 {
     int type = 0;
@@ -18,18 +15,16 @@ int get_args_types(char *args[6])
     while (args[i]) {
         switch (args[i][0]) {
         case 'r':
-            type |= 0b01 << (8 - i * 2);
+            type |= 1 << (8 - i * 2);
             break;
         case '%':
-            type |= 0b10 << (8 - i * 2);
+            type |= 2 << (8 - i * 2);
             break;
         default:
-            type |= 0b11 << (8 - i * 2);
+            type |= 3 << (8 - i * 2);
             break;
         }
         i++;
     }
     return type;
 }
-
-_Pragma("clang diagnostic pop")
