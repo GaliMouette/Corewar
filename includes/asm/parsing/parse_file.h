@@ -14,6 +14,7 @@
 #include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int parse_file(FILE *file, header_t *header, instruction_t **head);
 static int parse_line

@@ -11,6 +11,9 @@ long calculate_pc(instruction_t *head)
 {
     int new_pc = 0;
 
+    if (!head) {
+        return 0;
+    }
     head->pc = new_pc;
     while (head->next) {
         new_pc += get_special_op_len(head) ?: get_op_len(head);

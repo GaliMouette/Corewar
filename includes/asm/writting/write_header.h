@@ -11,9 +11,9 @@
 #include "typedefs/header_t.h"
 #include <unistd.h>
 
-int write_header(header_t *header, int fd);
+void write_header(header_t *header, int fd);
 
 //  Using
-int reverse_write(int fd, const void *buf, int n);
+void reverse_write(int fd, const void *buf, int n);
 
 #endif /* !WRITE_HEADER_H_ */

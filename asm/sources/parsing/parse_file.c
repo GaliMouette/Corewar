@@ -25,6 +25,10 @@ int parse_file(FILE *file, header_t *header, instruction_t **head)
     }
     freearray((void **) saved_labels.labels);
     free(line);
+    if (!get_header(NULL, NULL, 1)) {
+        write(2, "Incomplete header.\n", 19);
+        return 1;
+    }
     return 0;
 }
 
