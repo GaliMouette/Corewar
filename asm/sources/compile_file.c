@@ -6,13 +6,10 @@
 */
 
 #include "asm/compile_file.h"
-#include "utils.h"
-#include <fcntl.h>
 
 int compile_file(char const *path)
 {
     FILE *file = open_file(path);
-    int ouput = open_output(path);
     header_t header = {MAGIC, {0}, 0, {0}, 0};
     instruction_t *head = NULL;
 
@@ -23,36 +20,50 @@ int compile_file(char const *path)
         return 1;
     }
     header.prog_size = calculate_pc(head);
-    replace_labels(head);
-    write_header(&header, ouput);
-    write_instructions(head, ouput);
+    if (replace_labels(head) || write_file(path, &header, head)) {
+        free_instruction(head);
+        return 1;
+    }
+    free_instruction(head);
     fclose(file);
     return 0;
 }
 
 static FILE *open_file(char const *path)
 {
-    FILE *file = fopen(path, "r");
+    FILE *file = fopen(path, "r+");
+    int input = -1;
 
     if (!file) {
         write(2, "No such file.\n", 14);
     }
+    input = open(path, O_RDONLY);
+    if (-1 == input) {
+        if (file) {
+            fclose(file);
+        }
+        return NULL;
+    }
+    if (!lseek(input, 0, SEEK_END)) {
+        write(2, "File is empty.\n", 15);
+        fclose(file);
+        file = NULL;
+    }
+    close(input);
     return file;
 }
 
-int open_output(char *path)
+static void free_instruction(instruction_t *head)
 {
-    char buffer[256] = {0};
-    char *end;
+    instruction_t *dummy;
 
-    my_memcpy(buffer, path, my_strlen(path));
-    end = my_strstr(buffer, ".s");
-    while (end && end[2]) {
-        end = my_strstr(buffer + 1, ".s");
+    while (head) {
+        dummy = head->next;
+        free(head->label);
+        free(head->labels[0]);
+        free(head->labels[1]);
+        free(head->labels[2]);
+        free(head);
+        head = dummy;
     }
-    if (!end) {
-        end = buffer + my_strlen(path);
-    }
-    my_memcpy(end, ".cor", 5);
-    return open(buffer, O_WRONLY | O_CREAT, 0666);
 }

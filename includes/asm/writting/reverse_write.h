@@ -10,6 +10,6 @@
 
 #include <unistd.h>
 
-int reverse_write(int fd, const void *buf, int n);
+void reverse_write(int fd, const void *buf, int n);
 
 #endif /* !REVERSE_WRITE_H_ */

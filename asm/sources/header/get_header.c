@@ -9,7 +9,7 @@
 
 int get_header(char *line, header_t *header, int is_set)
 {
-    char *args = my_strtok(NULL, "");
+    char *args = (line) ? my_strtok(NULL, "") : NULL;
 
     if (is_set) {
         return get_name(NULL, NULL, 1) && get_comment(NULL, NULL, 1);

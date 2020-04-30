@@ -62,7 +62,7 @@ static int get_label_pc(instruction_t *dummy, char *label)
         dummy = dummy->next;
     }
     if (-1 == pc) {
-        write(2, "Reference to undefined label.\n", 2);
+        write(2, "Reference to undefined label.\n", 30);
     }
     return pc;
 }
