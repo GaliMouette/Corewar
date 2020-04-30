@@ -20,7 +20,11 @@ char *my_strtok(char *str, const char *delim);
 char *my_strtok_r(char *str, const char *delim, char **backup);
 int my_strcmp(char const *str1, char const *str2);
 void my_put_nbr(int number);
-void remove_end_spaces(char *str);
 char *my_strdup(char const *str);
+void *my_memmove(void *dest, const void *src, int n);
+void *my_memcpy(void *dest, const void *src, int n);
+int my_strnlen(char const *str, int n);
+char *my_strndup(const char *s, int n);
+void freearray(void **array);
 
 #endif /* !UTILS_H_ */

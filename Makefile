@@ -20,12 +20,12 @@ CFLAGS	+=	-g3
 LDFLAGS	=
 
 all:	$(ASM_OBJS)	$(COREWAR_OBJS) $(UTILS_OBJS)
-	$(CC)	$(ASM_OBJS)		-o	asm/asm			$(LDFLAGS)
+	$(CC)	$(ASM_OBJS)		$(UTILS_OBJS)	-o	asm/asm			$(LDFLAGS)
 	$(CC)	$(COREWAR_OBJS)	-o	corewar/corewar	$(LDFLAGS)
 
-$(ASM_OBJS):		$(wildcard	includes/*.h)
-$(COREWAR_OBJS):	$(wildcard	includes/*.h)
-$(UTILS_OBJS): 		$(wildcard	includes/*.h)
+$(ASM_OBJS):		$(shell	find	includes/	-type f	-name "*.h")
+$(COREWAR_OBJS):	$(shell	find	includes/	-type f	-name "*.h")
+$(UTILS_OBJS): 		$(shell	find	includes/	-type f	-name "*.h")
 
 clean:
 	$(RM)	$(ASM_OBJS)
