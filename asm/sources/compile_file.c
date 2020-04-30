@@ -20,7 +20,8 @@ int compile_file(char const *path)
         return 1;
     }
     header.prog_size = calculate_pc(head);
-    if (write_file(path, &header, head)){
+    if (replace_labels(head) || write_file(path, &header, head)) {
+        free_instruction(head);
         return 1;
     }
     free_instruction(head);
