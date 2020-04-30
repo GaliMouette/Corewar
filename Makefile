@@ -23,24 +23,39 @@ UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(UTILS_SRCS))
 
 INCLUDES	=	$(shell	find	includes/	-type	f	-name	"*.h")
 
-TESTS_SRCS	=
+
+TESTS_SRCS	=	tests/test_my_strcmp.c	\
+				utils/my_strcmp.c		\
+				tests/test_is_digit.c	\
+				utils/is_digit.c		\
+				tests/test_is_printable.c	\
+				utils/is_printable.c		\
+				tests/test_my_atoi.c		\
+				utils/my_atoi.c				\
+				tests/test_my_memcpy.c		\
+				utils/my_memcpy.c			\
+				tests/test_my_put_nbr.c		\
+				utils/my_put_nbr.c			\
 
 TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
 
 CFLAGS	=	-I	./includes/
-CFLAGS	+=	-Weverything
 CFLAGS	+=	-g3
+ifneq	($(MAKECMDGOALS),	tests_run)
+	CFLAGS	+=	-Weverything
+endif
 
 LDFLAGS	=
 
 ifeq	($(MAKECMDGOALS),	tests_run)
+	CC		=	gcc
 	CFLAGS	+=	--coverage
 	LDFLAGS	+=	-lcriterion
 endif
 
 all:	$(ASM_OBJS)	$(COREWAR_OBJS)	$(UTILS_OBJS)
-	$(CC)	$(ASM_OBJS)		$(UTILS_OBJS)	-o	ASM_NAME		$(LDFLAGS)
-	$(CC)	$(COREWAR_OBJS)	$(UTILS_OBJS)	-o	COREWAR_NAME	$(LDFLAGS)
+	$(CC)	$(ASM_OBJS)		$(UTILS_OBJS)	-o	$(ASM_NAME)		$(LDFLAGS)
+	$(CC)	$(COREWAR_OBJS)	$(UTILS_OBJS)	-o	$(COREWAR_NAME)	$(LDFLAGS)
 
 
 $(ASM_OBJS):		$(INCLUDES)
@@ -49,7 +64,7 @@ $(UTILS_OBJS):		$(INCLUDES)
 
 tests_run:	$(TESTS_OBJS)
 	$(CC)	$(TESTS_OBJS)	-o	$(TESTS_NAME)	$(LDFLAGS)	$(CFLAGS)
-	$(shell $(TESTS_NAME))
+	$(TESTS_NAME)
 
 tests_clean:
 	$(RM)	$(shell	find	-type	f	-name	"*.gc*")
