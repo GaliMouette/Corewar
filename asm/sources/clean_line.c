@@ -83,9 +83,7 @@ static void remove_spaces(char *line)
             j++;
             continue;
         }
-        line[i] = line[j];
-        i++;
-        j++;
+        line[i++] = line[j++];
     }
     line[i] = '\0';
 }

@@ -27,7 +27,7 @@ static int write_special(instruction_t *head, int fd)
 
     if (0x01 == opcode) {
         reverse_write(fd, &head->direct[0], 4);
-    } else if (0x09 == opcode || 0x0C == opcode || 0x0F== opcode) {
+    } else if (0x09 == opcode || 0x0C == opcode || 0x0F == opcode) {
         reverse_write(fd, &head->direct[0], 2);
     } else {
         return 0;

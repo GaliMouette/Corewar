@@ -10,8 +10,7 @@
 int add_instruction
 (char *args[6], instruction_t **head, int info[2], labels_t *saved_labels)
 {
-    instruction_t *new = malloc(sizeof(instruction_t));
-    instruction_t *dummy = *head;
+    instruction_t *dummy, *new = malloc(sizeof(instruction_t));
 
     if (!new) {
         return 1;
@@ -21,7 +20,7 @@ int add_instruction
     }
     new->pc = 0;
     new->next = NULL;
-    if (!dummy) {
+    if (!(dummy = *head)) {
         new->prev = NULL;
         *head = new;
     } else {
