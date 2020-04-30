@@ -1,9 +1,8 @@
 corewar_binaries/
 *.a
 *.o
+*.gc*
 asm/asm
 corewar/corewar
 vgcore.*
-*.gcda
-*.gcno
 unit_tests
