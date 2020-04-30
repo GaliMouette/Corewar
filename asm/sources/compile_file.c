@@ -39,7 +39,9 @@ static FILE *open_file(char const *path)
     }
     input = open(path, O_RDONLY);
     if (-1 == input) {
-        fclose(file);
+        if (file) {
+            fclose(file);
+        }
         return NULL;
     }
     if (!lseek(input, 0, SEEK_END)) {
