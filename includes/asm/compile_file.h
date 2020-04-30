@@ -18,5 +18,7 @@ static FILE *open_file(char const *path);
 
 //  Using
 int parse_file(FILE *file, header_t *header, instruction_t **head);
+long calculate_pc(instruction_t *head);
+int replace_labels(instruction_t *head);
 
 #endif /* !COMPILE_FILE_H_ */

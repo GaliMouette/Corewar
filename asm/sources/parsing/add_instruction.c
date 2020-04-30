@@ -19,6 +19,7 @@ int add_instruction
     if (set_instruction(args, info, saved_labels, new)) {
         return 1;
     }
+    new->pc = 0;
     new->next = NULL;
     if (!dummy) {
         new->prev = NULL;
@@ -44,11 +45,18 @@ static int set_instruction
             free(new);
             return 1;
         }
+    } else {
+        new->label = NULL;
     }
-    new->opcode = (char) info[0];
+    new->opcode = (char) info[0] + 1;
     new->args_types = (unsigned char) get_args_types(args);
+    for (int i = 0; i < 3; i++) {
+        new->registers[i] = 0;
+        new->indirect[i] = 0;
+        new->direct[i] = 0;
+        new->labels[i] = 0;
+    }
     set_args(args, new);
-    new->pc = 0;
     return 0;
 }
 
@@ -59,7 +67,7 @@ static int set_args(char *args[6], instruction_t *new)
     while (i) {
         switch (new->args_types >> (i * 2) & 3) {
         case 1:
-            new->registers[3 - i] = (char) my_atoi(args[4 - i]);
+            new->registers[3 - i] = (char) my_atoi(args[4 - i] + 1);
             break;
         case 2:
             if (set_direct_or_indirect(args, new, i, 1)) {
@@ -84,12 +92,16 @@ static int set_direct_or_indirect
 
     if (1 == label) {
         return 1;
-    } else if (2 == label) {
-        return 0;
-    } else {
-        new->direct[3 - i] = my_atoi(args[4 - i]);
+    }
+    if (2 == label) {
         return 0;
     }
+    if (direct) {
+        new->direct[3 - i] = my_atoi(args[4 - i] + 1);
+    } else {
+        new->indirect[3 - i] = (short) my_atoi(args[4 - i]);
+    }
+    return 0;
 }
 
 static int set_label(char *args[6], instruction_t *new, int i, int direct)

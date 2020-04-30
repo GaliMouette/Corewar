@@ -5,9 +5,7 @@
 ** reverse_write
 */
 
-#include <unistd.h>
-
-int reverse_write(int fd, const void *buf, int n);
+#include "asm/writting/reverse_write.h"
 
 int reverse_write(int fd, const void *buf, int n)
 {

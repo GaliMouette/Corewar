@@ -17,7 +17,7 @@ int get_comment(char *args, header_t *header, int is_set)
     if (check_errors(args, set)) {
         return 1;
     }
-    my_memcpy(header->prog_name, args + 1, my_strlen(args + 1) - 1);
+    my_memcpy(header->comment, args + 1, my_strlen(args + 1) - 1);
     set = 1;
     return 0;
 }
