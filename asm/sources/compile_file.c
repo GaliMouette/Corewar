@@ -32,7 +32,7 @@ int compile_file(char const *path)
 
 static FILE *open_file(char const *path)
 {
-    FILE *file = fopen(path, "r");
+    FILE *file = fopen(path, "r+");
 
     if (!file) {
         write(2, "No such file.\n", 14);
