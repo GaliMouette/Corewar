@@ -9,33 +9,59 @@ CC	=	clang
 
 RM	=	rm	-f
 
-ASM_OBJS		=	$(patsubst	%.c,	%.o,	$(shell	find	asm/sources/		-type	f	-name	"*.c"))
-COREWAR_OBJS	=	$(patsubst	%.c,	%.o,	$(shell	find	corewar/sources/	-type	f	-name	"*.c"))
-UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(shell	find	utils/				-type	f	-name	"*.c"))
+ASM_NAME		=	./asm/asm
+COREWAR_NAME	=	./corewar/corewar
+TESTS_NAME		=	./unit_tests
 
-CFLAGS	=	-I	includes
+ASM_SRCS		=	$(shell	find	./asm/sources/		-type	f	-name	"*.c")
+COREWAR_SRCS	=	$(shell	find	./corewar/sources/	-type	f	-name	"*.c")
+UTILS_SRCS		=	$(shell	find	./utils/			-type	f	-name	"*.c")
+
+ASM_OBJS		=	$(patsubst	%.c,	%.o,	$(ASM_SRCS))
+COREWAR_OBJS	=	$(patsubst	%.c,	%.o,	$(COREWAR_SRCS))
+UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(UTILS_SRCS))
+
+INCLUDES	=	$(shell	find	includes/	-type	f	-name	"*.h")
+
+TESTS_SRCS	=
+
+TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
+
+CFLAGS	=	-I	./includes/
 CFLAGS	+=	-Weverything
 CFLAGS	+=	-g3
 
 LDFLAGS	=
 
-all:	$(ASM_OBJS)	$(COREWAR_OBJS) $(UTILS_OBJS)
-	$(CC)	$(ASM_OBJS)		$(UTILS_OBJS)	-o	asm/asm			$(LDFLAGS)
-	$(CC)	$(COREWAR_OBJS)	-o	corewar/corewar	$(LDFLAGS)
+ifeq	($(MAKECMDGOALS),	tests_run)
+	CFLAGS	+=	--coverage
+	LDFLAGS	+=	-lcriterion
+endif
 
-$(ASM_OBJS):		$(shell	find	includes/	-type f	-name "*.h")
-$(COREWAR_OBJS):	$(shell	find	includes/	-type f	-name "*.h")
-$(UTILS_OBJS): 		$(shell	find	includes/	-type f	-name "*.h")
+all:	$(ASM_OBJS)	$(COREWAR_OBJS)	$(UTILS_OBJS)
+	$(CC)	$(ASM_OBJS)		$(UTILS_OBJS)	-o	ASM_NAME		$(LDFLAGS)
+	$(CC)	$(COREWAR_OBJS)	$(UTILS_OBJS)	-o	COREWAR_NAME	$(LDFLAGS)
 
-clean:
-	$(RM)	$(ASM_OBJS)
-	$(RM)	$(COREWAR_OBJS)
-	$(RM)	$(UTILS_OBJS)
+
+$(ASM_OBJS):		$(INCLUDES)
+$(COREWAR_OBJS):	$(INCLUDES)
+$(UTILS_OBJS):		$(INCLUDES)
+
+tests_run:	$(TESTS_OBJS)
+	$(CC)	$(TESTS_OBJS)	-o	$(TESTS_NAME)	$(LDFLAGS)	$(CFLAGS)
+	$(shell $(TESTS_NAME))
+
+tests_clean:
+	$(RM)	$(shell	find	-type	f	-name	"*.gc*")
+
+clean:	tests_clean
+	$(RM)	$(shell	find	-type	f	-name	"*.o")
 
 fclean:	clean
-	$(RM)	asm/asm
-	$(RM)	corewar/corewar
+	$(RM)	$(ASM_NAME)
+	$(RM)	$(COREWAR_NAME)
+	$(RM)	$(TESTS_NAME)
 
 re:	fclean	all
 
-.PHONY:	all	clean	fclean	re
+.PHONY:	all	tests_run	tests_clean	clean	fclean	re
