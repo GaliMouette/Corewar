@@ -11,7 +11,5 @@ int my_strlen(char const *str);
 
 Test(my_strlen, run)
 {
-    char *str = "Hello";
-
-    cr_assert_eq(my_strlen(str), 5);
+    cr_assert_eq(my_strlen("Hello"), 5);
 }
