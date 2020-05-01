@@ -11,9 +11,7 @@ int is_digit(char const *str);
 
 Test(is_digit, full_Digit)
 {
-    char *str = "117443";
-
-    cr_assert_eq(is_digit(str), 1);
+    cr_assert_eq(is_digit("117443"), 1);
 }
 
 Test(is_digit, no_Str)
@@ -25,16 +23,12 @@ Test(is_digit, no_Str)
 
 Test(is_digit, letter_In_Str)
 {
-    char *str = "08u83";
-
-    cr_assert_eq(is_digit(str), 0);
+    cr_assert_eq(is_digit("08u83"), 0);
 }
 
 Test(is_digit, negative_Digit)
 {
-    char *str = "-117443";
-
-    cr_assert_eq(is_digit(str), 1);
+    cr_assert_eq(is_digit("-117443"), 1);
 }
 
 Test(is_digit, char_Below_Zero)
