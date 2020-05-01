@@ -4,3 +4,4 @@ corewar_binaries/
 *gc*
 asm/asm
 corewar/corewar
+unit_tests

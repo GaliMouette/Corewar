@@ -5,7 +5,25 @@
 ## Makefile
 ##
 
-CC	=	clang
+CC	=
+ifeq	($(MAKECMDGOALS),	tests_run)
+	CC	+=	gcc
+else
+	CC	+=	clang
+endif
+
+CFLAGS	=	-I	./includes/
+CFLAGS	+=	-g3
+ifeq	($(MAKECMDGOALS),	tests_run)
+	CFLAGS	+=	--coverage
+else
+	CFLAGS	+=	-Weverything
+endif
+
+LDFLAGS	=
+ifeq	($(MAKECMDGOALS),	tests_run)
+	LDFLAGS	+=	-lcriterion
+endif
 
 RM	=	rm	-f
 
@@ -57,20 +75,6 @@ TESTS_SRCS	=	tests/utils/test_is_digit.c		\
 
 TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
 
-CFLAGS	=	-I	./includes/
-CFLAGS	+=	-g3
-ifneq	($(MAKECMDGOALS),	tests_run)
-	CFLAGS	+=	-Weverything
-endif
-
-LDFLAGS	=
-
-ifeq	($(MAKECMDGOALS),	tests_run)
-	CC		=	gcc
-	CFLAGS	+=	--coverage
-	LDFLAGS	+=	-lcriterion
-endif
-
 all:	$(ASM_OBJS)	$(COREWAR_OBJS)	$(UTILS_OBJS)
 	$(CC)	$(ASM_OBJS)		$(UTILS_OBJS)	-o	$(ASM_NAME)		$(LDFLAGS)
 	$(CC)	$(COREWAR_OBJS)	$(UTILS_OBJS)	-o	$(COREWAR_NAME)	$(LDFLAGS)
@@ -84,10 +88,10 @@ tests_run:	$(TESTS_OBJS)
 	$(CC)	$(TESTS_OBJS)	-o	$(TESTS_NAME)	$(LDFLAGS)	$(CFLAGS)
 	$(TESTS_NAME)
 
-tests_clean:
+tests_clean:	clean
 	$(RM)	$(shell	find	./	-type	f	-name	"*.gc*")
 
-clean:	tests_clean
+clean:
 	$(RM)	$(shell	find	./	-type	f	-name	"*.o")
 
 fclean:	clean
