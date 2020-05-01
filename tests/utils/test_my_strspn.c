@@ -11,16 +11,10 @@ int my_strspn(char const *str, char const *chars);
 
 Test(my_strspn, all_Char_Ok)
 {
-    char *str = "hello";
-    char *charact = "ehlo";
-
-    cr_assert_eq(my_strspn(str, charact), 5);
+    cr_assert_eq(my_strspn("hello", "ehlo"), 5);
 }
 
 Test(my_strspn, char_Different)
 {
-    char *str = "hella";
-    char *charact = "ehlo";
-
-    cr_assert_eq(my_strspn(str, charact), 4);
+    cr_assert_eq(my_strspn("hella", "ehlo"), 4);
 }
