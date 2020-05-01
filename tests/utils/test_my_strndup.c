@@ -13,7 +13,5 @@ char *my_strndup(const char *s, int n);
 
 Test(my_strndup, half_Word)
 {
-    char *str = "Live";
-
-    cr_assert_str_eq(my_strndup(str, 2), "Li");
+    cr_assert_str_eq(my_strndup("Live", 2), "Li");
 }
