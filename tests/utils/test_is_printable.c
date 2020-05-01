@@ -11,16 +11,12 @@ int is_printable(char const *str);
 
 Test(is_printable, str_With_Printable)
 {
-    char *str = "Hello";
-
-    cr_assert_eq(is_printable(str), 1);
+    cr_assert_eq(is_printable("Hello"), 1);
 }
 
 Test(is_printable, str_With_No_Printable)
 {
-    char *str = "Hello\t";
-
-    cr_assert_eq(is_printable(str), 0);
+    cr_assert_eq(is_printable("Hello\t"), 0);
 }
 
 Test(is_printable, str_With_Superior_Char)
