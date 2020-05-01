@@ -12,9 +12,8 @@ void *my_memcpy(void *dest, const void *src, int n);
 Test(my_memcpy, str_Copy)
 {
     char str1[6] = "Hello";
-    char *str2 = "Maybe";
 
-    cr_assert_str_eq(my_memcpy(str1, str2, 5), str2);
+    cr_assert_str_eq(my_memcpy(str1, "Maybe", 5), "Maybe");
 }
 
 Test(my_memcpy, str_copy_Str2_Null)
