@@ -53,6 +53,7 @@ TESTS_SRCS	=	tests/utils/test_is_digit.c		\
 				utils/my_strstr.c				\
 				tests/utils/test_my_strtok_r.c	\
 				utils/my_strtok_r.c				\
+				tests/redirect_all_stdout.c
 
 TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
 
