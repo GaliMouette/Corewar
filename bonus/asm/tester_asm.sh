@@ -4,7 +4,7 @@
 ASM=./../../asm/asm
 
 # CHEMIN ASM CORRECTION
-CORRECTION=./asm_correction
+CORRECTION=./.asm_correction
 # FICHIER DES ERREURS
 DIR=./redirection_test
 
