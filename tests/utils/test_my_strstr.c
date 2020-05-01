@@ -11,18 +11,12 @@ char *my_strstr(char *haystack, char *needle);
 
 Test(my_strstr, char_In_Str)
 {
-    char *str1 = "live:";
-    char *charact = ":";
-
-    cr_assert_str_eq(my_strstr(str1, charact), ":");
+    cr_assert_str_eq(my_strstr("live:", ":"), ":");
 }
 
 Test(my_strstr, char_Not_In_Str)
 {
-    char *str1 = "live :";
-    char *charact = "p";
-
-    cr_assert_null(my_strstr(str1, charact));
+    cr_assert_null(my_strstr("live :", "p"));
 }
 
 Test(my_strstr, str2_Empty)
