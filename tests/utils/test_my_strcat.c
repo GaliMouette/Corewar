@@ -12,8 +12,5 @@ char *my_strcat(char const *str1, char const *str2);
 
 Test(my_strcat, strcat_Run)
 {
-    char *str1 = "Bonjour";
-    char *str2 = "Hello";
-
-    cr_assert_str_eq(my_strcat(str1, str2), "BonjourHello");
+    cr_assert_str_eq(my_strcat("Bonjour", "Hello"), "BonjourHello");
 }
