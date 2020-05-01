@@ -51,6 +51,8 @@ TESTS_SRCS	=	tests/utils/test_is_digit.c		\
 				utils/my_strspn.c				\
 				tests/utils/test_my_strstr.c	\
 				utils/my_strstr.c				\
+				tests/utils/test_my_strtok_r.c	\
+				utils/my_strtok_r.c				\
 
 TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
 
