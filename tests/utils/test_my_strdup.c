@@ -11,9 +11,7 @@ char *my_strdup(char const *str);
 
 Test(my_strdup, dup_Str)
 {
-    char *str = "Hello";
-
-    cr_assert_str_eq(my_strdup(str), "Hello");
+    cr_assert_str_eq(my_strdup("Hello"), "Hello");
 }
 
 Test(my_strdup, str_Null)
