@@ -9,7 +9,7 @@
 
 void *my_memcpy(void *dest, const void *src, int n);
 
-Test(my_memcpy, str_copy)
+Test(my_memcpy, str_Copy)
 {
     char str1[6] = "Hello";
     char *str2 = "Maybe";
