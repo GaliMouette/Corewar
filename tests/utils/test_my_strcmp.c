@@ -11,24 +11,15 @@ int my_strcmp(char const *str1, char const *str2);
 
 Test(my_strcmp, same_Str)
 {
-    char *str1 = "Hello";
-    char *str2 = "Hello";
-
-    cr_assert_eq(my_strcmp(str1, str2), 0);
+    cr_assert_eq(my_strcmp("Hello", "Hello"), 0);
 }
 
 Test(my_strcmp, str1_Big)
 {
-    char *str1 = "HelloT";
-    char *str2 = "Hello";
-
-    cr_assert_eq(my_strcmp(str1, str2), 84);
+    cr_assert_eq(my_strcmp("HelloT", "Hello"), 84);
 }
 
 Test(my_strcmp, str2_Big)
 {
-    char *str1 = "Hello";
-    char *str2 = "HelloT";
-
-    cr_assert_eq(my_strcmp(str1, str2), -84);
+    cr_assert_eq(my_strcmp("Hello", "HelloT"), -84);
 }
