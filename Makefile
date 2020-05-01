@@ -21,13 +21,10 @@ ASM_OBJS		=	$(patsubst	%.c,	%.o,	$(ASM_SRCS))
 COREWAR_OBJS	=	$(patsubst	%.c,	%.o,	$(COREWAR_SRCS))
 UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(UTILS_SRCS))
 
-INCLUDES	=	$(shell	find	includes/	-type	f	-name	"*.h")
+INCLUDES	=	$(shell	find	./includes/	-type	f	-name	"*.h")
 
-
-TESTS_SRCS	=	tests/test_my_strcmp.c	\
-				utils/my_strcmp.c		\
-				tests/test_is_digit.c	\
-				utils/is_digit.c		\
+TESTS_SRCS	=	tests/test_is_digit.c		\
+				utils/is_digit.c			\
 				tests/test_is_printable.c	\
 				utils/is_printable.c		\
 				tests/test_my_atoi.c		\
@@ -36,6 +33,13 @@ TESTS_SRCS	=	tests/test_my_strcmp.c	\
 				utils/my_memcpy.c			\
 				tests/test_my_put_nbr.c		\
 				utils/my_put_nbr.c			\
+				tests/test_my_strcat.c		\
+				utils/my_strcat.c			\
+				tests/test_my_strcmp.c		\
+				utils/my_strcmp.c			\
+				tests/test_my_strcspn.c		\
+				utils/my_strcspn.c			\
+				utils/my_strlen.c			\
 
 TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
 
@@ -67,10 +71,10 @@ tests_run:	$(TESTS_OBJS)
 	$(TESTS_NAME)
 
 tests_clean:
-	$(RM)	$(shell	find	-type	f	-name	"*.gc*")
+	$(RM)	$(shell	find	./	-type	f	-name	"*.gc*")
 
 clean:	tests_clean
-	$(RM)	$(shell	find	-type	f	-name	"*.o")
+	$(RM)	$(shell	find	./	-type	f	-name	"*.o")
 
 fclean:	clean
 	$(RM)	$(ASM_NAME)

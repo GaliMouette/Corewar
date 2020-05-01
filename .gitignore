@@ -1,9 +1,6 @@
 corewar_binaries/
 *.a
 *.o
+*gc*
 asm/asm
 corewar/corewar
-tests/
-output
-test*
-my_tests.sh
