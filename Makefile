@@ -23,34 +23,34 @@ UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(UTILS_SRCS))
 
 INCLUDES	=	$(shell	find	./includes/	-type	f	-name	"*.h")
 
-TESTS_SRCS	=	tests/test_is_digit.c		\
-				utils/is_digit.c			\
-				tests/test_is_printable.c	\
-				utils/is_printable.c		\
-				tests/test_my_atoi.c		\
-				utils/my_atoi.c				\
-				tests/test_my_memcpy.c		\
-				utils/my_memcpy.c			\
-				tests/test_my_put_nbr.c		\
-				utils/my_put_nbr.c			\
-				tests/test_my_strcat.c		\
-				utils/my_strcat.c			\
-				tests/test_my_strcmp.c		\
-				utils/my_strcmp.c			\
-				tests/test_my_strcspn.c		\
-				utils/my_strcspn.c			\
-				tests/test_my_strdup.c		\
-				utils/my_strdup.c			\
-				tests/test_my_strlen.c		\
-				utils/my_strlen.c			\
-				tests/test_my_strndup.c		\
-				utils/my_strndup.c			\
-				tests/test_my_strnlen.c		\
-				utils/my_strnlen.c			\
-				tests/test_my_strspn.c		\
-				utils/my_strspn.c			\
-				tests/test_my_strstr.c		\
-				utils/my_strstr.c			\
+TESTS_SRCS	=	tests/utils/test_is_digit.c		\
+				utils/is_digit.c				\
+				tests/utils/test_is_printable.c	\
+				utils/is_printable.c			\
+				tests/utils/test_my_atoi.c		\
+				utils/my_atoi.c					\
+				tests/utils/test_my_memcpy.c	\
+				utils/my_memcpy.c				\
+				tests/utils/test_my_put_nbr.c	\
+				utils/my_put_nbr.c				\
+				tests/utils/test_my_strcat.c	\
+				utils/my_strcat.c				\
+				tests/utils/test_my_strcmp.c	\
+				utils/my_strcmp.c				\
+				tests/utils/test_my_strcspn.c	\
+				utils/my_strcspn.c				\
+				tests/utils/test_my_strdup.c	\
+				utils/my_strdup.c				\
+				tests/utils/test_my_strlen.c	\
+				utils/my_strlen.c				\
+				tests/utils/test_my_strndup.c	\
+				utils/my_strndup.c				\
+				tests/utils/test_my_strnlen.c	\
+				utils/my_strnlen.c				\
+				tests/utils/test_my_strspn.c	\
+				utils/my_strspn.c				\
+				tests/utils/test_my_strstr.c	\
+				utils/my_strstr.c				\
 
 TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
 
