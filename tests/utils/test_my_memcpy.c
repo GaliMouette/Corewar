@@ -16,3 +16,19 @@ Test(my_memcpy, str_copy)
 
     cr_assert_str_eq(my_memcpy(str1, str2, 5), str2);
 }
+
+Test(my_memcpy, str_copy_Str2_Null)
+{
+    char str1[6] = "Hello";
+    char *str2 = NULL;
+
+    cr_assert_str_eq(my_memcpy(str1, str2, 20), str1);
+}
+
+Test(my_memcpy, str_copy_Str1_Null)
+{
+    char *str1 = NULL;
+    char *str2 = "Hello";
+
+    cr_assert_null(my_memcpy(str1, str2, 20));
+}

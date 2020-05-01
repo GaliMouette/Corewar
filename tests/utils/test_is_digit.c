@@ -36,3 +36,8 @@ Test(is_digit, negative_Digit)
 
     cr_assert_eq(is_digit(str), 1);
 }
+
+Test(is_digit, char_Below_Zero)
+{
+    cr_assert_eq(is_digit("87.8"), 0);
+}

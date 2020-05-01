@@ -24,3 +24,8 @@ Test(my_strstr, char_Not_In_Str)
 
     cr_assert_null(my_strstr(str1, charact));
 }
+
+Test(my_strstr, str2_Empty)
+{
+    cr_assert_str_eq(my_strstr("li", "\0"), "li");
+}

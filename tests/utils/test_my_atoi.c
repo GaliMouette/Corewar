@@ -28,3 +28,8 @@ Test(my_atoi, str_With_letter)
 
     cr_assert_eq(my_atoi(str), 0);
 }
+
+Test(my_atoi, str_With_Char_Below_Zero)
+{
+    cr_assert_eq(my_atoi("8.4"), 0);
+}
