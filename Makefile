@@ -94,7 +94,7 @@ tests_clean:	clean
 clean:
 	$(RM)	$(shell	find	./	-type	f	-name	"*.o")
 
-fclean:	clean
+fclean:	tests_clean
 	$(RM)	$(ASM_NAME)
 	$(RM)	$(COREWAR_NAME)
 	$(RM)	$(TESTS_NAME)
