@@ -14,12 +14,12 @@ Test(my_atoi, str_With_Number)
     cr_assert_eq(my_atoi("117"), 117);
 }
 
-Test(my_atoi, str_With__Negative_Number)
+Test(my_atoi, str_With_Negative_Number)
 {
     cr_assert_eq(my_atoi("-117"), -117);
 }
 
-Test(my_atoi, str_With_letter)
+Test(my_atoi, str_With_Letter)
 {
     cr_assert_eq(my_atoi("abcd"), 0);
 }

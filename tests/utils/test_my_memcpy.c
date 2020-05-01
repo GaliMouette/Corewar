@@ -16,7 +16,7 @@ Test(my_memcpy, str_Copy)
     cr_assert_str_eq(my_memcpy(str1, "Maybe", 5), "Maybe");
 }
 
-Test(my_memcpy, str_copy_Str2_Null)
+Test(my_memcpy, str_Copy_Str2_Null)
 {
     char str1[6] = "Hello";
     char *str2 = NULL;
@@ -24,10 +24,9 @@ Test(my_memcpy, str_copy_Str2_Null)
     cr_assert_str_eq(my_memcpy(str1, str2, 20), str1);
 }
 
-Test(my_memcpy, str_copy_Str1_Null)
+Test(my_memcpy, str_Copy_Str1_Null)
 {
     char *str1 = NULL;
-    char *str2 = "Hello";
 
-    cr_assert_null(my_memcpy(str1, str2, 20));
+    cr_assert_null(my_memcpy(str1, "Hello", 20));
 }
