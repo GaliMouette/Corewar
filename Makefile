@@ -39,7 +39,13 @@ TESTS_SRCS	=	tests/test_is_digit.c		\
 				utils/my_strcmp.c			\
 				tests/test_my_strcspn.c		\
 				utils/my_strcspn.c			\
+				tests/test_my_strdup.c		\
+				utils/my_strdup.c			\
+				tests/test_my_strlen.c		\
 				utils/my_strlen.c			\
+				tests/test_my_strndup.c		\
+				utils/my_strndup.c			\
+				utils/my_strnlen.c
 
 TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
 
