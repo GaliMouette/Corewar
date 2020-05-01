@@ -22,6 +22,7 @@ Test(my_atoi, str_With__Negative_Number)
 
     cr_assert_eq(my_atoi(str), -117);
 }
+
 Test(my_atoi, str_With_letter)
 {
     char *str = "abcd";
