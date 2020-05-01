@@ -11,23 +11,17 @@ int my_atoi(char const *str);
 
 Test(my_atoi, str_With_Number)
 {
-    char *str = "117";
-
-    cr_assert_eq(my_atoi(str), 117);
+    cr_assert_eq(my_atoi("117"), 117);
 }
 
 Test(my_atoi, str_With__Negative_Number)
 {
-    char *str = "-117";
-
-    cr_assert_eq(my_atoi(str), -117);
+    cr_assert_eq(my_atoi("-117"), -117);
 }
 
 Test(my_atoi, str_With_letter)
 {
-    char *str = "abcd";
-
-    cr_assert_eq(my_atoi(str), 0);
+    cr_assert_eq(my_atoi("abcd"), 0);
 }
 
 Test(my_atoi, str_With_Char_Below_Zero)
