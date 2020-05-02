@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # CHEMIN ASM NOUS
-ASM=./../../asm/asm
+ASM=./asm/asm
 
 # CHEMIN ASM CORRECTION
-CORRECTION=./.asm_correction
+CORRECTION=./bonus/asm/.asm_correction
 # FICHIER DES ERREURS
-DIR=./redirection_test
+DIR=./bonus/asm/redirection_test
 
 execute_correct () {
     echo -en  "\033[1;36m$4\033[00m"
@@ -90,38 +90,34 @@ execute_bad () {
 
 # EXEMPLE (surtout copie)
 #   TEST_NAME=NOM DU FICHIER (sans .s)
-#   execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+#   execute_correct ./bonus/asm/tests/good/$TEST_NAME.s   ./bonus/asm/tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
 
 # GOOD
 echo -e "\033[1;35mGOOD\033[00m"
 TEST_NAME=abel
-execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
-TEST_NAME=comment
-execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/comment.cor        ./comment.cor       $TEST_NAME
+execute_correct ./bonus/asm/tests/good/$TEST_NAME.s   ./bonus/asm/tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=bill
-execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+execute_correct ./bonus/asm/tests/good/$TEST_NAME.s   ./bonus/asm/tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=ok
-execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+execute_correct ./bonus/asm/tests/good/$TEST_NAME.s   ./bonus/asm/tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=only_header
-execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+execute_correct ./bonus/asm/tests/good/$TEST_NAME.s   ./bonus/asm/tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=pdd
-execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+execute_correct ./bonus/asm/tests/good/$TEST_NAME.s   ./bonus/asm/tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=tyron
-execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+execute_correct ./bonus/asm/tests/good/$TEST_NAME.s   ./bonus/asm/tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
 
 # BAD
 echo -e "\n\033[1;35mBAD\033[00m"
 TEST_NAME=label
-execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+execute_bad     ./bonus/asm/tests/bad/$TEST_NAME.s    ./bonus/asm/tests/bad/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=empty
-execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+execute_bad     ./bonus/asm/tests/bad/$TEST_NAME.s    ./bonus/asm/tests/bad/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=no_header
-execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+execute_bad     ./bonus/asm/tests/bad/$TEST_NAME.s    ./bonus/asm/tests/bad/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=args
-execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+execute_bad     ./bonus/asm/tests/bad/$TEST_NAME.s    ./bonus/asm/tests/bad/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=comment
-execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+execute_bad     ./bonus/asm/tests/bad/$TEST_NAME.s    ./bonus/asm/tests/bad/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
 TEST_NAME=name
-execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
-TEST_NAME=zjmp
-execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+execute_bad     ./bonus/asm/tests/bad/$TEST_NAME.s    ./bonus/asm/tests/bad/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
