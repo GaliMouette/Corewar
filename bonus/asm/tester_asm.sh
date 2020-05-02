@@ -23,8 +23,12 @@ execute_correct () {
     if [ -e $2 ] || [ -e $3 ]; then
 
         # CREER LES OUTPUTS DE LA CORRECTION ET NOUS
+        if [ -e $2 ]; then
         hexdump -C  $2  >   $DIR/$4/output.$4
+        fi
+        if [ -e $3 ]; then
         hexdump -C  $3  >   $DIR/$4/correction.$4
+        fi
 
         # CHECK LES DIFFS
         diff    -N  $DIR/$4/output.$4 $DIR/$4/correction.$4 >   $DIR/$4/diff.$4
@@ -32,8 +36,14 @@ execute_correct () {
         # SI EXACT ON SUPPRIME LE DOSSIER
 
         if [ ! -e $2 ] || [ ! -e $3 ]; then
-            echo    -e  "\033[1;31m	    FICHIER CREER POUR L'UN DES DEUX ASSEMBLEUR\033[00m"
-        elif ! [[ -s ./redirection_test/$4/diff.$4 ]]; then
+            echo    -ne  "\033[1;31m	    FICHIER CREER AVEC ERREUR POUR\033[00m"
+            if [ -e $2 ]; then
+                echo -e "\033[1;31m \"NOUS\"\033[00m"
+            elif [ -e $3 ]; then
+                echo -e "\033[1;31m \"CORRECTION\"\033[00m"
+            fi
+            return;
+        elif  [ ! -s ./redirection_test/$4/diff.$4 ]; then
             rm -r $DIR/$4
             echo    -e  "\033[1;32m	    OK\033[00m"
         else
@@ -74,28 +84,44 @@ execute_bad () {
         fi
     else
         echo    -e  "\033[1;32m	    OK\033[00m"
+        rm -d $DIR/$4
     fi
 }
 
-
-#EXECUTE FILES TO COMPILE (.s)      FILE TO COMPILE WITH US (.cor)      FILE TO COMPILE WITH CORRECTION         NAME TEST
+# EXEMPLE (surtout copie)
+#   TEST_NAME=NOM DU FICHIER (sans .s)
+#   execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
 
 # GOOD
 echo -e "\033[1;35mGOOD\033[00m"
-execute_correct ./tests/good/abel.s         ./tests/good/abel.cor          ./abel.cor           abel
-execute_correct ./tests/good/comment        ./tests/good/comment.cor        ./comment.cor       comment
-execute_correct ./tests/good/bill.s         ./tests/good/bill.cor          ./bill.cor           bill
-execute_correct ./tests/good/ok.s           ./tests/good/ok.cor            ./ok.cor             ok
-execute_correct ./tests/good/only_header.s  ./tests/good/only_header.cor   ./only_header.cor    only_header
-execute_correct ./tests/good/pdd.s          ./tests/good/pdd.cor           ./pdd.cor            pdd
-execute_correct ./tests/good/tyron.s        ./tests/good/tyron.cor         ./tyron.cor          tyron
-execute_correct ./tests/good/try.s          ./tests/good/try.cor           ./try.cor            try
+TEST_NAME=abel
+execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=comment
+execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/comment.cor        ./comment.cor       $TEST_NAME
+TEST_NAME=bill
+execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=ok
+execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=only_header
+execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=pdd
+execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=tyron
+execute_correct ./tests/good/$TEST_NAME.s   ./tests/good/$TEST_NAME.cor     ./$TEST_NAME.cor    $TEST_NAME
 
 # BAD
 echo -e "\n\033[1;35mBAD\033[00m"
-execute_bad     ./tests/bad/label.s         ./tests/good/label.cor         ./label.cor          label
-execute_bad     ./tests/bad/empty.s         ./tests/good/empty.cor         ./empty.cor          empty
-execute_bad     ./tests/bad/no_header.s     ./tests/good/no_header.cor     ./no_header.cor      no_header
-execute_bad     ./tests/bad/args.s          ./tests/good/args.cor          ./args.cor           args
-execute_bad     ./tests/bad/comment.s       ./tests/good/comment.cor       ./comment.cor        comment
-execute_bad     ./tests/bad/name.s          ./tests/good/name.cor          ./name.cor           name
+TEST_NAME=label
+execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=empty
+execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=no_header
+execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=args
+execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=comment
+execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=name
+execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
+TEST_NAME=zjmp
+execute_bad ./tests/bad/$TEST_NAME.s    ./tests/good/$TEST_NAME.cor ./$TEST_NAME.cor    $TEST_NAME
