@@ -41,20 +41,6 @@ UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(UTILS_SRCS))
 
 INCLUDES	=	$(shell	find	./includes/	-type	f	-name	"*.h")
 
-TESTS_SRCS	=
-
-TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
-
-CFLAGS	=	-I	./includes/
-CFLAGS	+=	-Weverything
-CFLAGS	+=	-g3
-
-ASM_OBJS		=	$(patsubst	%.c,	%.o,	$(ASM_SRCS))
-COREWAR_OBJS	=	$(patsubst	%.c,	%.o,	$(COREWAR_SRCS))
-UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(UTILS_SRCS))
-
-INCLUDES	=	$(shell	find	./includes/	-type	f	-name	"*.h")
-
 TESTS_SRCS	=	tests/utils/test_is_digit.c		\
 				utils/is_digit.c				\
 				tests/utils/test_is_printable.c	\
@@ -93,29 +79,14 @@ all:	$(ASM_OBJS)	$(COREWAR_OBJS)	$(UTILS_OBJS)
 	$(CC)	$(ASM_OBJS)		$(UTILS_OBJS)	-o	$(ASM_NAME)		$(LDFLAGS)
 	$(CC)	$(COREWAR_OBJS)	$(UTILS_OBJS)	-o	$(COREWAR_NAME)	$(LDFLAGS)
 
-
-$(ASM_OBJS):		$(INCLUDES)
-$(COREWAR_OBJS):	$(INCLUDES)
-$(UTILS_OBJS):		$(INCLUDES)
-
-<<<<<<< HEAD
-ifeq	($(MAKECMDGOALS),	tests_run)
-	CFLAGS	+=	--coverage
-	LDFLAGS	+=	-lcriterion
-endif
-
-all:	$(ASM_OBJS)	$(COREWAR_OBJS)	$(UTILS_OBJS)
-	$(CC)	$(ASM_OBJS)		$(UTILS_OBJS)	-o	$(ASM_NAME)		$(LDFLAGS)
-	$(CC)	$(COREWAR_OBJS)	$(UTILS_OBJS)	-o	$(COREWAR_NAME)	$(LDFLAGS)
-
-
 $(ASM_OBJS):		$(INCLUDES)
 $(COREWAR_OBJS):	$(INCLUDES)
 $(UTILS_OBJS):		$(INCLUDES)
 
 tests_run:	$(TESTS_OBJS)
 	$(CC)	$(TESTS_OBJS)	-o	$(TESTS_NAME)	$(LDFLAGS)	$(CFLAGS)
-	$(shell $(TESTS_NAME)
+	$(TESTS_NAME)
+
 tests_clean:
 	$(RM)	$(shell	find	./	-type	f	-name	"*.gc*")
 
@@ -123,19 +94,6 @@ clean:	tests_clean
 	$(RM)	$(shell	find	./	-type	f	-name	"*.o")
 
 fclean:	clean
-=======
-tests_run:	$(TESTS_OBJS)
-	$(CC)	$(TESTS_OBJS)	-o	$(TESTS_NAME)	$(LDFLAGS)	$(CFLAGS)
-	$(TESTS_NAME)
-
-tests_clean:	clean
-	$(RM)	$(shell	find	./	-type	f	-name	"*.gc*")
-
-clean:
-	$(RM)	$(shell	find	./	-type	f	-name	"*.o")
-
-fclean:	tests_clean
->>>>>>> feature/tests
 	$(RM)	$(ASM_NAME)
 	$(RM)	$(COREWAR_NAME)
 	$(RM)	$(TESTS_NAME)
