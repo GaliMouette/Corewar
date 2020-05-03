@@ -13,17 +13,37 @@ int clean_line(char *line)
         return 1;
     }
     my_strtok(line, "\n");
-    if (my_strstr(line, COMMENT_STR)) {
-        if (COMMENT_CHAR == line[0]) {
-            return 1;
-        }
-        my_strstr(line, COMMENT_STR)[0] = '\0';
+    if (remove_comment(line)) {
+        return 1;
     }
     remove_tabulations(line);
     remove_comas(line);
     remove_spaces(line);
     if (!line[0]) {
         return 1;
+    }
+    return 0;
+}
+
+static int remove_comment(char *line)
+{
+    int i = 0;
+    int quotes = 0;
+
+    if (COMMENT_CHAR == line[0]) {
+        return 1;
+    }
+    while (line[i]) {
+        if ('\"' == line[i] && !quotes) {
+            quotes = 1;
+        } else if ('\"' == line[i] && quotes) {
+            quotes = 0;
+        }
+        if (!quotes && '#' == line[i]) {
+            line[i] = '\0';
+            break;
+        }
+        i++;
     }
     return 0;
 }

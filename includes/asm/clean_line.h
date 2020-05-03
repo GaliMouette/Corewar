@@ -14,6 +14,7 @@
 #define COMMENT_STR "#"
 
 int clean_line(char *line);
+static int remove_comment(char *line);
 static void remove_tabulations(char *line);
 static void remove_comas(char *line);
 static void remove_spaces(char *line);
