@@ -11,7 +11,6 @@
 //  Magic
 #define MAGIC      0xea83f3    // !DO NOT TOUCH
 
-
 #define NAME_CMD_STR            ".name"
 #define COMMENT_CMD_STR         ".comment"
 #define MAX_PROG_NAME_LEN       128

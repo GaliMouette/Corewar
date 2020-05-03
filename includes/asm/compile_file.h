@@ -25,5 +25,4 @@ long calculate_pc(instruction_t *head);
 int replace_labels(instruction_t *head);
 int write_file(char const *path, header_t *header, instruction_t *head);
 
-
 #endif /* !COMPILE_FILE_H_ */
