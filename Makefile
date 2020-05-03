@@ -5,7 +5,25 @@
 ## Makefile
 ##
 
-CC	=	clang
+CC	=
+ifeq	($(MAKECMDGOALS),	tests_run)
+	CC	+=	gcc
+else
+	CC	+=	clang
+endif
+
+CFLAGS	=	-I	./includes/
+CFLAGS	+=	-g3
+ifeq	($(MAKECMDGOALS),	tests_run)
+	CFLAGS	+=	--coverage
+else
+	CFLAGS	+=	-Weverything
+endif
+
+LDFLAGS	=
+ifeq	($(MAKECMDGOALS),	tests_run)
+	LDFLAGS	+=	-lcriterion
+endif
 
 RM	=	rm	-f
 
@@ -23,25 +41,43 @@ UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(UTILS_SRCS))
 
 INCLUDES	=	$(shell	find	./includes/	-type	f	-name	"*.h")
 
-TESTS_SRCS	=
+TESTS_SRCS	=	tests/utils/test_is_digit.c		\
+				utils/is_digit.c				\
+				tests/utils/test_is_printable.c	\
+				utils/is_printable.c			\
+				tests/utils/test_my_atoi.c		\
+				utils/my_atoi.c					\
+				tests/utils/test_my_memcpy.c	\
+				utils/my_memcpy.c				\
+				tests/utils/test_my_put_nbr.c	\
+				utils/my_put_nbr.c				\
+				tests/utils/test_my_strcat.c	\
+				utils/my_strcat.c				\
+				tests/utils/test_my_strcmp.c	\
+				utils/my_strcmp.c				\
+				tests/utils/test_my_strcspn.c	\
+				utils/my_strcspn.c				\
+				tests/utils/test_my_strdup.c	\
+				utils/my_strdup.c				\
+				tests/utils/test_my_strlen.c	\
+				utils/my_strlen.c				\
+				tests/utils/test_my_strndup.c	\
+				utils/my_strndup.c				\
+				tests/utils/test_my_strnlen.c	\
+				utils/my_strnlen.c				\
+				tests/utils/test_my_strspn.c	\
+				utils/my_strspn.c				\
+				tests/utils/test_my_strstr.c	\
+				utils/my_strstr.c				\
+				tests/utils/test_my_strtok_r.c	\
+				utils/my_strtok_r.c				\
+				tests/redirect_all_stdout.c
 
 TESTS_OBJS	=	$(patsubst	%.c,	%.o,	$(TESTS_SRCS))
-
-CFLAGS	=	-I	./includes/
-CFLAGS	+=	-Weverything
-CFLAGS	+=	-g3
-
-LDFLAGS	=
-
-ifeq	($(MAKECMDGOALS),	tests_run)
-	CFLAGS	+=	--coverage
-	LDFLAGS	+=	-lcriterion
-endif
 
 all:	$(ASM_OBJS)	$(COREWAR_OBJS)	$(UTILS_OBJS)
 	$(CC)	$(ASM_OBJS)		$(UTILS_OBJS)	-o	$(ASM_NAME)		$(LDFLAGS)
 	$(CC)	$(COREWAR_OBJS)	$(UTILS_OBJS)	-o	$(COREWAR_NAME)	$(LDFLAGS)
-
 
 $(ASM_OBJS):		$(INCLUDES)
 $(COREWAR_OBJS):	$(INCLUDES)
@@ -49,7 +85,8 @@ $(UTILS_OBJS):		$(INCLUDES)
 
 tests_run:	$(TESTS_OBJS)
 	$(CC)	$(TESTS_OBJS)	-o	$(TESTS_NAME)	$(LDFLAGS)	$(CFLAGS)
-	$(shell $(TESTS_NAME)
+	$(TESTS_NAME)
+
 tests_clean:
 	$(RM)	$(shell	find	./	-type	f	-name	"*.gc*")
 
