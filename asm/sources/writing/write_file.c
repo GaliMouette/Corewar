@@ -36,5 +36,5 @@ static int open_file(char const *path)
         end = buffer + my_strlen(path);
     }
     my_memcpy(end, ".cor", 5);
-    return open(buffer, O_WRONLY | O_CREAT, 0666);
+    return open(buffer, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 }
