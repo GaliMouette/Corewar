@@ -26,5 +26,11 @@ void *my_memcpy(void *dest, const void *src, int n);
 int my_strnlen(char const *str, int n);
 char *my_strndup(const char *s, int n);
 void freearray(void **array);
+long my_strtol(const char *str, int base);
+
+#define ISDIGIT(c) ('0' <= c && c <= '9')
+#define ISUPPER(c) ('A' <= c && c <= 'Z')
+#define ISLOWER(c) ('a' <= c && c <= 'z')
+#define ISALPHA(c) (ISUPPER(c) || ISLOWER(c))
 
 #endif /* !UTILS_H_ */
