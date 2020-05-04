@@ -11,7 +11,7 @@
 struct champ_init_s {
     int number;
     int load_address;
-    char *path;
+    char const *path;
 };
 
 struct init_s {

@@ -19,14 +19,13 @@
 \nDESCRIPTION\
 \n-dump nbr_cycle dumps the memory after \
 the nbr_cycle execution (if the round isn't\
-\nalready over) with the following format: 32 bytes/line\
-\nin hexadecimal (A0BCDEFE1DD3...)\
+already over) with the following format: 32 bytes/line\
+in hexadecimal (A0BCDEFE1DD3...)\
 \n-n prog_number sets the next program's number. \
-By default, the first free number\
-\nin the parameter order\
+By default, the first free number in the parameter order\
 \n-a load_address sets the next program's loading address. When no address is\
-\nspecified, optimize the addresses so that the processes are as far\
-\naway from each other as possible. The addresses are MEM_SIZE modulo.\
+specified, optimize the addresses so that the processes are as far\
+away from each other as possible. The addresses are MEM_SIZE modulo.\
 \n"
 
 #endif /* !MAIN_H_ */
