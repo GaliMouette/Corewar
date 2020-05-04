@@ -12,7 +12,7 @@
 #include "utils.h"
 #include <unistd.h>
 
-int set_dump(char *arg, init_t *init);
-static int check_error(char *arg, init_t *init);
+int set_dump(char const *arg, init_t *init);
+static int check_error(char const *arg, init_t *init);
 
 #endif /* !SET_DUMP_H_ */
