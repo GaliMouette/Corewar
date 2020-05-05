@@ -15,7 +15,11 @@ int main(int argc, char const *argv[])
         write(1, USAGE, 580);
         return 0;
     }
-    if (parse_args(argv, &init))
+    if (parse_args(argv, &init)) {
         return 84;
+    }
+    if (check_files(&init)) {
+        return 84;
+    }
     return 0;
 }
