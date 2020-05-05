@@ -42,5 +42,9 @@ static int set_prog_args(char const *argv[], int *i, init_t *init, int *index)
         init->champs[*index].path = argv[*i];
         (*index)++;
     }
+    if (*index > 4) {
+        write(2, "The number of champion load is above the limit.\n", 48);
+        return 1;
+    }
     return 0;
 }
