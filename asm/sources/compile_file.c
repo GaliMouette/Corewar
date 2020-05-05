@@ -31,7 +31,7 @@ int compile_file(char const *path)
 
 static FILE *open_file(char const *path)
 {
-    FILE *file = fopen(path, "r+");
+    FILE *file = fopen(path, "r");
     int input = -1;
 
     if (!file) {
