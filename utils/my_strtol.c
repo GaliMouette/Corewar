@@ -9,7 +9,7 @@
 
 long my_strtol(const char *str, int base)
 {
-	int c;
+    int c;
     long result = 0;
 
     while ((c = *str++)) {
