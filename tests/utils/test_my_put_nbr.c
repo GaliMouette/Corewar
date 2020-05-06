@@ -9,6 +9,7 @@
 #include <criterion/redirect.h>
 
 void redirect_all_stdout(void);
+
 void my_put_nbr(int number);
 
 Test(my_put_nbr, simple_Number, .init=redirect_all_stdout)

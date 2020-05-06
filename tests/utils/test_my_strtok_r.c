@@ -8,8 +8,11 @@
 #include "criterion/criterion.h"
 
 char *my_strtok_r(char *str, const char *delim, char **backup);
+
 char *my_strdup(char const *str);
+
 int my_strspn(char const *str, char const *chars);
+
 int my_strcspn(char const *str, char const *chars);
 
 Test(my_strtok_r, run)
