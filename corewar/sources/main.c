@@ -21,5 +21,8 @@ int main(int argc, char const *argv[])
     if (check_files(&init)) {
         return 84;
     }
+    if (set_champion_from_file(&init)) {
+        return 84;
+    }
     return 0;
 }
