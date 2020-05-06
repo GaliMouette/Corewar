@@ -31,5 +31,6 @@ away from each other as possible. The addresses are MEM_SIZE modulo.\
 // Using
 int parse_args(char const *argv[], init_t *init);
 int check_files(init_t *init);
+int set_champion_from_file(init_t *init);
 
 #endif /* !MAIN_H_ */
