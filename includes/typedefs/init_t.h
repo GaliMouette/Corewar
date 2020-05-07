@@ -10,7 +10,8 @@
 
 #include "typedefs/header_t.h"
 
-struct champ_init_s {
+struct __attribute__((packed)) champ_init_s {
+    int file_desc;
     int number;
     int load_address;
     char *path;
