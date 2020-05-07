@@ -76,6 +76,8 @@ TESTS_SRCS	=	tests/utils/test_is_digit.c		\
 				utils/my_strstr.c				\
 				tests/utils/test_my_strtok_r.c	\
 				utils/my_strtok_r.c				\
+				tests/utils/test_my_strtol.c	\
+				utils/my_strtol.c				\
 				tests/redirect_all_stdout.c
 
 
