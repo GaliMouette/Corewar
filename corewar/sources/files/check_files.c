@@ -26,18 +26,13 @@ static int check_file_format(char const *path)
 {
     char *ptr = my_strstr(path, ".cor");
 
-    if (!ptr) {
+    while (ptr && my_strstr(ptr + 1, ".cor")) {
+        ptr = my_strstr(ptr + 1, ".cor");
+    }
+    if (!ptr || ptr[4]) {
         write(2, "Wrong file format (.cor expected).\n", 35);
         return 1;
+    } else {
+        return 0;
     }
-    ptr += 1;
-    while (ptr && my_strstr(ptr, ".cor")) {
-        ptr = my_strstr(ptr, ".cor");
-        ptr += 1;
-    }
-    if (ptr[3]) {
-        write(2, "Wrong file format (.cor expected).\n", 35);
-        return 1;
-    }
-    return 0;
 }
