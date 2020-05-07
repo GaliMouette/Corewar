@@ -39,14 +39,14 @@ static int get_header(int fd, header_t *header)
     read(fd, &header->prog_size, 4);
     header->prog_size = (long) BSWAP_LONG((unsigned long) header->prog_size);
     read(fd, header->comment, MAX_COMMENT_LEN);
-    if (check_magic(fd, header)) {
+    if (check_magic(header)) {
         return 1;
     } else {
         return 0;
     }
 }
 
-static int check_magic(int fd, header_t *header)
+static int check_magic(header_t *header)
 {
     if (header->magic != MAGIC) {
         write(2, "Wrong file format (bad magic number).\n", 38);
