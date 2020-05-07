@@ -17,7 +17,7 @@ int set_prog_nbr(char const *arg, int *i, init_t *init, int index)
     return 0;
 }
 
-static int check_error(char const *arg, init_t *init, int index)
+static ssize_t check_error(char const *arg, init_t *init, int index)
 {
     ssize_t status = 0;
 
@@ -38,5 +38,5 @@ static int check_error(char const *arg, init_t *init, int index)
             status = write(2, "Player number already attributed.\n", 34);
         }
     }
-    return (int) status;
+    return status;
 }

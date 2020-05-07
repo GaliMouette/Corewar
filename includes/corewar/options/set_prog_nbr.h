@@ -13,6 +13,6 @@
 #include <unistd.h>
 
 int set_prog_nbr(char const *arg, int *i, init_t *init, int champion);
-static int check_error(char const *arg, init_t *init, int champion);
+static ssize_t check_error(char const *arg, init_t *init, int champion);
 
 #endif /* !SET_PROG_NBR_H_ */
