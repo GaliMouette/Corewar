@@ -23,6 +23,10 @@ struct init_s {
     struct champ_init_s champs[4];
 };
 
+#define CHAMP_INIT {-1, -1, -1, 0, {0}}
+
+#define INIT {-1, {CHAMP_INIT, CHAMP_INIT, CHAMP_INIT, CHAMP_INIT}}
+
 typedef struct init_s init_t;
 
 #endif /* !INIT_T_H_ */

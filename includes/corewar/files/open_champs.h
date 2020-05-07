@@ -15,6 +15,7 @@
 #include <unistd.h>
 
 int open_champs(init_t *init);
+static void sort_champs(init_t *init);
 static int open_file(char const *path, int *fd);
 static int get_header(int fd, header_t *header);
 static int check_magic(header_t *header);
