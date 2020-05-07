@@ -13,6 +13,6 @@
 #include <unistd.h>
 
 int check_files(init_t *init);
-static int check_file_format(char const *path);
+static int check_file_format(char *path);
 
 #endif /* !CHECK_FILES_H_ */

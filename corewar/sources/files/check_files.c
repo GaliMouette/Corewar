@@ -22,7 +22,7 @@ int check_files(init_t *init)
     return 0;
 }
 
-static int check_file_format(char const *path)
+static int check_file_format(char *path)
 {
     char *ptr = my_strstr(path, ".cor");
 

@@ -8,10 +8,13 @@
 #ifndef INIT_T_H_
 #define INIT_T_H_
 
+#include "typedefs/header_t.h"
+
 struct champ_init_s {
     int number;
     int load_address;
-    char const *path;
+    char *path;
+    header_t header;
 };
 
 struct init_s {

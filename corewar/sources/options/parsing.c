@@ -7,7 +7,7 @@
 
 #include "corewar/options/parsing.h"
 
-int parse_args(char const *argv[], init_t *init)
+int parse_args(char *argv[], init_t *init)
 {
     int i = 1;
     int index = 0;
@@ -28,7 +28,7 @@ int parse_args(char const *argv[], init_t *init)
     return 0;
 }
 
-static int set_prog_args(char const *argv[], int *i, init_t *init, int *index)
+static int set_prog_args(char *argv[], int *i, init_t *init, int *index)
 {
     if (!my_strcmp(argv[*i], "-n")) {
         if (set_prog_nbr(argv[*i + 1], i, init, *index)) {

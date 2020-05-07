@@ -9,7 +9,7 @@
 
 int main(int argc, char const *argv[])
 {
-    init_t init = {-1, {{-1, -1, 0}, {-1, -1, 0}, {-1, -1, 0}, {-1, -1, 0}}};
+    init_t init = {-1, {{-1, -1, 0, {0}}, {-1, -1, 0, {0}}, {-1, -1, 0, {0}}, {-1, -1, 0, {0}}}};
 
     if (1 == argc || (2 == argc && !my_strcmp(argv[1], "-h"))) {
         write(1, USAGE, 580);
