@@ -16,14 +16,22 @@ int main(int argc, char const *argv[])
         write(1, USAGE, 580);
         return 0;
     }
-    if (parse_args(argv, &init)) {
+    if (initiate(argv, &init)) {
         return 84;
     }
-    if (check_files(&init)) {
-        return 84;
+    return 0;
+}
+
+static int initiate(char const *argv[], init_t *init)
+{
+    if (parse_args(argv, init)) {
+        return 1;
     }
-    if (open_champs(&init)) {
-        return 84;
+    if (check_files(init)) {
+        return 1;
+    }
+    if (open_files(init)) {
+        return 1;
     }
     return 0;
 }

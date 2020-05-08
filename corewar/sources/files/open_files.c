@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2020
 ** CPE_corewar_2019
 ** File description:
-** open_champs
+** open_files
 */
 
-#include "corewar/files/open_champs.h"
+#include "corewar/files/open_files.h"
 
-int open_champs(init_t *init)
+int open_files(init_t *init)
 {
     sort_champs(init);
     for (int i = 0; init->champs[i].path; i++) {

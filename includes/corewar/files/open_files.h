@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** Visual Studio Live Share (Workspace)
 ** File description:
-** open_champs.h
+** open_files.h
 */
 
 #ifndef OPEN_CHAMPS_H_
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-int open_champs(init_t *init);
+int open_files(init_t *init);
 static void sort_champs(init_t *init);
 static int open_file(char const *path, int *fd);
 static int get_header(int fd, header_t *header);
