@@ -11,7 +11,7 @@ long my_strtol(const char *str, int base);
 
 Test(my_strtol, convert_Hexa_In_Decimal)
 {
-    cr_assert_eq(my_strtol("F", 16), 15);
+    cr_assert_eq(my_strtol("1F", 16), 31);
 }
 
 Test(my_strtol, digit)
