@@ -27,6 +27,10 @@ static int check_error(char const *arg, init_t *init, int index)
         write(2, "Missing argument for -a option.\n", 32);
         return 1;
     }
+    if (arg[0] == '-') {
+        write(2, "Argument of -a option cannot be negative.\n", 42);
+        return 1;
+    }
     if (is_hex(arg)) {
         write(2, "Argument of -a option is not hexadecimal.\n", 42);
         return 1;
