@@ -6,10 +6,12 @@
 */
 
 #include "corewar/main.h"
+#include "typedefs/arena_t.h"
 
 int main(int argc, char const *argv[])
 {
-    init_t init = {-1, {{-1, -1, 0, {0}}, {-1, -1, 0, {0}}, {-1, -1, 0, {0}}, {-1, -1, 0, {0}}}};
+    __attribute__((unused)) arena_t arena = ARENA;
+    init_t init = INIT;
 
     if (1 == argc || (2 == argc && !my_strcmp(argv[1], "-h"))) {
         write(1, USAGE, 580);
@@ -21,7 +23,7 @@ int main(int argc, char const *argv[])
     if (check_files(&init)) {
         return 84;
     }
-    if (set_champion_from_file(&init)) {
+    if (open_champs(&init)) {
         return 84;
     }
     return 0;
