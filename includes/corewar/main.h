@@ -8,6 +8,7 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
+#include "typedefs/arena_t.h"
 #include "typedefs/init_t.h"
 #include "utils.h"
 #include <unistd.h>

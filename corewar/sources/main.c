@@ -6,7 +6,6 @@
 */
 
 #include "corewar/main.h"
-#include "typedefs/arena_t.h"
 
 int main(int argc, char const *argv[])
 {
