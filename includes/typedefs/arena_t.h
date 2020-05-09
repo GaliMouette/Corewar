@@ -20,7 +20,7 @@
 #define DIR_SIZE        4
 #define REG_SIZE        DIR_SIZE
 
-enum status
+enum status_e
 {
     DEAD,
     ALIVE,
@@ -37,7 +37,7 @@ struct executable_s
 struct player_s
 {
     int number;
-    enum status status;
+    enum status_e status;
     char *name;
 };
 
