@@ -49,3 +49,55 @@ static int is_hex(char const *arg)
     }
     return 0;
 }
+
+/*
+2j = 0 , 6144/2 //TODO
+2j = x , 6144/2 + X //TODO
+2j = x, y //TODO
+
+3j = 0, 6144/3, 2(6144/3) //TODO
+3j = x, 6144/3 + x, 2(6144/3) + x //TODO
+3j = x, y, (y - x > x - y) ? x + (x - y) / 2 : y + (y - x) / 2
+3j = x, y, z //TODO
+
+4j = 0, 6144/4, 2(6144/4), 3(6144/4)//TODO
+4j = x, 6144/4 + x, 2(6144/4) + x, 3(6144/4) + x //TODO
+4j = x, y, (y - x > x - y) ? x + (x - y) / 2 : y + (y - x) / 2,
+4j = x, y, z, x + (y - x)/2 | y + (z - y)/2 | z + (x - z)/2
+4j = x, y, z, w //TODO
+*/
+
+/*
+2j = 0 , 6144/2 //TODO
+2j = x , 6144/2 + X //TODO
+2j = x, y //TODO
+
+3j = 0, 6144/3, 2(6144/3) //TODO
+3j = x, 6144/3 + x, 2(6144/3) + x //TODO
+3j = x, y, (y - x > (6144 - y + x)) ? x + (y - x) / 2 : y + (6144 - y + x) / 2 //TODO
+
+3j = x, y, z //TODO
+
+4j = 0, 6144/4, 2(6144/4), 3(6144/4)//TODO
+4j = x, 6144/4 + x, 2(6144/4) + x, 3(6144/4) + x //TODO
+4j = x, y , (y - x > (6144 - y + x)) ? x + (y - x) / 2 : y + (6144 - y + x) / 2
+, if ((6144 - z + x) > ((y - x > (z - y)) ? x + (y - x) / 2 : y + (z - y) / 2))
+        z + (6144 - z + x) / 2
+
+
+4j = x, y, z, if ((6144 - z + x) > ((y - x > (z - y)) ? x + (y - x) / 2 : y + (z - y) / 2))
+                    z + (6144 - z + x) / 2
+
+choix = x > y ? x : y > z ? y : z;
+((((choix == x) ? 6144 : 0) - x + y) > (((choix == y) ? 6144 : 0) - y + z)) ? x + (((choix == x) ? 6144 : 0) - x + y) / 2 : (z - y > (((choix == z) ? 6144 : 0) - z + x)) ?  y + (((choix == y) ? 6144 : 0) - y + z) / 2) : z + (((choix == z) ? 6144 : 0) - z + x) / 2
+x %= 6144;
+    y %= 6144;
+    z %= 6144;
+    int choix = (x > y) ? x : (y > z) ? y : z;
+    int new = ((((choix == x) ? 6144 : 0) - x + y) > (((choix == y) ? 6144 : 0) - y + z)) ? x + (((choix == x) ? 6144 : 0) - x + y) / 2 : ((((choix == y) ? 6144 : 0) - y + z) > (((choix == z) ? 6144 : 0) - z + x)) ?  y + (((choix == y) ? 6144 : 0) - y + z) / 2 : z + (((choix == z) ? 6144 : 0) - z + x) / 2;
+    printf("x = %d\ny = %d\nz = %d\nnew = %d\n", x, y, z, new);
+
+4j = x, y, z, w //TODO
+*/
+
+//TODO appliqué le modulo dès le début

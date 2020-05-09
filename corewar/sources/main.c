@@ -22,6 +22,8 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
+int assign_load_address(init_t *init);
+
 static int initiate(char const *argv[], init_t *init)
 {
     if (parse_args(argv, init)) {
@@ -33,5 +35,6 @@ static int initiate(char const *argv[], init_t *init)
     if (open_files(init)) {
         return 1;
     }
+    assign_load_address(init);
     return 0;
 }
