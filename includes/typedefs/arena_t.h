@@ -48,11 +48,11 @@ struct __attribute__((packed)) arena_s
     unsigned int current_cycle;
     int cycle_to_die;
     struct player_s players[4];
-    struct executable_s execs[];
+    struct executable_s **execs;
 };
 
 typedef struct arena_s arena_t;
 
-#define ARENA {{0}, 0, 0, CYCLE_TO_DIE, {0}}
+#define ARENA {{0}, 0, 0, CYCLE_TO_DIE, {0}, NULL}
 
 #endif /* !ARENA_T_H_ */
