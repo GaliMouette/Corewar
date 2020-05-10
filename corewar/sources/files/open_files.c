@@ -57,9 +57,10 @@ static int get_header(int fd, header_t *header)
     read(fd, &header->magic, 4);
     header->magic = (int) BSWAP_INT((unsigned int) header->magic);
     read(fd, header->prog_name, MAX_PROG_NAME_LEN);
-    read(fd, &header->prog_size, 4);
+    read(fd, &header->prog_size, 8);
     header->prog_size = (long) BSWAP_LONG((unsigned long) header->prog_size);
     read(fd, header->comment, MAX_COMMENT_LEN);
+    lseek(fd, 4, SEEK_CUR);
     if (check_magic(header)) {
         return 1;
     } else {
