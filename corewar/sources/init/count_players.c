@@ -5,7 +5,7 @@
 ** count_players
 */
 
-#include "corewar/count_players.h"
+#include "corewar/init/count_players.h"
 
 int count_players(init_t *init)
 {
