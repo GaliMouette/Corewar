@@ -41,9 +41,10 @@ struct player_s
     char *name;
 };
 
-struct __attribute__((packed)) arena_s
+struct arena_s
 {
     char memory[MEM_SIZE];
+    int nb_players;
     int calls_to_live;
     unsigned int current_cycle;
     int cycle_to_die;
@@ -53,6 +54,6 @@ struct __attribute__((packed)) arena_s
 
 typedef struct arena_s arena_t;
 
-#define ARENA {{0}, 0, 0, CYCLE_TO_DIE, {0}, NULL}
+#define ARENA {{0}, 0, 0, 0, CYCLE_TO_DIE, {0}, NULL}
 
 #endif /* !ARENA_T_H_ */
