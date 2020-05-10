@@ -27,11 +27,23 @@ enum status_e
     WIN
 };
 
+struct instruction_s
+{
+    int opcode;
+    int args_type[4];
+    int args[4];
+    int pc_offset;
+    int wait_cycle;
+};
+
+typedef struct instruction_s instruction_t;
+
 struct executable_s
 {
     int pc;
     int carry;
     int registry[REG_NUMBER];
+    struct instruction_s instruction;
 };
 
 struct player_s

@@ -19,7 +19,7 @@ static void init_exec(init_t *init, arena_t *arena, int i);
 static void init_player(init_t *init, arena_t *arena, int i);
 
 //  Using
-void assign_addresses(init_t *init, int nb_players);
+void assign_addresses(init_t *init, arena_t *arena);
 int load_exec_in_memory(init_t *init, arena_t *arena, int i);
 int count_players(init_t *init);
 

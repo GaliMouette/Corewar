@@ -20,8 +20,7 @@ int main(int argc, char const *argv[])
         return 84;
     }
     initiate_arena(&init, &arena);
-    for (int i = 0; i < 4; i++)
-        printf("Player %d address %d\n", i, init.champs[i].load_address);
+    execution(&arena);
     return 0;
 }
 
