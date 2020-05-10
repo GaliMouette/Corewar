@@ -2,37 +2,37 @@
 ** EPITECH PROJECT, 2020
 ** CPE_corewar_2019
 ** File description:
-** assign_default_address
+** assign_addresses
 */
 
-#include "corewar/init/assign_default_address.h"
+#include "corewar/init/adresses/assign_addresses.h"
 
-void assign_default_address(init_t *init, int nb_players)
+void assign_addresses(init_t *init, arena_t *arena)
 {
-    int nb_known = 0;
+    int already_set = 0;
 
-    init_useful_var(init, nb_players, &nb_known);
-    if (nb_known == nb_players) {
+    get_set_addresses_nb(init, arena->nb_players, &already_set);
+    if (already_set == arena->nb_players) {
         return;
     }
-    if (nb_known < 2) {
-        assign_little_known(init, nb_players);
+    if (already_set < 2) {
+        simple_assign(init, arena->nb_players);
     } else {
-        assign_many_known(init, nb_players, nb_known);
+        complex_assign(init, arena, already_set);
     }
 }
 
-static void init_useful_var(init_t *init, int nb_players, int *nb_known)
+static void get_set_addresses_nb(init_t *init, int nb_players, int *already_set)
 {
     for (int i = 0; i != nb_players; i++) {
         if (-1 != init->champs[i].load_address) {
-            (*nb_known)++;
             init->champs[i].load_address %= MEM_SIZE;
+            (*already_set)++;
         }
     }
 }
 
-static void assign_little_known(init_t *init, int nb_players)
+static void simple_assign(init_t *init, int nb_players)
 {
     int x = 0;
 

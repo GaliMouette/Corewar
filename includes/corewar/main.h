@@ -29,8 +29,6 @@ specified, optimize the addresses so that the processes are as far\
 away from each other as possible. The addresses are MEM_SIZE modulo.\
 \n"
 
-static int initiate(char const *argv[], init_t *init);
-
 // Using
 int parse_args(char const *argv[], init_t *init);
 int check_files(init_t *init);

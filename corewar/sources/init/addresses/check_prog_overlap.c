@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2020
 ** CPE_corewar_2019
 ** File description:
-** check_address_overlap
+** check_prog_overlap
 */
 
-#include "corewar/init/check_address_overlap.h"
+#include "corewar/init/adresses/check_prog_overlap.h"
 
-int check_address_overlap(init_t *init)
+int check_prog_overlap(init_t *init)
 {
     int address[4] = {-1, -1, -1, -1};
 

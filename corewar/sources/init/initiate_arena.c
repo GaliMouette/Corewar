@@ -10,7 +10,7 @@
 int initiate_arena(init_t *init, arena_t *arena)
 {
     arena->nb_players = count_players(init);
-    assign_default_address(init, arena->nb_players);
+    assign_addresses(init, arena->nb_players);
     if (malloc_execs(arena)) {
         return 1;
     }
