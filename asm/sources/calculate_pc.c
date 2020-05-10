@@ -10,17 +10,20 @@
 long calculate_pc(instruction_t *head)
 {
     int new_pc = 0;
+    int special = 0;
 
     if (!head) {
         return 0;
     }
     head->pc = new_pc;
     while (head->next) {
-        new_pc += get_special_op_len(head) ?: get_op_len(head);
+        special = get_special_op_len(head);
+        new_pc += (special) ? special : get_op_len(head);
         head->next->pc = new_pc;
         head = head->next;
     }
-    new_pc += get_special_op_len(head) ?: get_op_len(head);
+    special = get_special_op_len(head);
+    new_pc += (special) ? special : get_op_len(head);
     return new_pc;
 }
 
