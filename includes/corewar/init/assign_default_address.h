@@ -12,8 +12,8 @@
 
 #define MEM_SIZE        (6 * 1024)
 
-void assign_default_address(init_t *init);
-static void init_useful_var(init_t *init, int *nb_players, int *nb_known);
+void assign_default_address(init_t *init, int nb_players);
+static void init_useful_var(init_t *init, int nb_players, int *nb_known);
 static void assign_little_known(init_t *init, int nb_players);
 
 // Using

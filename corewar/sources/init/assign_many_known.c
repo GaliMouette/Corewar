@@ -9,20 +9,20 @@
 
 void assign_many_known(init_t *init, int nb_players, int nb_known)
 {
-    int default_address[3] = {-1, -1, -1};
+    int address[3] = {-1, -1, -1};
     int third_address_status = 0;
 
-    get_load_address(init, nb_players, default_address);
-    set_third_unknown(default_address);
+    get_load_address(init, nb_players, address);
+    set_third_unknown(address);
     for (int i = 0; i != nb_players; i++) {
         if (2 == nb_known && -1 == init->champs[i].load_address
         && 0 == third_address_status) {
-            init->champs[i].load_address = default_address[2];
+            init->champs[i].load_address = address[2];
             third_address_status++;
         }
         if (-1 == init->champs[i].load_address && 4 == nb_players) {
-            SORT(default_address[0], default_address[1], default_address[2])
-            set_fourth_unknown(init, i, default_address);
+            SORT(address[0], address[1], address[2])
+            set_fourth_unknown(init, i, address);
             init->champs[i].load_address %= MEM_SIZE;
         }
     }

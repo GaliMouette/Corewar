@@ -9,16 +9,19 @@
 
 int main(int argc, char const *argv[])
 {
-    __attribute__((unused)) arena_t arena = ARENA;
+    arena_t arena = ARENA;
     init_t init = INIT;
 
-    if (1 == argc || (2 == argc && !my_strcmp(argv[1], "-h"))) {
+    if (1 == argc || 2 == argc) {
         write(1, USAGE, 580);
         return 0;
     }
     if (initiate(argv, &init)) {
         return 84;
     }
+    initiate_arena(&init, &arena);
+    for (int i = 0; i < 4; i++)
+        printf("Player %d address %d\n", i, init.champs[i].load_address);
     return 0;
 }
 
@@ -35,6 +38,5 @@ static int initiate(char const *argv[], init_t *init)
     if (open_files(init)) {
         return 1;
     }
-    assign_load_address(init);
     return 0;
 }

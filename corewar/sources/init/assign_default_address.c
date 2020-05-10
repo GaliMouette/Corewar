@@ -7,12 +7,11 @@
 
 #include "corewar/init/assign_default_address.h"
 
-void assign_default_address(init_t *init)
+void assign_default_address(init_t *init, int nb_players)
 {
-    int nb_players = 0;
     int nb_known = 0;
 
-    init_useful_var(init, &nb_players, &nb_known);
+    init_useful_var(init, nb_players, &nb_known);
     if (nb_known == nb_players) {
         return;
     }
@@ -23,12 +22,12 @@ void assign_default_address(init_t *init)
     }
 }
 
-static void init_useful_var(init_t *init, int *nb_players, int *nb_known)
+static void init_useful_var(init_t *init, int nb_players, int *nb_known)
 {
-    for (*nb_players = 0; *nb_players != count_players(init); (*nb_players)++) {
-        if (-1 != init->champs[*nb_players].load_address) {
+    for (int i = 0; i != nb_players; i++) {
+        if (-1 != init->champs[i].load_address) {
             (*nb_known)++;
-            init->champs[*nb_players].load_address %= MEM_SIZE;
+            init->champs[i].load_address %= MEM_SIZE;
         }
     }
 }
