@@ -5,7 +5,7 @@
 ** set_prog_nbr
 */
 
-#include "corewar/options/set_prog_nbr.h"
+#include "corewar/init/options/set_prog_nbr.h"
 
 int set_prog_nbr(char const *arg, int *i, init_t *init, int index)
 {

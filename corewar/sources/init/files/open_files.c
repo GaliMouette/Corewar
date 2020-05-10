@@ -5,7 +5,7 @@
 ** open_files
 */
 
-#include "corewar/files/open_files.h"
+#include "corewar/init/files/open_files.h"
 
 int open_files(init_t *init)
 {

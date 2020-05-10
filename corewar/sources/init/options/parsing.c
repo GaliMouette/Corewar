@@ -5,7 +5,7 @@
 ** parsing
 */
 
-#include "corewar/options/parsing.h"
+#include "corewar/init/options/parsing.h"
 
 int parse_args(char *argv[], init_t *init)
 {
