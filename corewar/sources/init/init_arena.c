@@ -29,6 +29,12 @@ static int malloc_execs(init_t *init, arena_t *arena)
     if (!arena->execs) {
         return 1;
     }
+    for (int i = 0; i < count_players(init); i++) {
+        arena->execs[i] = malloc(sizeof(*arena->execs[i]));
+        if (!arena->execs[i]) {
+            return 1;
+        }
+    }
     arena->execs[count_players(init)] = NULL;
     return 0;
 }
