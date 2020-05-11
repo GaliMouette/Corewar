@@ -99,11 +99,10 @@ static int check_args(loaded_op_t *loaded_op)
     for (int i = 0; i < op_tab[index].nbr_args; i++) {
         if (loaded_op->args_type[i] == 3 && op_tab[index].type[i] == 4) {
             continue;
-        } else if (loaded_op->args_type[i] != op_tab[index].type[i] ) {
+        }
+        if ((args_type_t) loaded_op->args_type[i] != op_tab[index].type[i]) {
             return 1;
         }
-    }
-    for (int i = 0; i < op_tab[index].nbr_args; i++) {
         if (loaded_op->args_type[i] == 1) {
             if (loaded_op->args[i] < 1 || REG_NUMBER < loaded_op->args[i]) {
                 return 1;
