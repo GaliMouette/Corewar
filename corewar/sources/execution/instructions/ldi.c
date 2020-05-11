@@ -5,16 +5,17 @@
 ** ldi
 */
 
-#include "corewar/execution/instructions/ldi.h"
+#include "corewar/execution/instructions/instructions.h"
 
 int ldi(arena_t *arena, int i)
 {
     int term1, term2;
     int result;
 
-    set_operation_terms(&term1, &term2, arena, i);
+    set_opterm(&term1, arena, i, 0);
+    set_opterm(&term2, arena, i, 1);
     result = term1 + term2;
-    read_in_memory(arena->memory, (arena->execs[i]->pc + result) % IDX_MOD,
+    get_indirect_value(arena, (arena->execs[i]->pc + result) % IDX_MOD,
     REG_SIZE, &result);
     if (result) {
         arena->execs[i]->carry = 0;

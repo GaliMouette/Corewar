@@ -14,6 +14,8 @@ int add(arena_t *arena, int i);
 int and(arena_t *arena, int i);
 int ld(arena_t *arena, int i);
 int ldi(arena_t *arena, int i);
+int lld(arena_t *arena, int i);
+int lldi(arena_t *arena, int i);
 int or(arena_t *arena, int i);
 int st(arena_t *arena, int i);
 int sti(arena_t *arena, int i);

@@ -5,14 +5,15 @@
 ** and
 */
 
-#include "corewar/execution/instructions/and.h"
+#include "corewar/execution/instructions/instructions.h"
 
 int and(arena_t *arena, int i)
 {
     int term1, term2;
     int result;
 
-    set_operation_terms(&term1, &term2, arena, i);
+    set_opterm(&term1, arena, i, 0);
+    set_opterm(&term2, arena, i, 1);
     result = term1 & term2;
     if (result) {
         arena->execs[i]->carry = 0;
