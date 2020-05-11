@@ -39,9 +39,11 @@ static void get_args_type(arena_t *arena, int i, loaded_op_t *loaded_op)
     char codingbyte = arena->memory[arena->execs[i]->pc + loaded_op->pc_offset];
 
     if (0x01 == opcode) {
-        loaded_op->args_type[0] = 4;
+        loaded_op->args_type[0] = DIR_TYPE;
+        loaded_op->args_size[0] = 4;
     } else if (0x09 == opcode || 0x0C == opcode || 0x0F == opcode) {
-        loaded_op->args_type[0] = 2;
+        loaded_op->args_type[0] = IND_TYPE;
+        loaded_op->args_size[0] = 2;
     } else {
         fill_args_type(loaded_op, opcode, codingbyte);
         loaded_op->pc_offset++;
@@ -53,18 +55,15 @@ static void fill_args_type(loaded_op_t *loaded_op, int opcode, int coding_byte)
     for (int j = 0; j < 4; j++) {
         loaded_op->args_type[j] = coding_byte >> (8 - (j + 1) * 2) & 3;
         switch (loaded_op->args_type[j]) {
-        case 1:
+        case REG_TYPE:
             loaded_op->args_size[j] = 1;
             break;
-        case 2:
+        case DIR_TYPE:
             loaded_op->args_size[j] =
             (0x0A == opcode || 0x0B == opcode || 0x0E == opcode) ? 2 : 4;
             break;
-        case 3:
+        case IND_TYPE:
             loaded_op->args_size[j] = 2;
-            break;
-        default:
-            loaded_op->args_size[j] = loaded_op->args_type[j];
             break;
         }
     }

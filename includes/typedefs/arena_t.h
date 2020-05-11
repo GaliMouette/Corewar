@@ -24,16 +24,21 @@ enum status_e
 {
     DEAD,
     ALIVE,
-    WIN
+    WIN,
 };
 
-//TODO make enum for args_type
+enum arg_type_e
+{
+    REG_TYPE = 1,
+    DIR_TYPE,
+    IND_TYPE,
+};
 
 struct loaded_op_s
 {
     int is_op_loaded;
     int opcode;
-    int args_type[4];
+    enum arg_type_e args_type[4];
     int args_size[4];
     int args[4];
     int pc_offset;
