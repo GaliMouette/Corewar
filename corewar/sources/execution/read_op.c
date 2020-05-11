@@ -100,7 +100,7 @@ static int check_args(loaded_op_t *loaded_op)
         if (loaded_op->args_type[i] == 3 && op_tab[index].type[i] == 4) {
             continue;
         }
-        if ((args_type_t) loaded_op->args_type[i] != op_tab[index].type[i]) {
+        if (!(loaded_op->args_type[i] & (unsigned int) op_tab[index].type[i])) {
             return 1;
         }
         if (loaded_op->args_type[i] == 1) {
