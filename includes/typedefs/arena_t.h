@@ -27,23 +27,27 @@ enum status_e
     WIN
 };
 
-struct operation_s
+//TODO make enum for args_type
+
+struct loaded_op_s
 {
+    int is_op_loaded;
     int opcode;
     int args_type[4];
+    int args_size[4];
     int args[4];
     int pc_offset;
     int wait_cycle;
 };
 
-typedef struct operation_s operation_t;
+typedef struct loaded_op_s loaded_op_t;
 
 struct executable_s
 {
     int pc;
     int carry;
     int registry[REG_NUMBER];
-    struct operation_s operation;
+    struct loaded_op_s loaded_op;
 };
 
 struct player_s
