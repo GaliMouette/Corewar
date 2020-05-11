@@ -10,9 +10,9 @@
 
 #include "typedefs/arena_t.h"
 
-void set_operation_terms(int *term1, int *term2, arena_t *arena, int i);
+void set_opterm(int *term, arena_t *arena, int i, int j);
 
 //  Using
-void read_in_memory(char *memory, int position, int size, int *result);
+void get_indirect_value(arena_t *arena, int address, int read_size, int *value);
 
 #endif /* !SET_OPERATION_H_ */
