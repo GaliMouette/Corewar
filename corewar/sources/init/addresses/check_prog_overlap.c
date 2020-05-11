@@ -7,21 +7,21 @@
 
 #include "corewar/init/adresses/check_prog_overlap.h"
 
-int check_prog_overlap(init_t *init)
+int check_prog_overlap(init_t *init, arena_t *arena)
 {
-    int address[4] = {-1, -1, -1, -1};
-
-    for (int i = 0, j = 0; i != count_players(init); i++) {
-        if (-1 != init->champs[i].load_address) {
-            address[j] = init->champs[i].load_address;
-            j++;
+    for (int i = 0; i < arena->nb_players; i++) {
+        for (int j = i + 1; j < arena->nb_players; j++) {
+            if ((((init->champs[i].load_address
+            + init->champs[i].header.prog_size) % MEM_SIZE)
+            >= (init->champs[j].load_address % MEM_SIZE))
+            && (((init->champs[i].load_address
+            + init->champs[i].header.prog_size) % MEM_SIZE)
+            <= ((init->champs[j].load_address
+            + init->champs[j].header.prog_size) % MEM_SIZE))) {
+                write(2, "Program overlap detected.\n", 26);
+                return 1;
+            }
         }
     }
-    for (int i = 0; i != 3; i++) {
-        if (-1 != address[i] && address[i] == address[i + 1]) {
-            return 1;
-        }
-    }
-
     return 0;
 }

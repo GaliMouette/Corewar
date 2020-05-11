@@ -21,6 +21,7 @@ static void init_player(init_t *init, arena_t *arena, int i);
 //  Using
 void assign_addresses(init_t *init, arena_t *arena);
 int load_exec_in_memory(init_t *init, arena_t *arena, int i);
+int check_prog_overlap(init_t *init, arena_t *arena);
 int count_players(init_t *init);
 
 #endif /* !INITIATE_ARENA_H_ */
