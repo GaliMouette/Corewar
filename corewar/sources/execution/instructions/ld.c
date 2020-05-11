@@ -22,4 +22,5 @@ int ld(arena_t *arena, int i)
         arena->execs[i]->carry = 1;
     }
     arena->execs[i]->registry[arena->execs[i]->loaded_op.args[1] - 1] = result;
+    return 0;
 }
