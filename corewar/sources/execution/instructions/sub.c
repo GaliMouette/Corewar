@@ -13,7 +13,7 @@ int sub(arena_t *arena, int i)
     arena->execs[i]->registry[arena->execs[i]->loaded_op.args[0] - 1];
     int term2 =
     arena->execs[i]->registry[arena->execs[i]->loaded_op.args[1] - 1];
-    int difference = SUB_OVERFLOW(term1, term2);
+    int difference = term1 - term2;
 
     if (difference) {
         arena->execs[i]->carry = 0;

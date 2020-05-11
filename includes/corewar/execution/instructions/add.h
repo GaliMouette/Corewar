@@ -11,8 +11,6 @@
 #include "typedefs/arena_t.h"
 #include <limits.h>
 
-#define ADD_OVERFLOW(a, b) (a > INT_MAX - b || a < INT_MIN - b) ? -1 : a + b
-
 int add(arena_t *arena, int i);
 
 #endif /* !ADD_H_ */
