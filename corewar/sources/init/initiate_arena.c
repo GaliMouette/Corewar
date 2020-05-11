@@ -49,7 +49,7 @@ static void init_exec(init_t *init, arena_t *arena, int i)
     }
     arena->execs[i]->pc = init->champs[i].load_address;
     arena->execs[i]->carry = 0;
-    arena->execs[i]->instruction = (instruction_t) {0};
+    arena->execs[i]->operation = (operation_t) {0};
 }
 
 static void init_player(init_t *init, arena_t *arena, int i)
