@@ -5,7 +5,7 @@
 ** test_my_strstr.c
 */
 
-#include "criterion/criterion.h"
+#include <criterion/criterion.h>
 
 char *my_strstr(char *haystack, char *needle);
 

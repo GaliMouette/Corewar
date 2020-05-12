@@ -5,7 +5,7 @@
 ** test_my_strtok_r.c
 */
 
-#include "criterion/criterion.h"
+#include <criterion/criterion.h>
 
 char *my_strtok_r(char *str, const char *delim, char **backup);
 
