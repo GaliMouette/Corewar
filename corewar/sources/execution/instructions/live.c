@@ -13,7 +13,7 @@ int live(arena_t *arena, int i)
     write(1, "The player ", 12);
     my_put_nbr(arena->players[i].number);
     write(1, " (", 2);
-    write(1, arena->players[i].name, my_strlen(arena->players[i].name));
+    write(1, arena->players[i].name, (size_t)my_strlen(arena->players[i].name));
     write(1, ") is alive.\n", 12);
     return 0;
 }
