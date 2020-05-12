@@ -9,7 +9,7 @@
 #define EXECUTION_H_
 
 #include "typedefs/arena_t.h"
-
+#include "corewar/execution/instructions/instructions.h"
 
 //  Using
 int read_op(arena_t *arena, int i, loaded_op_t *loaded_op);

@@ -30,6 +30,8 @@ int sub_instruction(arena_t *arena, int i);
 int xor_instruction(arena_t *arena, int i);
 int zjmp_instruction(arena_t *arena, int i);
 
+extern int (*instructions[])(arena_t *, int);
+
 //  Using
 void set_term(int *term, arena_t *arena, int i, int j);
 void get_indirect_value(arena_t *arena, int address, int read_size, int *value);
