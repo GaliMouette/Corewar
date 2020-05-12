@@ -9,7 +9,7 @@
 
 int read_op(arena_t *arena, int i, loaded_op_t *loaded_op)
 {
-    loaded_op->opcode = arena->memory[arena->execs[i]->carry % MEM_SIZE];
+    loaded_op->opcode = arena->memory[arena->execs[i]->pc % MEM_SIZE];
     if (check_opcode(loaded_op)) {
         return 1;
     }
@@ -18,6 +18,7 @@ int read_op(arena_t *arena, int i, loaded_op_t *loaded_op)
     if (check_args(loaded_op)) {
         return 1;
     }
+    loaded_op->wait_cycle = op_tab[loaded_op->opcode - 1].nbr_cycles;
     return 0;
 }
 
@@ -71,22 +72,24 @@ static void fill_args_type(loaded_op_t *loaded_op, int opcode, int coding_byte)
 
 static void get_args(arena_t *arena, int i, loaded_op_t *loaded_op)
 {
+    int address;
+
     for (int j = 0; j < 3; j++) {
+        address = arena->execs[i]->pc + loaded_op->pc_offset;
         if (loaded_op->args_size[j] == 1) {
-            loaded_op->args[j] =
-            arena->memory[arena->execs[i]->pc + loaded_op->pc_offset];
+            loaded_op->args[j] = arena->memory[address] & 0xff;
         }
         if (loaded_op->args_size[j] == 2) {
-            loaded_op->args[j] =
-            arena->memory[arena->execs[i]->pc + loaded_op->pc_offset] << 4|
-            arena->memory[arena->execs[i]->pc + loaded_op->pc_offset + 1];
+            loaded_op->args[j] = (short)
+            ( (arena->memory[address] << 8 & 0xff00)
+            | (arena->memory[address + 1]  & 0x00ff));
         }
         if (loaded_op->args_size[j] == 4) {
             loaded_op->args[j] =
-            arena->memory[arena->execs[i]->pc + loaded_op->pc_offset]     << 12|
-            arena->memory[arena->execs[i]->pc + loaded_op->pc_offset + 1] << 8 |
-            arena->memory[arena->execs[i]->pc + loaded_op->pc_offset + 2] << 4 |
-            arena->memory[arena->execs[i]->pc + loaded_op->pc_offset + 3];
+            ( (arena->memory[address]     << 24             )
+            | (arena->memory[address + 1] << 16 & 0x00ff0000)
+            | (arena->memory[address + 2] << 8  & 0x0000ff00)
+            | (arena->memory[address + 3]       & 0x000000ff));
         }
         loaded_op->pc_offset += loaded_op->args_size[j];
     }
