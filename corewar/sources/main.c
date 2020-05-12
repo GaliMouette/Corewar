@@ -9,20 +9,31 @@
 
 int main(int argc, char const *argv[])
 {
-    init_t init = {-1, {{-1, -1, 0, {0}}, {-1, -1, 0, {0}}, {-1, -1, 0, {0}}, {-1, -1, 0, {0}}}};
+    arena_t arena = ARENA;
+    init_t init = INIT;
 
-    if (1 == argc || (2 == argc && !my_strcmp(argv[1], "-h"))) {
+    if (1 == argc || 2 == argc) {
         write(1, USAGE, 580);
         return 0;
     }
-    if (parse_args(argv, &init)) {
+    if (initiate(argv, &init)) {
         return 84;
     }
-    if (check_files(&init)) {
-        return 84;
+    initiate_arena(&init, &arena);
+    execution(&arena);
+    return 0;
+}
+
+int initiate(char const *argv[], init_t *init)
+{
+    if (parse_args(argv, init)) {
+        return 1;
     }
-    if (set_champion_from_file(&init)) {
-        return 84;
+    if (check_files(init)) {
+        return 1;
+    }
+    if (open_files(init)) {
+        return 1;
     }
     return 0;
 }

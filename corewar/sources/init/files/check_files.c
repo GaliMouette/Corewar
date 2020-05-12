@@ -5,7 +5,7 @@
 ** check_files
 */
 
-#include "corewar/files/check_files.h"
+#include "corewar/init/files/check_files.h"
 
 int check_files(init_t *init)
 {

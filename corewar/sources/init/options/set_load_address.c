@@ -5,7 +5,7 @@
 ** set_load_address
 */
 
-#include "corewar/options/set_load_address.h"
+#include "corewar/init/options/set_load_address.h"
 
 int set_load_address(char const *arg, int *i, init_t *init, int index)
 {
@@ -25,6 +25,10 @@ static int check_error(char const *arg, init_t *init, int index)
     }
     if (!arg) {
         write(2, "Missing argument for -a option.\n", 32);
+        return 1;
+    }
+    if (arg[0] == '-') {
+        write(2, "Argument of -a option cannot be negative.\n", 42);
         return 1;
     }
     if (is_hex(arg)) {

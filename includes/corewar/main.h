@@ -8,6 +8,7 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
+#include "typedefs/arena_t.h"
 #include "typedefs/init_t.h"
 #include "utils.h"
 #include <unistd.h>
@@ -31,6 +32,6 @@ away from each other as possible. The addresses are MEM_SIZE modulo.\
 // Using
 int parse_args(char const *argv[], init_t *init);
 int check_files(init_t *init);
-int set_champion_from_file(init_t *init);
+int open_files(init_t *init);
 
 #endif /* !MAIN_H_ */

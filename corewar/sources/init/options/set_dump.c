@@ -5,7 +5,7 @@
 ** set_dump
 */
 
-#include "corewar/options/set_dump.h"
+#include "corewar/init/options/set_dump.h"
 
 int set_dump(char const *arg, init_t *init)
 {
