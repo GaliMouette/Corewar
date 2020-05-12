@@ -4,10 +4,13 @@
 ** File description:
 ** fork
 */
+
 #include "corewar/execution/instructions/instructions.h"
 #include <stdlib.h>
 
-int fork(arena_t *arena, int i)
+void dup_program(arena_t *arena, int i, int nb_player);
+
+int function_fork(arena_t *arena, int i)
 {
     int direct = arena->execs[i]->loaded_op.args[0];
     int nb_execs = 0;
@@ -25,17 +28,33 @@ int fork(arena_t *arena, int i)
     if (!arena->execs[arena->nb_players - 1]) {
         return 1;
     }
-    arena->execs[arena->nb_players - 1]->carry = arena->execs[i]->carry;
-    arena->execs[arena->nb_players - 1]->pc = (arena->execs[i]->pc + direct) % IDX_MOD;
-    my_memcpy(arena->execs[arena->nb_players - 1]->registry, arena->execs[i]->registry, 16);
-    arena->execs[arena->nb_players - 1]->registry[0] = arena->nb_players;
-    arena->execs[arena->nb_players - 1]->loaded_op.is_op_loaded = arena->execs[i]->loaded_op.is_op_loaded;
-    arena->execs[arena->nb_players - 1]->loaded_op.opcode = arena->execs[i]->loaded_op.opcode;
-    my_memcpy(arena->execs[arena->nb_players - 1]->loaded_op.args_type, arena->execs[i]->loaded_op.args_type, 4);
-    my_memcpy(arena->execs[arena->nb_players - 1]->loaded_op.args_size,arena->execs[i]->loaded_op.args_size, 4);
-    my_memcpy(arena->execs[arena->nb_players - 1]->loaded_op.args, arena->execs[i]->loaded_op.args, 4);
-    arena->execs[arena->nb_players - 1]->loaded_op.pc_offset = arena->execs[i]->loaded_op.pc_offset;
-    arena->execs[arena->nb_players - 1]->loaded_op.wait_cycle = arena->execs[i]->loaded_op.wait_cycle;
+    arena->execs[arena->nb_players - 1]->pc = arena->execs[i]->pc + direct
+    % IDX_MOD;
+    dup_program(arena, i, arena->nb_players - 1);
+    return 0;
 }
 
 //TODO nb_execs
+
+void dup_program(arena_t *arena, int i, int nb_player)
+{
+    // my_memcpy(arena->execs[i], arena->execs[nb_player], sizeof(*arena->execs[i]));
+
+    arena->execs[nb_player]->carry = arena->execs[i]->carry;
+    my_memcpy(arena->execs[nb_player]->registry, arena->execs[i]->registry, 16);
+    arena->execs[nb_player]->registry[0] = arena->nb_players;
+    arena->execs[nb_player]->loaded_op.is_op_loaded =
+    arena->execs[i]->loaded_op.is_op_loaded;
+    arena->execs[nb_player]->loaded_op.opcode =
+    arena->execs[i]->loaded_op.opcode;
+    my_memcpy(arena->execs[nb_player]->loaded_op.args_type,
+    arena->execs[i]->loaded_op.args_type, 4);
+    my_memcpy(arena->execs[nb_player]->loaded_op.args_size,
+    arena->execs[i]->loaded_op.args_size, 4);
+    my_memcpy(arena->execs[nb_player]->loaded_op.args,
+    arena->execs[i]->loaded_op.args, 4);
+    arena->execs[nb_player]->loaded_op.pc_offset =
+    arena->execs[i]->loaded_op.pc_offset;
+    arena->execs[nb_player]->loaded_op.wait_cycle =
+    arena->execs[i]->loaded_op.wait_cycle;
+}

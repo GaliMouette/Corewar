@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2020
 ** CPE_corewar_2019
 ** File description:
-** add
+** add_instruction
 */
 
 #include "corewar/execution/instructions/instructions.h"
 
-int add(arena_t *arena, int i)
+int add_instruction(arena_t *arena, int i)
 {
     int term1, term2;
     int sum;
@@ -15,11 +15,7 @@ int add(arena_t *arena, int i)
     set_opterm(&term1, arena, i, 0);
     set_opterm(&term2, arena, i, 1);
     sum = term1 + term2;
-    if (sum) {
-        arena->execs[i]->carry = 0;
-    } else {
-        arena->execs[i]->carry = 1;
-    }
+    arena->execs[i]->carry = 1;
     arena->execs[i]->registry[arena->execs[i]->loaded_op.args[2] - 1] = sum;
     return 0;
 }

@@ -9,15 +9,17 @@
 
 int st(arena_t *arena, int i)
 {
+    loaded_op_t loaded_op = arena->execs[i]->loaded_op;
     int result =
-    arena->execs[i]->registry[arena->execs[i]->loaded_op.args[0] - 1];
+    arena->execs[i]->registry[loaded_op.args[0] - 1];
+    int address = arena->execs[i]->pc + loaded_op.args[1] % IDX_MOD;
 
-    if (arena->execs[i]->loaded_op.args_type[1] == REG_TYPE) {
-        arena->execs[i]->registry[arena->execs[i]->loaded_op.args[1] - 1]
+    address %= MEM_SIZE;
+    if (loaded_op.args_type[1] == REG_TYPE) {
+        arena->execs[i]->registry[loaded_op.args[1] - 1]
         = result;
     } else {
-        set_indirect_value(arena, (arena->execs[i]->pc
-        + arena->execs[i]->loaded_op.args[1]) % IDX_MOD, REG_SIZE, result);
+        set_indirect_value(arena, address, REG_SIZE, result);
     }
     return 0;
 }

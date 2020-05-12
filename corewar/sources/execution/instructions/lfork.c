@@ -9,5 +9,5 @@
 
 int lfork(arena_t *arena, int i)
 {
-
+    return 0;
 }
