@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** Visual Studio Live Share (Workspace)
 ** File description:
-** fork
+** fork_instruction
 */
 
 #include "corewar/execution/instructions/instructions.h"
@@ -10,7 +10,7 @@
 
 void dup_program(arena_t *arena, int i, int nb_player);
 
-int function_fork(arena_t *arena, int i)
+int fork_instruction(arena_t *arena, int i)
 {
     int direct = arena->execs[i]->loaded_op.args[0];
     int nb_execs = 0;

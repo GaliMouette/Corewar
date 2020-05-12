@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2020
-** Visual Studio Live Share (Workspace)
+** CPE_corewar_2019 [Container epitech (/pedantic_gould)]
 ** File description:
-** set_operation
+** set_term
 */
 
-#include "corewar/execution/instructions/set_opterm.h"
+#include "corewar/execution/instructions/set_term.h"
 
-void set_opterm(int *term, arena_t *arena, int i, int j)
+void set_term(int *term, arena_t *arena, int i, int j)
 {
     loaded_op_t loaded_op = arena->execs[i]->loaded_op;
     int address = arena->execs[i]->pc + loaded_op.args[j] % IDX_MOD;

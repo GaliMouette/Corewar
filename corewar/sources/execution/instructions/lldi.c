@@ -2,19 +2,19 @@
 ** EPITECH PROJECT, 2020
 ** Visual Studio Live Share (Workspace)
 ** File description:
-** lldi
+** lldi_instruction
 */
 
 #include "corewar/execution/instructions/instructions.h"
 
-int lldi(arena_t *arena, int i)
+int lldi_instruction(arena_t *arena, int i)
 {
     int term1, term2;
     int result;
     int address;
 
-    set_opterm(&term1, arena, i, 0);
-    set_opterm(&term2, arena, i, 1);
+    set_term(&term1, arena, i, 0);
+    set_term(&term2, arena, i, 1);
     result = term1 + term2;
     address = arena->execs[i]->pc + result;
     address %= MEM_SIZE;

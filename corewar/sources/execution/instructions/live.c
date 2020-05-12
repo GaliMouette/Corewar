@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2020
 ** CPE_corewar_2019
 ** File description:
-** live
+** live_instruction
 */
 
 #include "corewar/execution/instructions/instructions.h"
 
-int live(arena_t *arena, int i)
+int live_instruction(arena_t *arena, int i)
 {
     arena->players[i].status = ALIVE;
     write(1, "The player ", 12);

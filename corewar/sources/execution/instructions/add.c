@@ -12,8 +12,8 @@ int add_instruction(arena_t *arena, int i)
     int term1, term2;
     int sum;
 
-    set_opterm(&term1, arena, i, 0);
-    set_opterm(&term2, arena, i, 1);
+    set_term(&term1, arena, i, 0);
+    set_term(&term2, arena, i, 1);
     sum = term1 + term2;
     arena->execs[i]->carry = 1;
     arena->execs[i]->registry[arena->execs[i]->loaded_op.args[2] - 1] = sum;

@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2020
 ** Visual Studio Live Share (Workspace)
 ** File description:
-** ld
+** ld_instruction
 */
 
 #include "corewar/execution/instructions/instructions.h"
 
-int ld(arena_t *arena, int i)
+int ld_instruction(arena_t *arena, int i)
 {
     int result;
     loaded_op_t loaded_op = arena->execs[i]->loaded_op;
