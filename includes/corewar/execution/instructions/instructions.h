@@ -10,6 +10,7 @@
 
 #include "typedefs/arena_t.h"
 #include "utils.h"
+#include <stdlib.h>
 #include <unistd.h>
 
 int add_instruction(arena_t *arena, int i);
