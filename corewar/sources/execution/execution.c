@@ -12,7 +12,7 @@ void reset_dummy(loaded_op_t *dummy)
     dummy->is_op_loaded = 0;
     dummy->opcode = 0;
     for (int i = 0; i < 4; i++) {
-        dummy->args_type[i] = 0;
+        dummy->args_type[i] = NONE;
         dummy->args_size[i] = 0;
         dummy->args[i] = 0;
     }
@@ -35,7 +35,10 @@ int execution(arena_t *arena)
             reset_dummy(dummy);
         }
         else if (!dummy->is_op_loaded) {
-            read_op(arena, i, dummy);
+            if (read_op(arena, i, dummy)) {
+                arena->execs[i]->pc++;
+                continue;
+            }
             dummy->is_op_loaded = 1;
         }
         else {

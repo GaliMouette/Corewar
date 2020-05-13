@@ -29,7 +29,8 @@ enum status_e
 
 enum arg_type_e
 {
-    REG_TYPE = 1,
+    NONE,
+    REG_TYPE,
     DIR_TYPE,
     IND_TYPE,
 };
