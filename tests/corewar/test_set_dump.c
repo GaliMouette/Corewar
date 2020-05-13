@@ -37,8 +37,7 @@ Test(set_dump, dump_Already_Define, .init=redirect_all_stderr)
 Test(set_dump, check_Hexadecimal, .init=redirect_all_stderr)
 {
     init_t init = INIT;
-    char *tests[6] =
-    {"/", ":", "2@", "2G", "2B`", "2Bg"};
+    char *tests[6] = {"/", ":", "2@", "2G", "2B`", "2Bg"};
 
     cr_assert_eq(set_dump(tests[0], &init), 1);
     cr_assert_eq(set_dump(tests[1], &init), 1);

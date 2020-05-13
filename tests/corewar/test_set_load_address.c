@@ -47,8 +47,7 @@ Test(set_load_address, negative_Argument, .init=redirect_all_stderr)
 Test(set_load_address, check_Hexadecimal, .init=redirect_all_stderr)
 {
     init_t init = INIT;
-    char *tests[6] =
-    {"/", ":", "2@", "2G", "2B`", "2Bg"};
+    char *tests[6] = {"/", ":", "2@", "2G", "2B`", "2Bg"};
     int i = 1;
 
     cr_assert_eq(set_load_address(tests[0], &i, &init, 0), 1);
