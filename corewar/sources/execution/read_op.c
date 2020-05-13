@@ -43,7 +43,7 @@ static void get_args_type(arena_t *arena, int i, loaded_op_t *loaded_op)
         loaded_op->args_type[0] = DIR_TYPE;
         loaded_op->args_size[0] = 4;
     } else if (0x09 == opcode || 0x0C == opcode || 0x0F == opcode) {
-        loaded_op->args_type[0] = IND_TYPE;
+        loaded_op->args_type[0] = DIR_TYPE;
         loaded_op->args_size[0] = 2;
     } else {
         fill_args_type(loaded_op, opcode, codingbyte);
@@ -106,7 +106,7 @@ static int check_args(loaded_op_t *loaded_op)
         return 1;
     }
     for (int i = 0; i < op_tab[index].nbr_args; i++) {
-        if ((loaded_op->args_type[i] == 3 && op_tab[index].type[i] != 4)
+        if ((loaded_op->args_type[i] == 3 && !(op_tab[index].type[i] & 4))
         || !(loaded_op->args_type[i] & (unsigned int) op_tab[index].type[i])) {
             return 1;
         }
