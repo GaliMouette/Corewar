@@ -7,45 +7,46 @@
 
 #include "corewar/execution/execution.h"
 
-void reset_dummy(loaded_op_t *dummy)
+void reset_loaded_op(loaded_op_t *loaded_op)
 {
-    dummy->is_op_loaded = 0;
-    dummy->opcode = 0;
+    loaded_op->is_op_loaded = 0;
+    loaded_op->opcode = 0;
     for (int i = 0; i < 4; i++) {
-        dummy->args_type[i] = NONE;
-        dummy->args_size[i] = 0;
-        dummy->args[i] = 0;
+        loaded_op->args_type[i] = NONE;
+        loaded_op->args_size[i] = 0;
+        loaded_op->args[i] = 0;
     }
-    dummy->pc_offset = 0;
-    dummy->wait_cycle = 0;
+    loaded_op->pc_offset = 0;
+    loaded_op->wait_cycle = 0;
 }
 
 int execution(arena_t *arena)
 {
-    loaded_op_t *dummy;
+    loaded_op_t *loaded_op;
 
     while (1)
     {
 
     for (int i = 0; arena->execs[i]; i++) {
-        dummy = &arena->execs[i]->loaded_op;
-        if (dummy->is_op_loaded && !dummy->wait_cycle) {
-            instructions[dummy->opcode - 1](arena, i);
-            arena->execs[i]->pc += dummy->pc_offset;
-            reset_dummy(dummy);
-        }
-        else if (!dummy->is_op_loaded) {
-            if (read_op(arena, i, dummy)) {
+        loaded_op = &arena->execs[i]->loaded_op;
+        if (loaded_op->is_op_loaded && !loaded_op->wait_cycle) {
+            instructions[loaded_op->opcode - 1](arena, i);
+            arena->execs[i]->pc += loaded_op->pc_offset;
+            reset_loaded_op(loaded_op);
+        } else if (!loaded_op->is_op_loaded) {
+            reset_loaded_op(loaded_op);
+            if (read_op(arena, i, loaded_op)) {
                 arena->execs[i]->pc++;
-                continue;
+            } else {
+                loaded_op->is_op_loaded = 1;
             }
-            dummy->is_op_loaded = 1;
+        } else {
+            loaded_op->wait_cycle--;
         }
-        else {
-            dummy->wait_cycle--;
-        }
+        arena->execs[i]->pc %= MEM_SIZE;
     }
-
+    arena->current_cycle++;
+    //todo : verifier prog vivant, reset prog to dead,
     }
     return 0;
 }
