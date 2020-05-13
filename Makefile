@@ -66,6 +66,8 @@ TESTS_SRCS	=	tests/asm/test_check_direct.c						\
 				corewar/sources/init/options/set_dump.c				\
 				tests/corewar/test_set_load_address.c				\
 				corewar/sources/init/options/set_load_address.c		\
+				tests/corewar/test_set_prog_nbr.c					\
+				corewar/sources/init/options/set_prog_nbr.c			\
 				tests/utils/test_is_digit.c							\
 				utils/is_digit.c									\
 				tests/utils/test_is_printable.c						\
