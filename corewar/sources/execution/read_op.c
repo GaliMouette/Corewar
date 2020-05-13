@@ -66,6 +66,9 @@ static void fill_args_type(loaded_op_t *loaded_op, int opcode, int coding_byte)
         case IND_TYPE:
             loaded_op->args_size[j] = 2;
             break;
+        case NONE:
+            loaded_op->args_size[j] = 0;
+            break;
         }
     }
 }
