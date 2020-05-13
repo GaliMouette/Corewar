@@ -7,34 +7,31 @@
 
 #include "corewar/execution/instructions/instructions.h"
 
-void dup_program(arena_t *arena, int i, int nb_player);
 
 int fork_instruction(arena_t *arena, int i)
 {
-    int arg = arena->execs[i]->loaded_op.args[0] % IDX_MOD;
-    int pc = (arena->execs[i]->pc + arg) % MEM_SIZE;
+    int offset = arena->execs[i]->loaded_op.args[0] % IDX_MOD;
+    int pc = (arena->execs[i]->pc + offset) % MEM_SIZE;
     int nb_exec;
 
     for (nb_exec = 0; arena->execs[nb_exec]; nb_exec++);
-    arena->execs = realloc(arena->execs, sizeof(*arena->execs) * (nb_exec + 1));
-    //TODO null
+    arena->execs = realloc(arena->execs, sizeof(*arena->execs) * (nb_exec + 2));
     if (!arena->execs) {
         return 1;
     }
-    arena->execs[nb_exec] = NULL;
-    arena->execs[nb_exec - 1] = malloc(sizeof(*arena->execs[i]));
+    arena->execs[nb_exec + 1] = NULL;
+    arena->execs[nb_exec] = malloc(sizeof(*arena->execs[i]));
     if (!arena->execs[nb_exec]) {
         return 1;
     }
-    my_memcpy(arena->execs[i], arena->execs[nb_exec], sizeof(*arena->execs[i]));
+    my_memcpy(arena->execs[nb_exec], arena->execs[i], sizeof(*arena->execs[i]));
+    arena->execs[nb_exec]->loaded_op.is_op_loaded = 0;
     arena->execs[nb_exec]->pc = pc;
     return 0;
 }
 
-//TODO nb_exec
-
-void dup_program(arena_t *arena, int i, int nb_exec)
-{
+// void dup_program(arena_t *arena, int i, int nb_exec)
+// {
     // arena->execs[nb_exec]->carry = arena->execs[i]->carry;
     // my_memcpy(arena->execs[nb_exec]->registry, arena->execs[i]->registry, 16);
     // arena->execs[nb_exec]->registry[0] = arena->nb_exec;
@@ -52,4 +49,4 @@ void dup_program(arena_t *arena, int i, int nb_exec)
     // arena->execs[i]->loaded_op.pc_offset;
     // arena->execs[nb_exec]->loaded_op.wait_cycle =
     // arena->execs[i]->loaded_op.wait_cycle;
-}
+// }
