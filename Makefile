@@ -46,46 +46,55 @@ UTILS_OBJS		=	$(patsubst	%.c,	%.o,	$(UTILS_SRCS))
 INCLUDES	=	$(shell	find	./includes/	-type	f	-name	"*.h")
 
 
-TESTS_SRCS	=	tests/asm/test_check_direct.c		\
-				tests/asm/test_check_indirect.c		\
-				tests/asm/test_check_nb_args.c		\
-				tests/asm/test_check_register.c		\
-				asm/sources/parsing/check_args.c	\
-				asm/sources/op.c					\
-				utils/my_strtok.c					\
-				tests/asm/test_clean_line1.c		\
-				tests/asm/test_clean_line2.c		\
-				asm/sources/clean_line.c			\
-				tests/utils/test_is_digit.c			\
-				utils/is_digit.c					\
-				tests/utils/test_is_printable.c		\
-				utils/is_printable.c				\
-				tests/utils/test_my_atoi.c			\
-				utils/my_atoi.c						\
-				tests/utils/test_my_memcpy.c		\
-				utils/my_memcpy.c					\
-				tests/utils/test_my_put_nbr.c		\
-				utils/my_put_nbr.c					\
-				tests/utils/test_my_strcat.c		\
-				utils/my_strcat.c					\
-				tests/utils/test_my_strcmp.c		\
-				utils/my_strcmp.c					\
-				tests/utils/test_my_strcspn.c		\
-				utils/my_strcspn.c					\
-				tests/utils/test_my_strdup.c		\
-				utils/my_strdup.c					\
-				tests/utils/test_my_strlen.c		\
-				utils/my_strlen.c					\
-				tests/utils/test_my_strndup.c		\
-				utils/my_strndup.c					\
-				tests/utils/test_my_strnlen.c		\
-				utils/my_strnlen.c					\
-				tests/utils/test_my_strspn.c		\
-				utils/my_strspn.c					\
-				tests/utils/test_my_strstr.c		\
-				utils/my_strstr.c					\
-				tests/utils/test_my_strtok_r.c		\
-				utils/my_strtok_r.c					\
+TESTS_SRCS	=	tests/asm/test_check_direct.c						\
+				tests/asm/test_check_indirect.c						\
+				tests/asm/test_check_nb_args.c						\
+				tests/asm/test_check_register.c						\
+				asm/sources/parsing/check_args.c					\
+				asm/sources/op.c									\
+				utils/my_strtok.c									\
+				tests/asm/test_clean_line1.c						\
+				tests/asm/test_clean_line2.c						\
+				asm/sources/clean_line.c							\
+				tests/corewar/test_check_files.c					\
+				corewar/sources/init/files/check_files.c			\
+				tests/corewar/test_check_prog_overlap.c				\
+				corewar/sources/init/addresses/check_prog_overlap.c	\
+				tests/corewar/test_count_players.c					\
+				corewar/sources/init/count_players.c				\
+				tests/corewar/test_set_dump.c						\
+				corewar/sources/init/options/set_dump.c				\
+				tests/utils/test_is_digit.c							\
+				utils/is_digit.c									\
+				tests/utils/test_is_printable.c						\
+				utils/is_printable.c								\
+				tests/utils/test_my_atoi.c							\
+				utils/my_atoi.c										\
+				tests/utils/test_my_memcpy.c						\
+				utils/my_memcpy.c									\
+				tests/utils/test_my_put_nbr.c						\
+				utils/my_put_nbr.c									\
+				tests/utils/test_my_strcat.c						\
+				utils/my_strcat.c									\
+				tests/utils/test_my_strcmp.c						\
+				utils/my_strcmp.c									\
+				tests/utils/test_my_strcspn.c						\
+				utils/my_strcspn.c									\
+				tests/utils/test_my_strdup.c						\
+				utils/my_strdup.c									\
+				tests/utils/test_my_strlen.c						\
+				utils/my_strlen.c									\
+				tests/utils/test_my_strndup.c						\
+				utils/my_strndup.c									\
+				tests/utils/test_my_strnlen.c						\
+				utils/my_strnlen.c									\
+				tests/utils/test_my_strspn.c						\
+				utils/my_strspn.c									\
+				tests/utils/test_my_strstr.c						\
+				utils/my_strstr.c									\
+				tests/utils/test_my_strtok_r.c						\
+				utils/my_strtok_r.c									\
+				utils/my_strtol.c									\
 				tests/redirect_all.c
 
 
