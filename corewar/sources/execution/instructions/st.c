@@ -10,8 +10,7 @@
 int st_instruction(arena_t *arena, int i)
 {
     loaded_op_t loaded_op = arena->execs[i]->loaded_op;
-    int result =
-    arena->execs[i]->registry[loaded_op.args[0] - 1];
+    int result = arena->execs[i]->registry[loaded_op.args[0] - 1];
     int address = arena->execs[i]->pc + loaded_op.args[1] % IDX_MOD;
 
     address %= MEM_SIZE;

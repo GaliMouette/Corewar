@@ -11,7 +11,7 @@ int fork_instruction(arena_t *arena, int i)
 {
     int offset = arena->execs[i]->loaded_op.args[0] % IDX_MOD;
     int pc = (arena->execs[i]->pc + offset) % MEM_SIZE;
-    int nb_exec;
+    size_t nb_exec;
 
     for (nb_exec = 0; arena->execs[nb_exec]; nb_exec++);
     arena->execs = realloc(arena->execs, sizeof(*arena->execs) * (nb_exec + 2));
