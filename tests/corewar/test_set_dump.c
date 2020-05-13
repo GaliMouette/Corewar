@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** Visual Studio Live Share (Workspace)
+** CPE_corewar_2019
 ** File description:
 ** test_set_dump
 */
@@ -34,7 +34,7 @@ Test(set_dump, dump_Already_Define, .init=redirect_all_stderr)
     cr_assert_eq(set_dump(arg, &init), 1);
 }
 
-Test(set_dump, char_Smaller_0_Bigger_9, .init=redirect_all_stderr)
+Test(set_dump, check_Hexadecimal, .init=redirect_all_stderr)
 {
     init_t init = INIT;
     char *tests[6] =

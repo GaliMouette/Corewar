@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** Visual Studio Live Share (Workspace)
+** CPE_corewar_2019
 ** File description:
 ** test_check_files
 */
