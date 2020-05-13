@@ -26,5 +26,6 @@ int fork_instruction(arena_t *arena, int i)
     my_memcpy(arena->execs[nb_exec], arena->execs[i], sizeof(*arena->execs[i]));
     arena->execs[nb_exec]->loaded_op.is_op_loaded = 0;
     arena->execs[nb_exec]->pc = pc;
+    arena->execs[nb_exec]->player = arena->execs[i]->player;
     return 0;
 }
