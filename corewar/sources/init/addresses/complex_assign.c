@@ -39,24 +39,6 @@ static void get_addresses(init_t *init, int nb_players, int addresses[3])
             index++;
         }
     }
-
-    // Todo expliquer lia
-    // for (int i = 0; i != nb_players; i++) {
-        // if (-1 != init->champs[i].load_address && -1 == addresses[0]) {
-            // addresses[0] = init->champs[i].load_address;
-            // continue;
-        // }
-        // if (-1 != init->champs[i].load_address && -1 != addresses[0]
-        // && -1 == addresses[1]) {
-            // addresses[1] = init->champs[i].load_address;
-            // continue;
-        // }
-        // if (-1 != init->champs[i].load_address && -1 != addresses[0]
-        // && -1 != addresses[1]) {
-            // addresses[2] = init->champs[i].load_address;
-            // continue;
-        // }
-    // }
 }
 
 static void set_third_address(int address[3])
