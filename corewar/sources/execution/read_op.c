@@ -77,7 +77,7 @@ static void get_args(arena_t *arena, int i, loaded_op_t *loaded_op)
 {
     int address;
 
-    for (int j = 0; j < 3; j++) {
+    for (int j = 0; j < 4; j++) {
         address = arena->execs[i]->pc + loaded_op->pc_offset;
         if (loaded_op->args_size[j] == 1) {
             loaded_op->args[j] = arena->memory[address] & 0xff;
@@ -102,11 +102,12 @@ static int check_args(loaded_op_t *loaded_op)
 {
     int index = loaded_op->opcode - 1;
 
+    if (loaded_op->args_type[3] || loaded_op->args_size[3]) {
+        return 1;
+    }
     for (int i = 0; i < op_tab[index].nbr_args; i++) {
-        if (loaded_op->args_type[i] == 3 && op_tab[index].type[i] == 4) {
-            continue;
-        }
-        if (!(loaded_op->args_type[i] & (unsigned int) op_tab[index].type[i])) {
+        if ((loaded_op->args_type[i] == 3 && op_tab[index].type[i] != 4)
+        || !(loaded_op->args_type[i] & (unsigned int) op_tab[index].type[i])) {
             return 1;
         }
         if (loaded_op->args_type[i] == 1) {
