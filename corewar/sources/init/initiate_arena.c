@@ -44,6 +44,7 @@ static int malloc_execs(arena_t *arena)
 
 static void init_exec(init_t *init, arena_t *arena, int i)
 {
+    arena->execs[i]->player = i + 1;
     arena->execs[i]->registry[0] = init->champs[i].number;
     for (int j = 1; j < REG_NUMBER - 1; j++) {
         arena->execs[i]->registry[j] = 0;

@@ -50,6 +50,7 @@ typedef struct loaded_op_s loaded_op_t;
 
 struct executable_s
 {
+    int player;
     int pc;
     int carry;
     int registry[REG_NUMBER];
