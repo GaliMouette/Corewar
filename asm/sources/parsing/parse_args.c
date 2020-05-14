@@ -52,7 +52,6 @@ static int check_errors(char *args[6], int index)
         return 1;
     }
     if (check_nb_args(args, index)) {
-        write(2, "Too many arguments for instruction.\n", 36);
         return 1;
     }
     if (check_args_types(args, index)) {

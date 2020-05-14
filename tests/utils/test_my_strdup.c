@@ -5,7 +5,7 @@
 ** test_my_strdup.c
 */
 
-#include "criterion/criterion.h"
+#include <criterion/criterion.h>
 
 char *my_strdup(char const *str);
 

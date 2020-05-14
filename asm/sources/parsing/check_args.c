@@ -14,6 +14,11 @@ int check_nb_args(char *args[6], int index)
     while (args[nb_args]) {
         nb_args++;
     }
+    if (nb_args - 1 > op_tab[index].nbr_args) {
+        write(2, "Too many arguments for instruction.\n", 36);
+    } else if (nb_args - 1 < op_tab[index].nbr_args) {
+        write(2, "Not enough arguments for instruction.\n", 38);
+    }
     return nb_args - 1 != op_tab[index].nbr_args;
 }
 

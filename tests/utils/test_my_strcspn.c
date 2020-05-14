@@ -5,7 +5,7 @@
 ** test_my_strcspn.c
 */
 
-#include "criterion/criterion.h"
+#include <criterion/criterion.h>
 
 int my_strcspn(char const *str, char const *chars);
 

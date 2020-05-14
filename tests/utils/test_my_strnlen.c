@@ -5,7 +5,7 @@
 ** test_my_strnlen.c
 */
 
-#include "criterion/criterion.h"
+#include <criterion/criterion.h>
 
 int my_strnlen(char const *str, int n);
 
