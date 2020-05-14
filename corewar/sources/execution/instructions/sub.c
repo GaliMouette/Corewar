@@ -10,13 +10,17 @@
 int sub_instruction(arena_t *arena, int i)
 {
     int term1, term2;
-    int difference;
+    long diff;
+    int index = arena->execs[i]->loaded_op.args[2] - 1;
 
     set_term(&term1, arena, i, 0);
     set_term(&term2, arena, i, 1);
-    difference = term1 - term2;
-    arena->execs[i]->carry = 1;
-    arena->execs[i]->registry[arena->execs[i]->loaded_op.args[2] - 1] =
-    difference;
+    diff = term1 - term2;
+    if (diff < INT_MIN || INT_MAX < diff) {
+        arena->execs[i]->carry = 0;
+    } else {
+        arena->execs[i]->carry = 1;
+    }
+    arena->execs[i]->registry[index] = (int) diff;
     return 0;
 }

@@ -10,12 +10,17 @@
 int add_instruction(arena_t *arena, int i)
 {
     int term1, term2;
-    int sum;
+    long sum;
+    int index = arena->execs[i]->loaded_op.args[2] - 1;
 
     set_term(&term1, arena, i, 0);
     set_term(&term2, arena, i, 1);
     sum = term1 + term2;
-    arena->execs[i]->carry = 1;
-    arena->execs[i]->registry[arena->execs[i]->loaded_op.args[2] - 1] = sum;
+    if (sum < INT_MIN || INT_MAX < sum) {
+        arena->execs[i]->carry = 0;
+    } else {
+        arena->execs[i]->carry = 1;
+    }
+    arena->execs[i]->registry[index] = (int) sum;
     return 0;
 }
