@@ -10,8 +10,10 @@
 int read_op(arena_t *arena, int i, loaded_op_t *loaded_op)
 {
     loaded_op->opcode = arena->memory[arena->execs[i]->pc % MEM_SIZE];
-    if (check_opcode(loaded_op)) {
+    if (loaded_op->opcode < 0x01 || 0x10 < loaded_op->opcode) {
         return 1;
+    } else {
+        loaded_op->pc_offset++;
     }
     get_args_type(arena, i, loaded_op);
     get_args(arena, i, loaded_op);
@@ -20,18 +22,6 @@ int read_op(arena_t *arena, int i, loaded_op_t *loaded_op)
     }
     loaded_op->wait_cycle = op_tab[loaded_op->opcode - 1].nbr_cycles;
     return 0;
-}
-
-static int check_opcode(loaded_op_t *loaded_op)
-{
-    int opcode = loaded_op->opcode;
-
-    if (opcode < 0x01 || 0x10 < opcode) {
-        return 1;
-    } else {
-        loaded_op->pc_offset++;
-        return 0;
-    }
 }
 
 static void get_args_type(arena_t *arena, int i, loaded_op_t *loaded_op)

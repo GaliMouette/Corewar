@@ -9,7 +9,7 @@
 
 int sti_instruction(arena_t *arena, int i)
 {
-    int term1,term2;
+    int term1, term2;
     int sum;
     int result =
     arena->execs[i]->registry[arena->execs[i]->loaded_op.args[0] - 1];

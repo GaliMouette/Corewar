@@ -12,7 +12,6 @@
 #include "op.h"
 
 int read_op(arena_t *arena, int i, loaded_op_t *loaded_op);
-static int check_opcode(loaded_op_t *loaded_op);
 static void get_args_type(arena_t *arena, int i, loaded_op_t *loaded_op);
 static void fill_args_type(loaded_op_t *loaded_op, int opcode, int coding_byte);
 static void get_args(arena_t *arena, int i, loaded_op_t *loaded_op);

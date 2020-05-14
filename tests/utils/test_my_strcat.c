@@ -8,9 +8,10 @@
 #include "criterion/criterion.h"
 
 int my_strlen(char const *str);
+
 char *my_strcat(char const *str1, char const *str2);
 
-Test(my_strcat, strcat_Run)
+Test(my_strcat, already_Good)
 {
     cr_assert_str_eq(my_strcat("Bonjour", "Hello"), "BonjourHello");
 }

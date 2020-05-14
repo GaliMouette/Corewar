@@ -11,13 +11,15 @@
 #include "typedefs/arena_t.h"
 #include "typedefs/init_t.h"
 
-#define SWAP(a,b) \
-int tmp = a; a = b; b = tmp;
+#define SWAP(a, b) \
+int tmp = a; \
+a = b; \
+b = tmp;
 
-#define SORT(a,b,c) \
-if ((a) > (b)) { SWAP(a,b); } \
-if ((a) > (c)) { SWAP(a,c); } \
-if ((b) > (c)) { SWAP(b,c); }
+#define SORT(a, b, c) \
+if ((a) > (b)) { SWAP(a, b); } \
+if ((a) > (c)) { SWAP(a, c); } \
+if ((b) > (c)) { SWAP(b, c); }
 
 #define CHOICE(choice, address)     ((choice == address) ? MEM_SIZE : 0)
 
