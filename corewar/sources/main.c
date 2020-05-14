@@ -20,8 +20,10 @@ int main(int argc, char const *argv[])
         return 84;
     }
     if (execution(&arena)) {
+        freearray((void **) arena.execs);
         return 84;
     }
+    freearray((void **) arena.execs);
     return 0;
 }
 
@@ -37,6 +39,7 @@ int initiate(char const *argv[], init_t *init, arena_t *arena)
         return 1;
     }
     if (initiate_arena(init, arena)){
+        freearray((void **) arena->execs);
         return 1;
     }
     return 0;
