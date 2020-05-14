@@ -13,11 +13,11 @@ int check_prog_overlap(init_t *init, arena_t *arena)
         for (int j = i + 1; j < arena->nb_players; j++) {
             if ((((init->champs[i].load_address
             + init->champs[i].header.prog_size) % MEM_SIZE)
-            >= (init->champs[j].load_address % MEM_SIZE))
+            > (init->champs[j].load_address % MEM_SIZE) + 1)
             && (((init->champs[i].load_address
             + init->champs[i].header.prog_size) % MEM_SIZE)
-            <= ((init->champs[j].load_address
-            + init->champs[j].header.prog_size) % MEM_SIZE))) {
+            < ((init->champs[j].load_address
+            + init->champs[j].header.prog_size) % MEM_SIZE) + 1)) {
                 write(2, "Program overlap detected.\n", 26);
                 return 1;
             }
