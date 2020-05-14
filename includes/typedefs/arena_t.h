@@ -70,7 +70,7 @@ struct arena_s
     int nb_players;
     int calls_to_live;
     unsigned int current_cycle;
-    int cycle_to_die;
+    unsigned int cycle_to_die;
     struct player_s players[4];
     struct executable_s **execs;
 };
