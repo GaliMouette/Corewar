@@ -16,15 +16,14 @@ int main(int argc, char const *argv[])
         write(1, USAGE, 580);
         return 0;
     }
-    if (initiate(argv, &init)) {
+    if (initiate(argv, &init, &arena)) {
         return 84;
     }
-    initiate_arena(&init, &arena);
     execution(&arena);
     return 0;
 }
 
-int initiate(char const *argv[], init_t *init)
+int initiate(char const *argv[], init_t *init, arena_t *arena)
 {
     if (parse_args(argv, init)) {
         return 1;
@@ -33,6 +32,9 @@ int initiate(char const *argv[], init_t *init)
         return 1;
     }
     if (open_files(init)) {
+        return 1;
+    }
+    if (initiate_arena(init, arena)){
         return 1;
     }
     return 0;
