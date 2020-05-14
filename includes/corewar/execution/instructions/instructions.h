@@ -10,6 +10,7 @@
 
 #include "typedefs/arena_t.h"
 #include "utils.h"
+#include <limits.h>
 #include <stdlib.h>
 #include <unistd.h>
 

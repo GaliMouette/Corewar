@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
     arena_t arena = ARENA;
     init_t init = INIT;
 
-    if (1 == argc || 2 == argc) {
+    if (1 == argc || (2 == argc && !my_strcmp(argv[1], "-h"))) {
         write(1, USAGE, 580);
         return 0;
     }
