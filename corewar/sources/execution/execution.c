@@ -28,28 +28,25 @@ int execution(arena_t *arena)
     return 0;
 }
 
-static int execute_current_cycle(arena_t *arena) //TODO Too long function
+static int execute_current_cycle(arena_t *arena)
 {
     loaded_op_t *loaded_op;
 
     for (int i = 0; arena->execs[i]; i++) {
         loaded_op = &arena->execs[i]->loaded_op;
         if (loaded_op->is_op_loaded && !loaded_op->wait_cycle) {
-            if (instructions[loaded_op->opcode - 1](arena, i)) {
+            if (instructions[loaded_op->opcode - 1](arena, i))
                 return 1;
-            }
             arena->execs[i]->pc += loaded_op->pc_offset;
             reset_loaded_op(loaded_op);
         } else if (!loaded_op->is_op_loaded) {
             reset_loaded_op(loaded_op);
             if (read_op(arena, i, loaded_op)) {
                 arena->execs[i]->pc++;
-            } else {
+            } else
                 loaded_op->is_op_loaded = 1;
-            }
-        } else {
+        } else
             loaded_op->wait_cycle--;
-        }
         arena->execs[i]->pc %= MEM_SIZE;
     }
     return 0;
