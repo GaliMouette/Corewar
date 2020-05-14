@@ -17,11 +17,13 @@ int compile_file(char const *path)
         return 1;
     }
     if (parse_file(file, &header, &head)) {
+        fclose(file);
         return 1;
     }
     header.prog_size = calculate_pc(head);
     if (replace_labels(head) || write_file(path, &header, head)) {
         free_instruction(head);
+        fclose(file);
         return 1;
     }
     free_instruction(head);

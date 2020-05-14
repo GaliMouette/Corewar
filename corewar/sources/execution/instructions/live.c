@@ -22,6 +22,7 @@ int live_instruction(arena_t *arena, int i)
     }
     name = arena->players[index].name;
     arena->players[index].status = ALIVE;
+    check_winner(NULL, NULL, arena->players[index].number);
     write(1, "The player ", 11);
     my_put_nbr(arena->players[index].number);
     write(1, " (", 2);

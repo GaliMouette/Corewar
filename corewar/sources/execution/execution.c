@@ -13,10 +13,14 @@ int execution(arena_t *arena)
     unsigned int *current_cycle = &arena->current_cycle;
 
     while (!winner) {
-        execute_current_cycle(arena);
+        if (execute_current_cycle(arena)) {
+            return 1;
+        }
         if (*current_cycle && !(*current_cycle % arena->cycle_to_die)) {
-            check_winner(arena, &winner);
-            remove_dead(arena);
+            check_winner(arena, &winner, 0);
+            if (remove_dead(arena)) {
+                return 1;
+            }
         }
         arena->current_cycle++;
     }
@@ -24,31 +28,31 @@ int execution(arena_t *arena)
     return 0;
 }
 
-void execute_current_cycle(arena_t *arena)
+static int execute_current_cycle(arena_t *arena)
 {
     loaded_op_t *loaded_op;
 
     for (int i = 0; arena->execs[i]; i++) {
         loaded_op = &arena->execs[i]->loaded_op;
         if (loaded_op->is_op_loaded && !loaded_op->wait_cycle) {
-            instructions[loaded_op->opcode - 1](arena, i);
+            if (instructions[loaded_op->opcode - 1](arena, i))
+                return 1;
             arena->execs[i]->pc += loaded_op->pc_offset;
             reset_loaded_op(loaded_op);
         } else if (!loaded_op->is_op_loaded) {
             reset_loaded_op(loaded_op);
             if (read_op(arena, i, loaded_op)) {
                 arena->execs[i]->pc++;
-            } else {
+            } else
                 loaded_op->is_op_loaded = 1;
-            }
-        } else {
+        } else
             loaded_op->wait_cycle--;
-        }
         arena->execs[i]->pc %= MEM_SIZE;
     }
+    return 0;
 }
 
-void reset_loaded_op(loaded_op_t *loaded_op)
+static void reset_loaded_op(loaded_op_t *loaded_op)
 {
     loaded_op->is_op_loaded = 0;
     loaded_op->opcode = 0;
@@ -61,18 +65,21 @@ void reset_loaded_op(loaded_op_t *loaded_op)
     loaded_op->wait_cycle = 0;
 }
 
-void remove_dead(arena_t *arena)
+static int remove_dead(arena_t *arena)
 {
     for (int i = 0; i < 4; i++) {
         if (arena->players[i].status == DEAD){
-            remove_execs(arena, i);
+            if (remove_execs(arena, i)) {
+                return 1;
+            }
         } else {
             arena->players[i].status = DEAD;
         }
     }
+    return 0;
 }
 
-int remove_execs(arena_t *arena, int i)
+static int remove_execs(arena_t *arena, int i)
 {
     size_t index = 0;
 

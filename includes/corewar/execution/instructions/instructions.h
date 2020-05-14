@@ -37,5 +37,6 @@ extern int (*instructions[])(arena_t *, int);
 void set_term(int *term, arena_t *arena, int i, int j);
 void get_indirect_value(arena_t *arena, int address, int read_size, int *value);
 void set_indirect_value(arena_t *arena, int address, int write_size, int value);
+void check_winner(arena_t *arena, int *winner, int set_last_alive);
 
 #endif /* !INSTRUCTIONS_H_ */
