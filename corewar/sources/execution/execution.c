@@ -17,7 +17,7 @@ int execution(arena_t *arena)
             return 1;
         }
         if (*current_cycle && !(*current_cycle % arena->cycle_to_die)) {
-            check_winner(arena, &winner);
+            check_winner(arena, &winner, 0);
             if (remove_dead(arena)) {
                 return 1;
             }

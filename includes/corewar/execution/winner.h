@@ -12,7 +12,7 @@
 #include "utils.h"
 #include <unistd.h>
 
-void check_winner(arena_t *arena, int *winner);
+void check_winner(arena_t *arena, int *winner, int set_last_alive);
 void display_winner(arena_t *arena, int winner);
 
 #endif /* !WINNER_H_ */

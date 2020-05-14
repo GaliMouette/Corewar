@@ -19,7 +19,7 @@ static int remove_execs(arena_t *arena, int i);
 
 //  Using
 int read_op(arena_t *arena, int i, loaded_op_t *loaded_op);
-void check_winner(arena_t *arena, int *winner);
+void check_winner(arena_t *arena, int *winner, int set_last_alive);
 void display_winner(arena_t *arena, int winner);
 
 #endif /* !EXECUTION_H_ */
