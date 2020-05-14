@@ -16,6 +16,7 @@ int live_instruction(arena_t *arena, int i)
     arena->calls_to_live++;
     if (!(arena->calls_to_live % NBR_LIVE)) {
         arena->cycle_to_die -= CYCLE_DELTA;
+        printf("Cycles to die : %d\n", arena->cycle_to_die);
     }
     if (index < 0 || arena->nb_players <= index) {
         return 0;

@@ -19,7 +19,9 @@ int main(int argc, char const *argv[])
     if (initiate(argv, &init, &arena)) {
         return 84;
     }
-    execution(&arena);
+    if (execution(&arena)) {
+        return 84;
+    }
     return 0;
 }
 
