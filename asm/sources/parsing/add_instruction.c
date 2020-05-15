@@ -7,8 +7,8 @@
 
 #include "asm/parsing/add_instruction.h"
 
-int add_instruction
-(char *args[6], instruction_t **head, int info[2], labels_t *saved_labels)
+int add_instruction(char *args[6], instruction_t **head,
+int info[2], labels_t *saved_labels)
 {
     instruction_t *dummy, *new = malloc(sizeof(instruction_t));
 
@@ -33,8 +33,8 @@ int add_instruction
     return 0;
 }
 
-static int set_instruction
-(char *args[6], int info[2], labels_t *saved_labels, instruction_t *new)
+static int set_instruction(char *args[6], int info[2],
+labels_t *saved_labels, instruction_t *new)
 {
     int index = saved_labels->nb_labels - 1;
 
@@ -84,8 +84,8 @@ static int set_args(char *args[6], instruction_t *new)
     return 0;
 }
 
-static int set_direct_or_indirect
-(char *args[6], instruction_t *new, int i, int direct)
+static int set_direct_or_indirect(char *args[6],
+instruction_t *new, int i, int direct)
 {
     int label = set_label(args, new, i, direct);
 

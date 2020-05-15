@@ -26,8 +26,8 @@ int replace_labels(instruction_t *head)
     return 0;
 }
 
-static int set_pc
-(instruction_t *head, instruction_t *dummy, int index, int shift)
+static int set_pc(instruction_t *head,
+instruction_t *dummy, int index, int shift)
 {
     int pc = head->pc;
     unsigned char args_types = head->args_types;
