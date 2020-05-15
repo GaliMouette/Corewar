@@ -19,7 +19,7 @@ int main(int argc, char const *argv[])
     if (initiate(argv, &init, &arena)) {
         return 84;
     }
-    if (execution(&arena)) {
+    if (execution(&arena, init.dump)) {
         freearray((void **) arena.execs);
         return 84;
     }

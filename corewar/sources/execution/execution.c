@@ -7,12 +7,12 @@
 
 #include "corewar/execution/execution.h"
 
-int execution(arena_t *arena)
+int execution(arena_t *arena, long dump)
 {
     int winner = 0;
     unsigned int *current_cycle = &arena->current_cycle;
 
-    while (!winner) {
+    while ((-1 != dump) ? *current_cycle < dump : !(winner)) {
         if (execute_current_cycle(arena)) {
             return 1;
         }
@@ -24,7 +24,11 @@ int execution(arena_t *arena)
         }
         arena->current_cycle++;
     }
-    display_winner(arena, winner);
+    if (-1 != dump) {
+        dump_memory(arena);
+    } else {
+        display_winner(arena, winner);
+    }
     return 0;
 }
 

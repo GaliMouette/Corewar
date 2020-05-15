@@ -25,6 +25,7 @@ static void sort_champs(init_t *init)
 {
     init_t dummy = INIT;
 
+    dummy.dump = init->dump;
     for (int i = 0; i < 4; i++) {
         if (-1 != init->champs[i].number) {
             dummy.champs[init->champs[i].number - 1] = init->champs[i];
