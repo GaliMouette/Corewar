@@ -17,8 +17,8 @@
 #include <unistd.h>
 
 int parse_file(FILE *file, header_t *header, instruction_t **head);
-static int parse_line
-(char *line, header_t *header, labels_t *saved_labels, instruction_t **head);
+static int parse_line(char *line, header_t *header,
+labels_t *saved_labels, instruction_t **head);
 static void fill_args(char *args[6], char *line, int label);
 
 //  Using
@@ -26,7 +26,7 @@ ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 int clean_line(char *line);
 int get_header(char *line, header_t *header, int is_set);
 int check_label(char *line, labels_t *saved_labels);
-static int parse_line(char *line, header_t *header,
-labels_t *saved_labels, instruction_t **head);
+int parse_args
+(char *args[6], labels_t *saved_labels, int *label, instruction_t **head);
 
 #endif /* !PARSE_FILE_H_ */
