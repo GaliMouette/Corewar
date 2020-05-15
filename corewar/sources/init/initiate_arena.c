@@ -15,7 +15,10 @@ int initiate_arena(init_t *init, arena_t *arena)
     if (malloc_execs(arena)) {
         return 1;
     }
-    for (int i = 0; i < arena->nb_players; i++) {
+    for (int i = 0; i < 4; i++) {
+        if (!(init->champs[i].path)) {
+            continue;
+        }
         if (load_exec_in_memory(init, arena, i)) {
             return 1;
         }
@@ -44,14 +47,17 @@ static int malloc_execs(arena_t *arena)
 
 static void init_exec(init_t *init, arena_t *arena, int i)
 {
-    arena->execs[i]->player = i + 1;
-    arena->execs[i]->registry[0] = init->champs[i].number;
+    static int index = 0;
+
+    arena->execs[index]->player = i + 1;
+    arena->execs[index]->registry[0] = init->champs[i].number;
     for (int j = 1; j < REG_NUMBER - 1; j++) {
-        arena->execs[i]->registry[j] = 0;
+        arena->execs[index]->registry[j] = 0;
     }
-    arena->execs[i]->pc = init->champs[i].load_address;
-    arena->execs[i]->carry = 0;
-    arena->execs[i]->loaded_op = (loaded_op_t) {0};
+    arena->execs[index]->pc = init->champs[i].load_address;
+    arena->execs[index]->carry = 0;
+    arena->execs[index]->loaded_op = (loaded_op_t) {0};
+    index++;
 }
 
 static void init_player(init_t *init, arena_t *arena, int i)

@@ -10,7 +10,10 @@
 int open_files(init_t *init)
 {
     sort_champs(init);
-    for (int i = 0; init->champs[i].path; i++) {
+    for (int i = 0; i < 4; i++) {
+        if (!(init->champs[i].path)) {
+            continue;
+        }
         if (open_file(init->champs[i].path, &init->champs[i].file_desc)) {
             return 1;
         }

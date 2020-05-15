@@ -17,11 +17,12 @@ void complex_assign(init_t *init, arena_t *arena, int already_set)
     set_third_address(addresses);
     for (int i = 0; i != nb_players; i++) {
         if (2 == already_set && -1 == init->champs[i].load_address
-        && !third_address_is_set) {
+        && !third_address_is_set && init->champs[i].path) {
             init->champs[i].load_address = addresses[2];
             third_address_is_set = 1;
         }
-        if (-1 == init->champs[i].load_address && 4 == nb_players) {
+        if (-1 == init->champs[i].load_address && 4 == nb_players
+        && init->champs[i].path) {
             SORT(addresses[0], addresses[1], addresses[2])
             set_fourth_address(init, i, addresses);
             init->champs[i].load_address %= MEM_SIZE;
@@ -33,7 +34,7 @@ static void get_addresses(init_t *init, int nb_players, int addresses[3])
 {
     int index = 0;
 
-    for (int i = 0; i != nb_players; i++) {
+    for (int i = 0; i < 4; i++) {
         if (-1 != init->champs[i].load_address) {
             addresses[index] = init->champs[i].load_address;
             index++;
