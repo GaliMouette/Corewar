@@ -16,5 +16,6 @@ int replace_labels(instruction_t *head);
 static int set_pc(instruction_t *head,
 instruction_t *dummy, int index, int shift);
 static int get_label_pc(instruction_t *dummy, char *label);
+static int get_label_space(char *dummy, char *label);
 
 #endif /* !REPLACE_LABELS_H_ */
