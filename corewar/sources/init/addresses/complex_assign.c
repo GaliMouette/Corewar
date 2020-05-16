@@ -13,7 +13,7 @@ void complex_assign(init_t *init, arena_t *arena, int already_set)
     int nb_players = arena->nb_players;
     int third_address_is_set = 0;
 
-    get_addresses(init, nb_players, addresses);
+    get_addresses(init, addresses);
     set_third_address(addresses);
     for (int i = 0; i != nb_players; i++) {
         if (2 == already_set && -1 == init->champs[i].load_address
@@ -30,7 +30,7 @@ void complex_assign(init_t *init, arena_t *arena, int already_set)
     }
 }
 
-static void get_addresses(init_t *init, int nb_players, int addresses[3])
+static void get_addresses(init_t *init, int addresses[3])
 {
     int index = 0;
 

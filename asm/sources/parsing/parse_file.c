@@ -43,7 +43,7 @@ labels_t *saved_labels, instruction_t **head)
         return get_header(line, header, 0);
     }
     if (my_strstr(line, LABEL_STR)) {
-        if (check_label(line, saved_labels)) {
+        if (check_label(line, saved_labels, label)) {
             return 1;
         }
         label = 2;
