@@ -11,8 +11,7 @@ int initiate_arena(init_t *init, arena_t *arena)
 {
     arena->nb_players = count_players(init);
     assign_addresses(init, arena);
-    check_prog_overlap(init);
-    if (malloc_execs(arena)) {
+    if (check_prog_overlap(init) || malloc_execs(arena)) {
         return 1;
     }
     for (int i = 0; i < 4; i++) {
