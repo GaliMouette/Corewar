@@ -7,7 +7,7 @@
 
 #include "corewar/init/adresses/check_prog_overlap.h"
 
-int check_prog_overlap(init_t *init, arena_t *arena)
+int check_prog_overlap(init_t *init)
 {
     int s1, s2, e1, e2;
 
