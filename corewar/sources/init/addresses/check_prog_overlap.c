@@ -23,7 +23,7 @@ int check_prog_overlap(init_t *init)
             }
             s2 = init->champs[j].load_address % MEM_SIZE;
             e2 = (s2 + init->champs[j].header.prog_size - 1) % MEM_SIZE;
-            if ((s1 <= s2 && s2 <= e1) || (s2 <= e1 && e1 <= e2)) {
+            if ((s1 <= s2 && s2 <= e1) || (s2 <= s1 && s1 <= e2)) {
                 write(2, "Program overlap detected.\n", 26);
                 return 1;
             }
