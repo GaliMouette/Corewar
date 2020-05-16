@@ -101,6 +101,8 @@ tests/utils/test_my_strdup.c						\
 utils/my_strdup.c									\
 tests/utils/test_my_strlen.c						\
 utils/my_strlen.c									\
+tests/utils/test_my_strncmp.c						\
+utils/my_strncmp.c									\
 tests/utils/test_my_strndup.c						\
 utils/my_strndup.c									\
 tests/utils/test_my_strnlen.c						\
