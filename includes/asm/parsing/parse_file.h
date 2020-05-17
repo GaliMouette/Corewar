@@ -17,7 +17,6 @@
 #include <unistd.h>
 
 int parse_file(FILE *file, header_t *header, instruction_t **head);
-char *last_label(char *new_label, int set);
 static int parse_line(char *line, header_t *header,
 labels_t *saved_labels, instruction_t **head);
 static void fill_args(char *args[6], char *line, int label);

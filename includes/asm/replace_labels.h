@@ -12,12 +12,9 @@
 #include "utils.h"
 #include <unistd.h>
 
-int replace_labels(instruction_t *head, long prog_size);
+int replace_labels(instruction_t *head);
 static int set_pc(instruction_t *head,
 instruction_t *dummy, int index, int shift);
 static int get_label_pc(instruction_t *dummy, char *label);
-
-//  Using
-char *last_label(char *new_label, int set);
 
 #endif /* !REPLACE_LABELS_H_ */
