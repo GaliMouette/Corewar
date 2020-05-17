@@ -8,6 +8,12 @@
 #ifndef EXECUTION_H_
 #define EXECUTION_H_
 
+#define CHECK_CYCLE_TO_DIE \
+check_winner(arena, &winner, 0); \
+if (remove_dead(arena)) { \
+    return 1; \
+}
+
 #define EXECUTE_INSTRUCTION \
 if (instructions[loaded_op->opcode - 1](arena, i)) { \
     return 1; \

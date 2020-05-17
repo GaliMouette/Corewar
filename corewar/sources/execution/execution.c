@@ -17,10 +17,7 @@ int execution(arena_t *arena, long dump)
             return 1;
         }
         if (*current_cycle && !(*current_cycle % arena->cycle_to_die)) {
-            check_winner(arena, &winner, 0);
-            if (remove_dead(arena)) {
-                return 1;
-            }
+            CHECK_CYCLE_TO_DIE
         }
         arena->current_cycle++;
     }
