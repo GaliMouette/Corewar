@@ -8,6 +8,21 @@
 #ifndef EXECUTION_H_
 #define EXECUTION_H_
 
+#define EXECUTE_INSTRUCTION \
+if (instructions[loaded_op->opcode - 1](arena, i)) { \
+    return 1; \
+} \
+arena->execs[i]->pc += loaded_op->pc_offset; \
+reset_loaded_op(loaded_op);
+
+#define LOAD_INSTRUCTION \
+reset_loaded_op(loaded_op); \
+if (read_op(arena, i, loaded_op)) { \
+    arena->execs[i]->pc++; \
+} else { \
+    loaded_op->is_op_loaded = 1; \
+}
+
 #include "corewar/execution/instructions/instructions.h"
 #include "typedefs/arena_t.h"
 
