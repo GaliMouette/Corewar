@@ -12,7 +12,7 @@ int count_players(init_t *init)
     int nb_players = 0;
 
     for (int i = 0; i < 4; i++) {
-        if (init->champs[nb_players].path) {
+        if (init->champs[i].path) {
             nb_players++;
         }
     }

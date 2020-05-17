@@ -10,7 +10,10 @@
 int open_files(init_t *init)
 {
     sort_champs(init);
-    for (int i = 0; init->champs[i].path; i++) {
+    for (int i = 0; i < 4; i++) {
+        if (!(init->champs[i].path)) {
+            continue;
+        }
         if (open_file(init->champs[i].path, &init->champs[i].file_desc)) {
             return 1;
         }
@@ -25,6 +28,7 @@ static void sort_champs(init_t *init)
 {
     init_t dummy = INIT;
 
+    dummy.dump = init->dump;
     for (int i = 0; i < 4; i++) {
         if (-1 != init->champs[i].number) {
             dummy.champs[init->champs[i].number - 1] = init->champs[i];

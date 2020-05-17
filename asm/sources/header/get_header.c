@@ -31,6 +31,10 @@ int get_header(char *line, header_t *header, int is_set)
 
 static int check_errors(char *args)
 {
+    if (!(args)) {
+        write(2, "Missing name or comment string.\n", 32);
+        return 1;
+    }
     if ('\"' != args[0]
     || !my_strstr(args + 1, "\"")
     || my_strstr(args + 1, "\"")[1]) {

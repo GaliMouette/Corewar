@@ -7,24 +7,25 @@
 
 #include "corewar/execution/execution.h"
 
-int execution(arena_t *arena)
+int execution(arena_t *arena, long dump)
 {
     int winner = 0;
     unsigned int *current_cycle = &arena->current_cycle;
 
-    while (!winner) {
+    while ((-1 != dump) ? *current_cycle < dump : !(winner)) {
         if (execute_current_cycle(arena)) {
             return 1;
         }
         if (*current_cycle && !(*current_cycle % arena->cycle_to_die)) {
-            check_winner(arena, &winner, 0);
-            if (remove_dead(arena)) {
-                return 1;
-            }
+            CHECK_CYCLE_TO_DIE
         }
         arena->current_cycle++;
     }
-    display_winner(arena, winner);
+    if (-1 != dump) {
+        dump_memory(arena);
+    } else {
+        display_winner(arena, winner);
+    }
     return 0;
 }
 
@@ -35,18 +36,12 @@ static int execute_current_cycle(arena_t *arena)
     for (int i = 0; arena->execs[i]; i++) {
         loaded_op = &arena->execs[i]->loaded_op;
         if (loaded_op->is_op_loaded && !loaded_op->wait_cycle) {
-            if (instructions[loaded_op->opcode - 1](arena, i))
-                return 1;
-            arena->execs[i]->pc += loaded_op->pc_offset;
-            reset_loaded_op(loaded_op);
+            EXECUTE_INSTRUCTION
         } else if (!loaded_op->is_op_loaded) {
-            reset_loaded_op(loaded_op);
-            if (read_op(arena, i, loaded_op)) {
-                arena->execs[i]->pc++;
-            } else
-                loaded_op->is_op_loaded = 1;
-        } else
+            LOAD_INSTRUCTION
+        } else {
             loaded_op->wait_cycle--;
+        }
         arena->execs[i]->pc %= MEM_SIZE;
     }
     return 0;

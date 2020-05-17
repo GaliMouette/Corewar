@@ -17,7 +17,7 @@ int live_instruction(arena_t *arena, int i)
     if (!(arena->calls_to_live % NBR_LIVE)) {
         arena->cycle_to_die -= CYCLE_DELTA;
     }
-    if (index < 0 || arena->nb_players <= index) {
+    if (index < 0 || 3 < index || !(arena->players[index].number)) {
         return 0;
     }
     name = arena->players[index].name;

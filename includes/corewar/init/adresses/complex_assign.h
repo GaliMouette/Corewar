@@ -24,7 +24,7 @@ if ((b) > (c)) { SWAP(b, c); }
 #define CHOICE(choice, address)     ((choice == address) ? MEM_SIZE : 0)
 
 void complex_assign(init_t *init, arena_t *arena, int already_set);
-static void get_addresses(init_t *init, int nb_players, int addresses[3]);
+static void get_addresses(init_t *init, int addresses[3]);
 static void set_third_address(int address[3]);
 static void set_fourth_address(init_t *init, int i, int address[3]);
 

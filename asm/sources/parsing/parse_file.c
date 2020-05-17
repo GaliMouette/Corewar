@@ -12,28 +12,39 @@ int parse_file(FILE *file, header_t *header, instruction_t **head)
     char *line = NULL;
     size_t n = 0;
     static labels_t saved_labels = {0};
+    int status = 0;
 
-    while (-1 != getline(&line, &n, file)) {
+    while (-1 != getline(&line, &n, file) && !status) {
         if (clean_line(line)) {
             continue;
         }
-        if (parse_line(line, header, &saved_labels, head)) {
-            freearray((void **) saved_labels.labels);
-            free(line);
-            return 1;
-        }
+        status = parse_line(line, header, &saved_labels, head);
+    }
+    if (!status) {
+        last_label(saved_labels.labels[saved_labels.nb_labels - 1], 1);
     }
     freearray((void **) saved_labels.labels);
     free(line);
-    if (!get_header(NULL, NULL, 1)) {
+    if (!status && !get_header(NULL, NULL, 1)) {
         write(2, "Incomplete header.\n", 19);
         return 1;
     }
-    return 0;
+    return status;
 }
 
-static int parse_line
-(char *line, header_t *header, labels_t *saved_labels, instruction_t **head)
+char *last_label(char *new_label, int set)
+{
+    static char *label = NULL;
+
+    if (set) {
+        free(label);
+        label = (new_label) ? my_strdup(new_label) : NULL;
+    }
+    return label;
+}
+
+static int parse_line(char *line, header_t *header,
+labels_t *saved_labels, instruction_t **head)
 {
     static int label = 0;
     char *args[6] = {0};
@@ -43,7 +54,7 @@ static int parse_line
         return get_header(line, header, 0);
     }
     if (my_strstr(line, LABEL_STR)) {
-        if (check_label(line, saved_labels)) {
+        if (check_label(line, saved_labels, label)) {
             return 1;
         }
         label = 2;

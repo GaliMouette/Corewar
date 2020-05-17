@@ -36,6 +36,6 @@ int parse_args(char const *argv[], init_t *init);
 int check_files(init_t *init);
 int open_files(init_t *init);
 int initiate_arena(init_t *init, arena_t *arena);
-int execution(arena_t *arena);
+int execution(arena_t *arena, long dump);
 
 #endif /* !MAIN_H_ */

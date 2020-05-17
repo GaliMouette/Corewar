@@ -36,13 +36,13 @@ static void simple_assign(init_t *init, int nb_players)
 {
     int x = 0;
 
-    for (int i = 0; i != nb_players; i++) {
+    for (int i = 0; i < 4; i++) {
         if (-1 != init->champs[i].load_address) {
             x = init->champs[i].load_address;
         }
     }
-    for (int i = 0, j = 0; i != nb_players; i++) {
-        if (-1 == init->champs[i].load_address) {
+    for (int i = 0, j = 0; i < 4; i++) {
+        if (-1 == init->champs[i].load_address && init->champs[i].path) {
             j++;
             init->champs[i].load_address = j * (MEM_SIZE / nb_players) + x;
             init->champs[i].load_address %= MEM_SIZE;

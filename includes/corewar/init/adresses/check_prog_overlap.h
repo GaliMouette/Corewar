@@ -12,6 +12,6 @@
 #include "typedefs/arena_t.h"
 #include <unistd.h>
 
-int check_prog_overlap(init_t *init, arena_t *arena);
+int check_prog_overlap(init_t *init);
 
 #endif /* !CHECK_PROG_OVERLAP_H_ */
