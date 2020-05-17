@@ -57,9 +57,7 @@ static int get_label_pc(instruction_t *dummy, char *label, long prog_size)
             dummy = dummy->next;
             continue;
         }
-        if ((my_strstr(dummy->label, " ")
-        && get_label_space(dummy->label, label))
-        || !my_strcmp(dummy->label, label)) {
+        if (!my_strcmp(dummy->label, label)) {
             pc = dummy->pc;
         }
         dummy = dummy->next;
@@ -71,21 +69,4 @@ static int get_label_pc(instruction_t *dummy, char *label, long prog_size)
             write(2, "Reference to undefined label.\n", 30);
     }
     return pc;
-}
-
-static int get_label_space(char *dummy, char *label)
-{
-    int label_len;
-    int dummy_len;
-
-    while (*dummy) {
-        dummy += (' ' == dummy[0]);
-        dummy_len = my_strcspn(dummy, " ");
-        label_len = my_strlen(label);
-        if (label_len == dummy_len && !my_strncmp(dummy, label, label_len)){
-            return 1;
-        }
-        dummy += my_strcspn(dummy, " ");
-    }
-    return 0;
 }

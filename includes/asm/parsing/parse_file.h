@@ -26,8 +26,8 @@ static void fill_args(char *args[6], char *line, int label);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 int clean_line(char *line);
 int get_header(char *line, header_t *header, int is_set);
-int check_label(char *line, labels_t *saved_labels, int label);
-int parse_args(char *args[6], labels_t *saved_labels,
-int *label, instruction_t **head);
+int check_label(char *line, labels_t *saved_labels);
+int parse_args
+(char *args[6], labels_t *saved_labels, int *label, instruction_t **head);
 
 #endif /* !PARSE_FILE_H_ */
